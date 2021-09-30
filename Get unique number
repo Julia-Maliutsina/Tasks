@@ -1,0 +1,23 @@
+function getUnique(array) {
+
+  var results=[];
+  
+  for (let i=0; i<array.length; i++) {
+    let a=array[i];
+    let next=i+1;
+    let prev=i-1;
+    if (array.indexOf(a,next)>(-1)||array.lastIndexOf(a,prev)>(-1)) {
+      results[i]=false;
+    }
+    else {
+      results[i]=true;
+    }
+  }
+  
+  let unique=results.indexOf(true);
+  return array[unique];
+}
+
+const testArray = [1,1,1,2,2,3,4,4,5,5,5,5];
+const uniqueElement = getUnique(testArray); 
+console.log(uniqueElement);
