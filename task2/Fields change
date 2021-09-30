@@ -1,0 +1,23 @@
+"use script";
+
+var form=document.forms.test;
+var enterfield=form.elements.enter;
+var copyfield=form.elements.copy;
+
+enterfield.addEventListener('keyup', keyUpEvent, false);
+copyfield.addEventListener('keyup', keyUpEvent, false);
+
+var keyUpTimer;
+var text;
+var original;
+function keyUpEvent(){
+  text=this.value;
+  original=this.name;
+  clearTimeout(keyUpTimer);
+  keyUpTimer=setTimeout(createCopy,1000);
+} 
+
+function createCopy(){
+  if (original=='enter') copyfield.value=text;
+  if (original=='copy') enterfield.value=text;
+}
