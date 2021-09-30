@@ -19,7 +19,7 @@
 5. Write a function to find a unique number in array
 <a href="https://codepen.io/yuliya-maliutsina/pen/powYeYq">Link to codepen</a>
 
-<h3>Task 2</h3>
+<h3>Task 3</h3>
 
 <h4>Table with timer</h4>
 
