@@ -1,0 +1,28 @@
+function map (array) {
+  let result=[];
+  for (var i=0; i<array.length; i++) {
+    let hash={ };
+    hash.id=array[i].id;
+    hash.title=array[i].title;
+    result[i]=hash;
+  }
+  return result;
+}
+
+function filter (array) {
+  let result=[];
+  for (var i=0; i<array.length; i++) {   
+    if (array[i].isMarked) {
+      result.push(array[i]);
+    } 
+  }
+  return result;
+};
+
+function reduce (array) {
+  let result=0;
+  for (var i=0; i<array.length; i++) {   
+    result+=array[i].pagesCount;
+  }
+  return result;
+};
