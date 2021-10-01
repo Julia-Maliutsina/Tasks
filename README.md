@@ -12,7 +12,7 @@
 <a href="https://codepen.io/yuliya-maliutsina/pen/zYzbZKy">Link to codepen</a>
 
 4. Apply reduce function to the array
-<a href="https://codepen.io/yuliya-maliutsina/pen/dyRaVMV">Link to codepen</a>
+<a href="https://codepen.io/yuliya-maliutsina/pen/xxrBqRN">Link to codepen</a>
 
 <h4>Unique number in array</h4>
 
