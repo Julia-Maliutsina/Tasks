@@ -33,15 +33,17 @@ const notes = [
   }
 ]
 
-function map (array) {
+Array.prototype.myMap=function myMap(func) {
   let result=[];
-  for (var i=0; i<array.length; i++) {
-    let hash={ };
-    hash.id=array[i].id;
-    hash.title=array[i].title;
-    result[i]=hash;
-  }
+  for (let i=0; i<this.length; i++) {
+    result.push(func(this[i]));
+  };
   return result;
 }
 
-console.log(map(notes));
+console.log(notes.myMap((elem)=>{
+  let elemHash={ };
+  elemHash.id=elem.id;
+  elemHash.title=elem.title;
+	return elemHash;
+}));
