@@ -33,12 +33,12 @@ const notes = [
   }
 ]
 
-function reduce (array) {
+Array.prototype.myReduce=function myReduce(func) {
   let result=0;
-  for (var i=0; i<array.length; i++) {   
-    result+=array[i].pagesCount;
+  for (let i=0; i<this.length; i++) {
+    result+=func(this[i]);
   }
   return result;
-};
+}
 
-console.log(reduce(notes));
+console.log(notes.myReduce((elem)=>elem.pagesCount));
