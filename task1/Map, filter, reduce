@@ -1,28 +1,25 @@
-function map (array) {
+Array.prototype.myMap=function myMap(func) {
   let result=[];
-  for (var i=0; i<array.length; i++) {
-    let hash={ };
-    hash.id=array[i].id;
-    hash.title=array[i].title;
-    result[i]=hash;
+  for (let i=0; i<this.length; i++) {
+    result.push(func(this[i]));
+  };
+  return result;
+}
+
+Array.prototype.myFilter=function myFilter(func) {
+  let result=[];
+  for (let i=0; i<this.length; i++) {
+    if(func(this[i])) {
+      result.push(this[i]);
+    }
   }
   return result;
 }
 
-function filter (array) {
-  let result=[];
-  for (var i=0; i<array.length; i++) {   
-    if (array[i].isMarked) {
-      result.push(array[i]);
-    } 
-  }
-  return result;
-};
-
-function reduce (array) {
+Array.prototype.myReduce=function myReduce(func) {
   let result=0;
-  for (var i=0; i<array.length; i++) {   
-    result+=array[i].pagesCount;
+  for (let i=0; i<this.length; i++) {
+    result+=func(this[i]);
   }
   return result;
-};
+}
