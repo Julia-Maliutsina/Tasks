@@ -28,3 +28,18 @@
 <h4>Fields change</h4>
 
 2. Write a function to copy text that was entered in one of the fields to another one <a href="https://codepen.io/yuliya-maliutsina/pen/KKqEmXj">Link to codepen</a>
+
+<h3>Task 4</h3>
+
+<h4>Delay with promise</h4>
+
+1. Create a function to write "Hi" in console <a href="https://codepen.io/yuliya-maliutsina/pen/OJgqmGq">Link to codepen</a>
+
+<h4>Cycle with promise</h4>
+
+2. Create a function to write "D0", ..., "D9" in console in order <a href="https://codepen.io/yuliya-maliutsina/pen/PojLmML">Link to codepen</a>
+
+<h4>Promise error</h4>
+
+3. Create a Promise to write console.log or console.error depending on random loadtime <a href="https://codepen.io/yuliya-maliutsina/pen/powYwog">Link to codepen</a>
+
