@@ -19,6 +19,14 @@
 5. Write a function to find a unique number in array
 <a href="https://codepen.io/yuliya-maliutsina/pen/powYeYq">Link to codepen</a>
 
+<h3>Task 2</h3>
+
+<h4>Work with context</h4>
+
+1. Write bind function to add context to function <a href="https://codepen.io/yuliya-maliutsina/pen/dyREKyy">Link to codepen</a>
+
+2. Use bind, call, apply to add context to function <a href="https://codepen.io/yuliya-maliutsina/pen/jOwoKOY">Link to codepen</a>
+
 <h3>Task 3</h3>
 
 <h4>Table with timer</h4>
