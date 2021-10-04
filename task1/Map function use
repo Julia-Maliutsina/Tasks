@@ -34,6 +34,9 @@ const notes = [
 ]
 
 Array.prototype.myMap=function myMap(func) {
+  if (!func) {
+    throw new Error('Function is not defined');
+  }
   let result=[];
   for (let i=0; i<this.length; i++) {
     result.push(func(this[i]));
