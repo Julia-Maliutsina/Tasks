@@ -7,6 +7,9 @@ Array.prototype.myMap=function myMap(func) {
 }
 
 Array.prototype.myFilter=function myFilter(func) {
+  if (!func) {
+    throw new Error('Function is not defined');
+  }
   let result=[];
   for (let i=0; i<this.length; i++) {
     if(func(this[i])) {
@@ -16,10 +19,18 @@ Array.prototype.myFilter=function myFilter(func) {
   return result;
 }
 
-Array.prototype.myReduce=function myReduce(func) {
-  let result=0;
+Array.prototype.myReduce=function myReduce(func,initial) {
+  if (!func) {
+    throw new Error('Function is not defined');
+  }
+  var result=initial;
   for (let i=0; i<this.length; i++) {
-    result+=func(this[i]);
+    if (result!==undefined) {
+      result=func(result,this[i]);
+    }  
+    else {
+      result=this[i];
+    }
   }
   return result;
 }
