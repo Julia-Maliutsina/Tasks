@@ -33,15 +33,17 @@ const notes = [
   }
 ]
 
-
-function filter (array) {
+Array.prototype.myFilter=function myFilter(func) {
+  if (!func) {
+    throw new Error('Function is not defined');
+  }
   let result=[];
-  for (var i=0; i<array.length; i++) {   
-    if (array[i].isMarked) {
-      result.push(array[i]);
-    } 
+  for (let i=0; i<this.length; i++) {
+    if(func(this[i])) {
+      result.push(this[i]);
+    }
   }
   return result;
-};
+}
 
-console.log(filter(notes));
+console.log(notes.myFilter((elem)=>elem.isMarked));
