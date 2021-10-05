@@ -1,4 +1,3 @@
-"use strict";
 const downloads = [
   {
   id: 1,

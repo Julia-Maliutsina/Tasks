@@ -1,5 +1,3 @@
-"use strict";
-
 const notes = [
   {
   id: 1,

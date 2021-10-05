@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <form name="test" method="post" action="form.php">
+      <p>Enter text<Br>
+      <textarea name="enter"></textarea></p>
+      <p>Your message<Br>
+      <textarea name="copy"></textarea></p>
+    </form>
+
+    <script>
+      var form=document.forms.test;
+      var enterfield=form.elements.enter;
+      var copyfield=form.elements.copy;
+
+      enterfield.addEventListener('keyup', keyUpEvent, false);
+      copyfield.addEventListener('keyup', keyUpEvent, false);
+
+      var keyUpTimer;
+      var text;
+      var original;
+      function keyUpEvent(){
+        text=this.value;
+        original=this.name;
+        clearTimeout(keyUpTimer);
+        keyUpTimer=setTimeout(createCopy,1000);
+      } 
+
+      function createCopy(){
+        if (original=='enter') copyfield.value=text;
+        if (original=='copy') enterfield.value=text;
+      }
+    </script>
+  </body>
+</html>
