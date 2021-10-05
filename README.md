@@ -51,3 +51,7 @@
 
 3. Create a Promise to write console.log or console.error depending on random loadtime <a href="https://codepen.io/yuliya-maliutsina/pen/powYwog">Link to codepen</a>
 
+<h4>Async/await in demoGitHubUser</h4>
+
+4. Use async/await to change recursion to cycle <a href="https://codepen.io/yuliya-maliutsina/pen/xxropRY">Link to codepen</a>
+
