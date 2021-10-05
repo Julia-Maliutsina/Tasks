@@ -1,11 +1,11 @@
-function delay(duration){
-  return new Promise((resolve, reject)=>{
-    setTimeout(()=>{
+function delay(duration) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve();
     }, duration);
   });
 }
-function logHi(){
+function logHi() {
   console.log("Hi");
 }
 delay(2000).then(logHi);

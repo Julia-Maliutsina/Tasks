@@ -1,12 +1,12 @@
 window.x = 1;
 const context = { x: 2 };
-const testThis=function(y) {
+const testThis = function (y) {
   console.log(`x=${this.x}, y=${y}`);
-}
+};
 testThis(100); // x=1, y=100
 
-function bind(func,object){
-  let result=func.bind(object);
+function bind(func, object) {
+  let result = func.bind(object);
   return result;
 }
 const boundFunction = bind(testThis, context);

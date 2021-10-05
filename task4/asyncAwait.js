@@ -1,7 +1,7 @@
 class HttpError extends Error {
   constructor(response) {
     super(`${response.status} for ${response.url}`);
-    this.name = 'HttpError';
+    this.name = "HttpError";
     this.response = response;
   }
 }
@@ -9,8 +9,7 @@ async function loadJson(url) {
   let response = await fetch(url);
   if (response.status == 200) {
     return response.json();
-  } 
-  else {
+  } else {
     throw new HttpError(response);
   }
 }
@@ -21,11 +20,11 @@ function demoGithubUser() {
     alert(`Full name: ${user.name}.`);
     return user;
   }
-  loginSearch().catch(err => {
+  loginSearch().catch((err) => {
     while (err instanceof HttpError && err.response.status == 404) {
       alert("We can’t find such user.");
       return message();
-    } 
+    }
     throw err;
   });
 }
