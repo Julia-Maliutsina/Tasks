@@ -1,9 +1,9 @@
-let form = document.forms.test;
-let enterfield = form.elements.enter;
-let copyfield = form.elements.copy;
+const FORM = document.forms.test;
+const ENTERFIELD = FORM.elements.field1;
+const COPYFIELD = FORM.elements.field2;
 
-enterfield.addEventListener("keyup", keyUpEvent, false);
-copyfield.addEventListener("keyup", keyUpEvent, false);
+ENTERFIELD.addEventListener("keyup", keyUpEvent, false);
+COPYFIELD.addEventListener("keyup", keyUpEvent, false);
 
 const COPY_DELAY = 1000;
 const ENTER_TEXT = "field1";
@@ -22,9 +22,9 @@ function keyUpEvent() {
 
 function createCopy() {
   if (original == ENTER_TEXT) {
-    copyfield.value = text;
+    COPYFIELD.value = text;
   }
   if (original == YOUR_MESSAGE) {
-    enterfield.value = text;
+    ENTERFIELD.value = text;
   }
 }

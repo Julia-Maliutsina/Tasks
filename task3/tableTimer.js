@@ -26,27 +26,27 @@ const DOWNLOADS = [
   },
 ];
 function constructTable(array) {
-  let table = document.createElement("table");
-  document.getElementsByTagName("body")[0].appendChild(table);
+  const TABLE = document.createElement("table");
+  document.getElementsByTagName("body")[0].appendChild(TABLE);
 
   for (let i = 0; i < array.length; i++) {
     let element = array[i];
 
     let row = document.createElement("tr");
-    let cell = document.createElement("td");
-    let cellText = document.createTextNode(element.id);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
-    let cell = document.createElement("td");
-    let cellText = document.createTextNode(element.title);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
-    let cell = document.createElement("td");
-    let cellText = document.createTextNode(element.status);
-    cell.appendChild(cellText);
-    row.appendChild(cell);
+    let idCell = document.createElement("td");
+    let idText = document.createTextNode(element.id);
+    idCell.appendChild(idText);
+    row.appendChild(idCell);
+    let titleCell = document.createElement("td");
+    let titleText = document.createTextNode(element.title);
+    titleCell.appendChild(titleText);
+    row.appendChild(titleCell);
+    let statusCell = document.createElement("td");
+    let statusText = document.createTextNode(element.status);
+    statusCell.appendChild(statusText);
+    row.appendChild(statusCell);
 
-    table.appendChild(row);
+    TABLE.appendChild(row);
   }
 }
 
@@ -54,23 +54,26 @@ constructTable(DOWNLOADS);
 
 const START_DELAY = 3000;
 const STATUS_CHECK_INTERVAL = 5000;
-const INITIAL_STATUS = "Pending";
-const FINAL_STATUS = "Done";
+const DOWNLOAD_STATUSES = {
+  pending: "Pending",
+  done: "Done",
+  failed: "Failed",
+};
 
 function startDelay() {
-  let timer = setTimeout(setTimer, START_DELAY);
+  const TIMER = setTimeout(setTimer, START_DELAY);
 }
 function setTimer() {
   checkStatus();
 
   function checkStatus() {
     console.log("Check started");
-    let table = document.getElementsByTagName("table")[0];
-    let rows = table.children;
-    for (let i = 0; i < rows.length; i++) {
-      if (rows[i].children[2].textContent == INITIAL_STATUS) {
-        rows[i].children[2].textContent = FINAL_STATUS;
-        let interval = setTimeout(checkStatus, STATUS_CHECK_INTERVAL);
+    const TABLE = document.getElementsByTagName("table")[0];
+    const ROWS = TABLE.children;
+    for (let i = 0; i < ROWS.length; i++) {
+      if (ROWS[i].children[2].textContent == DOWNLOAD_STATUSES.pending) {
+        ROWS[i].children[2].textContent = DOWNLOAD_STATUSES.done;
+        const INTERVAL = setTimeout(checkStatus, STATUS_CHECK_INTERVAL);
         break;
       }
     }
