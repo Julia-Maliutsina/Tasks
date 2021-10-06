@@ -1,4 +1,4 @@
-const notes = [
+const NOTES = [
   {
     id: 1,
     title: "Recipe",
@@ -37,7 +37,7 @@ Array.prototype.myReduce = function myReduce(func, initial) {
   if (!func) {
     throw new Error("Function is not defined");
   }
-  var result = initial;
+  let result = initial;
   for (let i = 0; i < this.length; i++) {
     if (result !== undefined) {
       result = func(result, this[i]);
@@ -48,4 +48,4 @@ Array.prototype.myReduce = function myReduce(func, initial) {
   return result;
 };
 
-console.log(notes.myReduce((sum, elem) => (sum += elem.pagesCount), 0));
+console.log(NOTES.myReduce((sum, elem) => (sum += elem.pagesCount), 0));

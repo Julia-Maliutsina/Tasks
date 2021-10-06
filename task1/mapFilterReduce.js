@@ -23,7 +23,7 @@ Array.prototype.myReduce = function myReduce(func, initial) {
   if (!func) {
     throw new Error("Function is not defined");
   }
-  var result = initial;
+  let result = initial;
   for (let i = 0; i < this.length; i++) {
     if (result !== undefined) {
       result = func(result, this[i]);

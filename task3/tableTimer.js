@@ -1,4 +1,4 @@
-const downloads = [
+const DOWNLOADS = [
   {
     id: 1,
     title: "Recipe",
@@ -26,23 +26,23 @@ const downloads = [
   },
 ];
 function constructTable(array) {
-  var table = document.createElement("table");
+  let table = document.createElement("table");
   document.getElementsByTagName("body")[0].appendChild(table);
 
-  for (var i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     let element = array[i];
 
-    var row = document.createElement("tr");
-    var cell = document.createElement("td");
-    var cellText = document.createTextNode(element.id);
+    let row = document.createElement("tr");
+    let cell = document.createElement("td");
+    let cellText = document.createTextNode(element.id);
     cell.appendChild(cellText);
     row.appendChild(cell);
-    var cell = document.createElement("td");
-    var cellText = document.createTextNode(element.title);
+    let cell = document.createElement("td");
+    let cellText = document.createTextNode(element.title);
     cell.appendChild(cellText);
     row.appendChild(cell);
-    var cell = document.createElement("td");
-    var cellText = document.createTextNode(element.status);
+    let cell = document.createElement("td");
+    let cellText = document.createTextNode(element.status);
     cell.appendChild(cellText);
     row.appendChild(cell);
 
@@ -50,23 +50,27 @@ function constructTable(array) {
   }
 }
 
-constructTable(downloads);
+constructTable(DOWNLOADS);
+
+const START_DELAY = 3000;
+const STATUS_CHECK_INTERVAL = 5000;
+const INITIAL_STATUS = "Pending";
+const FINAL_STATUS = "Done";
 
 function startDelay() {
-  var timer = setTimeout(setTimer, 3000);
+  let timer = setTimeout(setTimer, START_DELAY);
 }
 function setTimer() {
   checkStatus();
 
   function checkStatus() {
     console.log("Check started");
-    var table = document.getElementsByTagName("table")[0];
-    var rows = table.children;
+    let table = document.getElementsByTagName("table")[0];
+    let rows = table.children;
     for (let i = 0; i < rows.length; i++) {
-      //console.log(rows[i].children[2].textContent);
-      if (rows[i].children[2].textContent == "Pending") {
-        rows[i].children[2].textContent = "Done";
-        var interval = setTimeout(checkStatus, 5000);
+      if (rows[i].children[2].textContent == INITIAL_STATUS) {
+        rows[i].children[2].textContent = FINAL_STATUS;
+        let interval = setTimeout(checkStatus, STATUS_CHECK_INTERVAL);
         break;
       }
     }

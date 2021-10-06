@@ -1,4 +1,4 @@
-const notes = [
+const NOTES = [
   {
     id: 1,
     title: "Recipe",
@@ -46,4 +46,4 @@ Array.prototype.myFilter = function myFilter(func) {
   return result;
 };
 
-console.log(notes.myFilter((elem) => elem.isMarked));
+console.log(NOTES.myFilter((note) => note.isMarked));

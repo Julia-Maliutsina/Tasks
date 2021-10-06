@@ -1,4 +1,4 @@
-const notes = [
+const NOTES = [
   {
     id: 1,
     title: "Recipe",
@@ -45,10 +45,8 @@ Array.prototype.myMap = function myMap(func) {
 };
 
 console.log(
-  notes.myMap((elem) => {
-    let elemHash = {};
-    elemHash.id = elem.id;
-    elemHash.title = elem.title;
-    return elemHash;
-  })
+  NOTES.myMap((note) => ({
+    id: note.id,
+    title: note.title,
+  }))
 );
