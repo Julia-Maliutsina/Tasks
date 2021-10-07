@@ -25,6 +25,17 @@ const DOWNLOADS = [
     status: "Failed",
   },
 ];
+
+let pendingObjects = [];
+
+const START_DELAY = 3000;
+const STATUS_CHANGE_INTERVAL = 5000;
+const DOWNLOAD_STATUSES = {
+  pending: "Pending",
+  done: "Done",
+  failed: "Failed",
+};
+
 function constructTable(array) {
   const table = document.createElement("table");
   document.getElementsByTagName("body")[0].appendChild(table);
@@ -47,47 +58,24 @@ function constructTable(array) {
     row.appendChild(statusCell);
 
     table.appendChild(row);
+    if (element.status === DOWNLOAD_STATUSES.pending) {
+      pendingObjects.push(row);
+    }
   }
 }
 
 constructTable(DOWNLOADS);
 
-const START_DELAY = 3000;
-const STATUS_CHECK_INTERVAL = 5000;
-const DOWNLOAD_STATUSES = {
-  pending: "Pending",
-  done: "Done",
-  failed: "Failed",
-};
-
 function startDelay() {
-  const timer = setTimeout(setTimer, START_DELAY);
-}
-function setTimer() {
-  const table = document.getElementsByTagName("table")[0];
-  const rows = table.children;
-  let pendingObjects = [];
-  for (let r = 0; r < rows.length; r++) {
-    if (rows[r].children[2].textContent == DOWNLOAD_STATUSES.pending) {
-      pendingObjects.push(rows[r]);
-    }
-  }
-  checkStatus();
+  let i = 0;
+  const timer = setTimeout(changeStatus, START_DELAY);
 
-  function checkStatus() {
+  function changeStatus() {
     console.log("Check started");
-
-    for (let i = 0; i < pendingObjects.length; i++) {
-      if (
-        pendingObjects[i].children[2].textContent == DOWNLOAD_STATUSES.pending
-      ) {
-        pendingObjects[i].children[2].textContent = DOWNLOAD_STATUSES.done;
-        if (i == pendingObjects.length - 1) {
-          break;
-        }
-        const interval = setTimeout(checkStatus, STATUS_CHECK_INTERVAL);
-        break;
-      }
+    pendingObjects[i].children[2].textContent = DOWNLOAD_STATUSES.done;
+    i++;
+    if (i < pendingObjects.length) {
+      const interval = setTimeout(changeStatus, STATUS_CHANGE_INTERVAL);
     }
   }
 }
