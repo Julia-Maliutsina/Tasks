@@ -9,6 +9,7 @@ const slideWidth = document.getElementsByClassName("slider-content_slide")[0]
   .offsetWidth;
 
 function changeSlide(EO) {
+  console.log(EO.target);
   console.log(EO.target == prev);
   console.log(EO.target == next);
   EO.preventDefault();
@@ -34,20 +35,38 @@ const mobileMenuOpenIcon = document.getElementsByClassName(
 mobileMenuOpenIcon.addEventListener("click", showMenu, false);
 
 function showMenu(EO) {
-  console.log("started");
+  const mobileMenuWidth = 278;
   const mobileMenu = document.getElementsByClassName("menu_mobile")[0];
   const mobileMenuOverlay = document.getElementsByClassName(
     "menu_mobile_overlay-tint"
   )[0];
   mobileMenu.style.display = "block";
   mobileMenuOverlay.style.display = "block";
+  let leftMenu = -mobileMenuWidth;
+  mobileMenu.style.left = leftMenu + "px";
+  const mobileMenuShowAnimation = setInterval(function () {
+    if (leftMenu >= 0) {
+      clearInterval(mobileMenuShowAnimation);
+    }
+    leftMenu += 10;
+    mobileMenu.style.left = leftMenu + "px";
+  }, 20);
+
   const mobileMenuCloseIcon = document.getElementsByClassName(
     "menu_mobile_icon_vertical"
   )[0];
   mobileMenuCloseIcon.addEventListener("click", hideMenu, false);
 
   function hideMenu(EO) {
-    mobileMenu.style.display = "none";
-    mobileMenuOverlay.style.display = "none";
+    leftMenu = mobileMenu.offsetLeft;
+    const mobileMenuHideAnimation = setInterval(function () {
+      if (leftMenu <= -278) {
+        mobileMenu.style.display = "none";
+        mobileMenuOverlay.style.display = "none";
+        clearInterval(mobileMenuHideAnimation);
+      }
+      leftMenu -= 10;
+      mobileMenu.style.left = leftMenu + "px";
+    }, 20);
   }
 }
