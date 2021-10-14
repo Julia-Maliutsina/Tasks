@@ -197,6 +197,12 @@
         width: 26px;
         z-index: 50;
     }
+    #slider-nav_next_arrow:hover {
+        cursor: pointer;
+    }
+    #slider-nav_prev_arrow:hover {
+        cursor: pointer;
+    }
     .slide1-phone1-shadow {
         position: absolute;
         top: 19.85px;
