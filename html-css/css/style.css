@@ -742,7 +742,10 @@
         position: relative;
         width: 1536px;
         height: 447.25px;
-    }         
+    }        
+    .slider-content_image {
+        width: 768px;
+    } 
     .slider-content_slide1 {
         width: 768px;
         height: 447.25px;
