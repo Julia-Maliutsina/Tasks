@@ -1,18 +1,18 @@
 @font-face {
     font-family: titles;
-    src: url('https://github.com/Julia-Maliutsina/Tasks/tree/develop-html/html-css/fonts/Lato-Black.ttf');
+    src: url('/fonts/Lato-Black.ttf');
 }
 @font-face {
     font-family: boldtype;
-    src: url('https://github.com/Julia-Maliutsina/Tasks/tree/develop-html/html-css/fonts/Lato-Bold.ttf');
+    src: url('/fonts/Lato-Bold.ttf');
 }
 @font-face {
     font-family: standart;
-    src: url('https://github.com/Julia-Maliutsina/Tasks/tree/develop-html/html-css/fonts/Lato-Regular.ttf');
+    src: url('fonts/Lato-Regular.ttf');
 }
 @font-face {
     font-family: light;
-    src: url('https://github.com/Julia-Maliutsina/Tasks/tree/develop-html/html-css/fonts/Lato-Light.ttf');
+    src: url('fonts/Lato-Light.ttf');
 }
 @media only all and (min-width: 150px) {
     a {
