@@ -1,0 +1,77 @@
+import React from "react"
+import "./App.css"
+import Box from "@mui/material/Box"
+import Notes from "./components/renderNotesList"
+import styles from "./styled.js";
+
+const notes = [
+    {
+      id: 0,
+      text: "This is my first note in the app",
+    },
+    {
+      id: 1,
+      text: "Southerners have a lot of expressions to relay their dislike of the summer's heat. 'Hotter'n blue blazes' and 'hotter than the hinges on the gates of Hades' are two I always remember hearing in my childhood. But there's another truth about the South in the summer: It/'s one of the most delicious places to be.",
+    },
+    {
+    id: 2,
+    text: "Yogurt is a secret ingredient used in a variety of cakes to create a super moist, light, and fluffy texture. It adds a special something, a hint of tangy lusciousness to every bite! The fun part is that you can use anything from plain yogurt to your favorite flavored yogurt — strawberry, lemon, vanilla, and more.",
+    },
+    {
+    id: 3,
+    text: "After I woke up this morning, I made the regrettable decision of waking up. I tried to go back to sleep, but I could not even relax. Today was one of those days where either I get up, or I get up. I then decided to go outside, but because it was raining, I got wet. I went back inside, felt tired enough to go back to bed, but I still had to change out of my wet clothes. Then I got a phone call from you know who.",
+    },
+    {
+    id: 4,
+    text: "Its been so long since I last shared anything with you, to be precise 7 months. Last time when we met was the day before I entered into labour room. Motherhood is what has kept me away from you for so long, I have so many things to share.",
+    },
+    {
+    id: 5,
+    text: "My baking skills are coming along nicely! (Every failure is a lesson, right?)",
+    },
+    {
+    id: 6,
+    text: "Books to buy: Pride and Prejudice by Jane Austen, The Great Gatsby by F. Scott Fitzgerald, In Cold Blood by Truman Capote",
+    },
+    {
+    id: 7,
+    text: "This is my note in the app",
+    },
+    {
+    id: 8,
+    text: "This is my note in the app",
+    },
+    {
+    id: 9,
+    text: "This is my note in the app",
+    },
+    {
+    id: 10,
+    text: "This is my note in the app",
+    },
+    {
+    id: 11,
+    text: "This is my note in the app",
+    },
+    {
+    id: 12,
+    text: "This is my note in the app",
+    }
+]
+
+function AllNotes() {
+  return (
+    <Box
+      sx={{
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        gap: 1,
+      }}
+    >
+      <Notes notes={notes}/>
+      <div style={styles.ActiveNote}>Select note to display</div>
+    </Box>
+  )
+}
+
+export default AllNotes

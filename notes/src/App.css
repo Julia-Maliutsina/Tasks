@@ -1,0 +1,16 @@
+@font-face {
+  font-family: titles;
+  src: url('./fonts/ArchitectsDaughter-Regular.ttf');
+}
+
+@font-face {
+  font-family: notes;
+  src: url('./fonts/PTSans-Regular.ttf');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+
