@@ -3,9 +3,9 @@ import List from "@mui/material/List"
 import Note from "./Note"
 import styles from "../pages/styled"
 import PropTypes from "prop-types"
-import { ListItem } from "@mui/material"
 
 function Notes(props) {
+
     return (
         <div style={styles.AllNotes}>
             <List>
@@ -14,7 +14,7 @@ function Notes(props) {
                 })}
             </List>
         </div>
-    );
+    )
 }
 
 Notes.propTypes = {
