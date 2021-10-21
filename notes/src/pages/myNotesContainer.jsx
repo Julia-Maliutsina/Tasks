@@ -4,50 +4,10 @@ import Box from "@mui/material/Box"
 import Notes from "../components/NotesList"
 import Save from "../components/SaveButton"
 import styles from "./styled.js"
-import { useState } from 'react'
-import NOTES from "../config/constants/notes"
-import shortenDescr from "../utils/noteShortDescr"
+import PropTypes from "prop-types"
 
-const AllNotes = () => {
-  let chosenNote=0;
-  const [notes, setActiveNote] = useState(NOTES);
-  const [newNotes, saveNote] = useState(notes);
-
-  useEffect(() => {
-      console.log('b')
-  }, [notes]);
-
-  function showChosenNote (id, text) {
-    const activeNote = document.getElementsByClassName("chosenNote")[0];
-    const noteText = text;
-    activeNote.value= noteText;
-    const allNotes = document.getElementsByTagName('li');
-    for (let n=0; n<allNotes.length; n++) {
-      allNotes[n].style.background="inherit";
-    }
-    const noteInList = allNotes[id];
-    noteInList.style.background= "#cf93b6"; 
-    chosenNote = id;
-    setActiveNote(()=>{
-      for(let a=0; a<notes.length; a++) {
-        notes[a].active=false;
-      }
-      notes[id].active=true;
-      return notes;
-    })
-  }
-
-  function saveChangedNote() {
-    const activeNote = document.getElementsByClassName("chosenNote")[0];
-    const newText = activeNote.value;
-    let item = document.getElementsByClassName('shortDescr')[chosenNote];      
-    saveNote(()=>{
-      newNotes[chosenNote].text=newText;
-      return newNotes;
-    })
-    item.innerHTML = shortenDescr(notes[chosenNote].text);
-  }
-
+const AllNotes = ({showChosenNote, saveChangedNote, notes}) => {
+  
   return (
     <Box
       sx={{
@@ -63,6 +23,11 @@ const AllNotes = () => {
       </div>
     </Box>
   )
+}
+
+AllNotes.propTypes = {
+  showChosenNote: PropTypes.func,
+  saveChangedNote: PropTypes.func,
 }
 
 export default AllNotes
