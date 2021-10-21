@@ -7,7 +7,7 @@ import NOTES from "../config/constants/notes"
 import shortenDescr from "../utils/noteShortDescr"
 
 const App = () => {
-  let chosenNote=0;
+  let chosenNote=(-1);
   const [notes, saveNote] = useState(NOTES);
 
   useEffect(() => {
@@ -32,17 +32,22 @@ const App = () => {
   }
 
   function saveChangedNote() {
-    const activeNote = document.getElementsByClassName("chosenNote")[0];
-    const newText = activeNote.value;
-    let item = document.getElementsByClassName('shortDescr')[chosenNote];   
-    let savedNotes = notes.map(function(note){
-      if (note.id === chosenNote) {
-        note.text=newText;
-      }
-      return note;
-    })   
-    saveNote(savedNotes);
-    item.innerHTML = shortenDescr(notes[chosenNote].text);
+    try{
+      const activeNote = document.getElementsByClassName("chosenNote")[0];
+      const newText = activeNote.value;
+      let item = document.getElementsByClassName('shortDescr')[chosenNote];   
+      let savedNotes = notes.map(function(note){
+        if (note.id === chosenNote) {
+          note.text=newText;
+        }
+        return note;
+      })   
+      saveNote(savedNotes);
+      item.innerHTML = shortenDescr(notes[chosenNote].text);
+    }
+    catch (err) {
+      alert('Select a note to save!')
+    }
   }
   return (
   <div style={styles.Wrapper}>
