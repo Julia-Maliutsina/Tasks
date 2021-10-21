@@ -11,8 +11,12 @@ import shortenDescr from "../utils/noteShortDescr"
 const AllNotes = () => {
   let chosenNote=0;
   const [notes, setActiveNote] = useState(NOTES);
-  const [newNote, saveNote] = useState(notes[chosenNote]);
- 
+  const [newNotes, saveNote] = useState(notes);
+
+  useEffect(() => {
+      console.log('b')
+  }, [notes]);
+
   function showChosenNote (id, text) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
     const noteText = text;
@@ -24,8 +28,7 @@ const AllNotes = () => {
     const noteInList = allNotes[id];
     noteInList.style.background= "#cf93b6"; 
     chosenNote = id;
-
-    setActiveNote((notes)=>{
+    setActiveNote(()=>{
       for(let a=0; a<notes.length; a++) {
         notes[a].active=false;
       }
@@ -35,16 +38,14 @@ const AllNotes = () => {
   }
 
   function saveChangedNote() {
-  
     const activeNote = document.getElementsByClassName("chosenNote")[0];
     const newText = activeNote.value;
-    let item = document.getElementsByClassName('shortDescr')[chosenNote];
-    item.innerHTML = shortenDescr(newText);
-      
+    let item = document.getElementsByClassName('shortDescr')[chosenNote];      
     saveNote(()=>{
-      notes[chosenNote].text=newText;
-      return newNote;
+      newNotes[chosenNote].text=newText;
+      return newNotes;
     })
+    item.innerHTML = shortenDescr(notes[chosenNote].text);
   }
 
   return (
