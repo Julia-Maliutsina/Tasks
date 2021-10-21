@@ -4,18 +4,13 @@ import Note from "./Note"
 import styles from "../pages/styled"
 import PropTypes from "prop-types"
 
-function Notes(props) {
-
-    return (
-        <div style={styles.AllNotes}>
-            <List>
-                {props.notes.map(note =>{
-                    return <Note note={note} clickNote={props.noteChosen}/>
-                })}
-            </List>
-        </div>
-    )
-}
+const Notes = ({ notes, noteChosen }) => (
+    <div style={styles.AllNotes}>
+        <List>
+            {notes.map((note) => <Note note={note} clickNote={noteChosen}/>)}
+        </List>
+    </div>
+)
 
 Notes.propTypes = {
     notes: PropTypes.arrayOf(PropTypes.object),

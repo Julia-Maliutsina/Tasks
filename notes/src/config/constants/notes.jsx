@@ -1,4 +1,4 @@
-const notes = [
+const NOTES = [
   {
     id: 0,
     text: "This is my first note in the app",
@@ -50,4 +50,4 @@ const notes = [
   }
 ]
 
-export default notes
+export default NOTES

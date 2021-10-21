@@ -3,16 +3,15 @@ import Button from '@mui/material/Button'
 import styles from "../pages/styled"
 import PropTypes from "prop-types"
 
-function Save(props) {
-    return (
-        <Button 
+const Save = ({changeActiveNote}) => (
+    <Button 
         style={styles.SaveButton} 
         variant="contained"
-        onClick={()=>props.changeActiveNote()}>
+        onClick={()=>changeActiveNote()}>
             Save changes
-        </Button>
-    )
-}
+    </Button>
+)
+
 
 Save.propTypes = {
     changeActiveNote: PropTypes.func
