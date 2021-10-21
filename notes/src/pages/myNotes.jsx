@@ -8,12 +8,15 @@ import shortenDescr from "../utils/noteShortDescr"
 
 const App = () => {
   let chosenNote=0;
-  const [notes, setActiveNote] = useState(NOTES);
-  const [newNotes, saveNote] = useState(notes);
+  const [notes, saveNote] = useState(NOTES);
 
   useEffect(() => {
-      console.log('is called')
-  }, [notes])
+    saveNote(JSON.parse(window.localStorage.getItem('notes')));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
 
   function showChosenNote (id, text) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
@@ -26,23 +29,19 @@ const App = () => {
     const noteInList = allNotes[id];
     noteInList.style.background= "#cf93b6"; 
     chosenNote = id;
-    setActiveNote(()=>{
-      for(let a=0; a<notes.length; a++) {
-        notes[a].active=false;
-      }
-      notes[id].active=true;
-      return notes;
-    })
   }
 
   function saveChangedNote() {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
     const newText = activeNote.value;
-    let item = document.getElementsByClassName('shortDescr')[chosenNote];      
-    saveNote(()=>{
-      newNotes[chosenNote].text=newText;
-      return newNotes;
-    })
+    let item = document.getElementsByClassName('shortDescr')[chosenNote];   
+    let savedNotes = notes.map(function(note){
+      if (note.id === chosenNote) {
+        note.text=newText;
+      }
+      return note;
+    })   
+    saveNote(savedNotes);
     item.innerHTML = shortenDescr(notes[chosenNote].text);
   }
   return (
@@ -51,7 +50,7 @@ const App = () => {
       My Notes
     </header>
     <div style={{ width: "100%" }}>
-      <AllNotes showChosenNote={showChosenNote} saveChangedNote={saveChangedNote} notes={NOTES}/>
+      <AllNotes showChosenNote={showChosenNote} saveChangedNote={saveChangedNote} notes={notes}/>
     </div>
   </div>
   )
