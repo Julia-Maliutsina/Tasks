@@ -3,6 +3,7 @@ import Box from "@mui/material/Box"
 import styles from "./styled"
 import PropTypes from "prop-types"
 import NoteShared from "../components/NoteShared"
+import myMap from "../utils/mapLists.js"
 
 const SharedNotes = ({ notes }) => (
     <div style={{ width: "100%" }}>
@@ -18,7 +19,7 @@ const SharedNotes = ({ notes }) => (
                 gap: 2,
                 }}
                 >
-                  {notes.map((note) => <NoteShared note={note}/>)}
+                  {myMap(notes,(note) => <NoteShared note={note}/>)}
                 </Box>
             </div>
   
