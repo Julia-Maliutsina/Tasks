@@ -12,5 +12,25 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  padding: 5px 10px 15px 10px;
+}
+
+.css-10hburv-MuiTypography-root {
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  display: inherit;
+}
+
+.activeMenu {
+  background: #f7f7f7;
+  color: #a66289;
+}
+
 
 

@@ -1,47 +1,84 @@
-import React from "react"
 import "./App.css"
-import Box from "@mui/material/Box"
-import Notes from "../components/NotesList"
-import styles from "./styled.js";
-import notes from "../config/constants/notes.jsx"
-import notesInitial from "../config/constants/notesInitial.jsx"
-import { useState } from 'react';
+import styles from "./styled.js"
+import React from "react"
+import MyNotes from "./myNotesContainer"
+import SharedNotes from "./sharedNotes"
+import { useState, useEffect } from "react"
+import NOTES from "../config/constants/notes"
+import shortenDescr from "../utils/noteShortDescr"
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom"
 
-function AllNotes() {
+const App = () => {
+  let chosenNote=(-1);
+  const [notes, saveNote] = useState(NOTES);
 
-  const [notes, setActiveNote] = useState(notesInitial);
+  useEffect(() => {
+    saveNote(JSON.parse(window.localStorage.getItem('notes')));
+  }, []);
 
-  function showChosenNote (id, text, active) {
+  useEffect(() => {
+    window.localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
+
+  function showChosenNote (id, text) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
     const noteText = text;
-    activeNote.innerHTML= noteText;
+    activeNote.value= noteText;
     const allNotes = document.getElementsByTagName('li');
     for (let n=0; n<allNotes.length; n++) {
       allNotes[n].style.background="inherit";
     }
     const noteInList = allNotes[id];
-    noteInList.style.background= "#ccaabe"; 
-
-    setActiveNote(()=>{
-    for(let a=0; a<notes.length; a++) {
-      notes[a].active=false;
-    }
-    notes[id].active=true; 
-    return notes;})
+    noteInList.style.background= "#cf93b6"; 
+    chosenNote = id;
   }
-  
+
+  function saveChangedNote() {
+    try{
+      const activeNote = document.getElementsByClassName("chosenNote")[0];
+      const newText = activeNote.value;
+      let item = document.getElementsByClassName('shortDescr')[chosenNote];   
+      let savedNotes = notes.map(function(note){
+        if (note.id === chosenNote) {
+          note.text=newText;
+        }
+        return note;
+      })   
+      saveNote(savedNotes);
+      item.innerHTML = shortenDescr(notes[chosenNote].text);
+    }
+    catch (err) {
+      alert('Select a note to save!')
+    }
+  }
+
   return (
-    <Box
-      sx={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
-        gap: 1,
-      }}
-    >
-      <Notes notes={notes} noteChosen={showChosenNote}/>
-      <div class="chosenNote" style={styles.ActiveNote}>Select note to display</div>
-    </Box>
+    <div style={styles.Wrapper}>
+          <BrowserRouter basename="/Tasks">
+          <header style={styles.Header}>
+        <span>My Notes</span>
+            <div style={styles.Menu}>
+                  <NavLink to="/notes" activeClassName="activeMenu">My Notes</NavLink>
+                  <NavLink to="/shared-notes" activeClassName="activeMenu">Shared Notes</NavLink> 
+            </div>  
+            </header>        
+            <Switch>
+              <Route path="/shared-notes">
+                <SharedNotes notes={notes}/>
+              </Route>
+              <Route path="/notes">
+                <MyNotes notes={notes} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
+              </Route>
+            </Switch>
+          </BrowserRouter>
+
+    </div>  
   )
 }
 
-export default AllNotes
+export default App
