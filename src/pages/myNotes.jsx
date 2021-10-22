@@ -59,7 +59,7 @@ const App = () => {
 
   return (
     <div style={styles.Wrapper}>
-          <BrowserRouter>
+          <BrowserRouter basename="/Tasks">
           <header style={styles.Header}>
         <span>My Notes</span>
             <div style={styles.Menu}>
