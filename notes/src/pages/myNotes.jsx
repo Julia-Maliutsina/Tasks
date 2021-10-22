@@ -1,10 +1,17 @@
 import "./App.css"
-import styles from "./styled.js";
+import styles from "./styled.js"
 import React from "react"
-import AllNotes from "./myNotesContainer"
-import { useState, useEffect } from "react";
+import MyNotes from "./myNotesContainer"
+import SharedNotes from "./sharedNotes"
+import { useState, useEffect } from "react"
 import NOTES from "../config/constants/notes"
 import shortenDescr from "../utils/noteShortDescr"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink
+} from "react-router-dom"
 
 const App = () => {
   let chosenNote=(-1);
@@ -49,15 +56,29 @@ const App = () => {
       alert('Select a note to save!')
     }
   }
+
   return (
-  <div style={styles.Wrapper}>
-    <header style={styles.Header}>
-      My Notes
-    </header>
-    <div style={{ width: "100%" }}>
-      <AllNotes showChosenNote={showChosenNote} saveChangedNote={saveChangedNote} notes={notes}/>
-    </div>
-  </div>
+    <div style={styles.Wrapper}>
+
+          <Router>
+          <header style={styles.Header}>
+        <span>My Notes</span>
+            <div style={styles.Menu}>
+                  <NavLink to="/notes" activeClassName="activeMenu">My Notes</NavLink>
+                  <NavLink to="/shared-notes" activeClassName="activeMenu">Shared Notes</NavLink> 
+            </div>  
+            </header>        
+            <Switch>
+              <Route path="/shared-notes">
+                <SharedNotes notes={notes}/>
+              </Route>
+              <Route path="/notes">
+                <MyNotes notes={notes} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
+              </Route>
+            </Switch>
+          </Router>
+
+    </div>  
   )
 }
 

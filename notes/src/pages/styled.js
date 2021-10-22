@@ -10,6 +10,7 @@ const WRAPPER = {
 }
 
 const HEADER = {
+  textAlign: "left",
   width: "100%",
   height: "50px",
   padding: "10px",
@@ -66,6 +67,38 @@ const SAVE_BUTTON = {
   fontFamily: "notes",
 }
 
+const ACTIVE_SHARED = {
+  display: "block",
+  width: "98%",
+  marginLeft: "1%",
+  marginTop: "20px",
+  marginBottom: "20px",
+  padding: "5px",
+  height: "150px",
+  border: "2px solid #ccaabe",
+  background: "#ffffff",
+  fontFamily: "notes",
+  fontSize: "16px",
+  textAlign: "justify",
+  color: "#c0c0c0",
+}
+
+const MENU = {
+  display: "inline-block",
+  width: "80%",
+  height: "50px",
+  fontFamily: "notes",
+  fontSize: "18px",
+  color: "#ffffff",
+  textAlign: "right",
+}
+
+const SHARED_NOTES = {
+  paddingLeft: "10px",
+  height: "250px",
+  overflowY: "scroll",
+}
+
 const styles = {
   Wrapper: WRAPPER,
   Header: HEADER,
@@ -74,6 +107,9 @@ const styles = {
   SaveButton: SAVE_BUTTON,
   NoteInList: NOTE_IN_LIST,
   NoteTitle: TITLE_IN_LIST,
+  ActiveSharedNote: ACTIVE_SHARED,
+  Menu: MENU,
+  SharedNotesGrid: SHARED_NOTES,
 }
 
 export default styles
