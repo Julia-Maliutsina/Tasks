@@ -59,10 +59,11 @@ const App = () => {
 
   return (
     <div style={styles.Wrapper}>
-          <BrowserRouter basename="/Tasks">
+          <BrowserRouter>
           <header style={styles.Header}>
         <span>My Notes</span>
             <div style={styles.Menu}>
+                  <NavLink to="/"></NavLink>
                   <NavLink to="/notes" activeClassName="activeMenu">My Notes</NavLink>
                   <NavLink to="/shared-notes" activeClassName="activeMenu">Shared Notes</NavLink> 
             </div>  
