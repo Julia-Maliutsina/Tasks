@@ -5,7 +5,7 @@ import PropTypes from "prop-types"
 import NoteShared from "../components/NoteShared"
 import myMap from "../utils/mapLists.js"
 
-const SharedNotes = ({ notes }) => (
+const SharedNotes = ({ notes, sharedNoteChosen }) => (
     <div style={{ width: "100%" }}>
 
             <div class="chosenSharedNote" style={styles.ActiveSharedNote}>
@@ -19,7 +19,7 @@ const SharedNotes = ({ notes }) => (
                 gap: 2,
                 }}
                 >
-                  {myMap(notes,(note) => <NoteShared note={note}/>)}
+                  {myMap(notes,(note) => <NoteShared note={note} clickSharedNote={sharedNoteChosen}/>)}
                 </Box>
             </div>
   
@@ -27,7 +27,8 @@ const SharedNotes = ({ notes }) => (
 )
 
 SharedNotes.propTypes = {
-    notes: PropTypes.arrayOf(PropTypes.object)
+    notes: PropTypes.arrayOf(PropTypes.object),
+    sharedNoteChosen: PropTypes.func,
 }
 
 export default SharedNotes

@@ -30,6 +30,16 @@ a {
 .activeMenu {
   background: #f7f7f7;
   color: #a66289;
+  border-radius: 10px 10px 0px 0px;
+  position: relative;
+  height: 30px; 
+  width: 60px;
+}
+
+.sharedNote {
+  background: linear-gradient(135deg, #fbf6fc, #e7d8e7);
+  border-radius: 5px;
+  box-shadow: 1px 2px 3px #747474;
 }
 
 

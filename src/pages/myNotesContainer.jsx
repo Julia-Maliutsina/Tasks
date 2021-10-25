@@ -11,7 +11,7 @@ const MyNotes = ({showChosenNote, saveChangedNote, notes}) => (
     <Box
       sx={{
       display: "grid",
-      gridTemplateColumns: "repeat(2, 1fr)",
+      gridTemplateColumns: "36% 60%",
       gap: 1,
       }}
     >
