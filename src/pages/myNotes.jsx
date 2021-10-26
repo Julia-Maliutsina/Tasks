@@ -7,7 +7,6 @@ import AboutApp from "./about"
 import { useState, useEffect } from "react"
 import NOTES from "../config/constants/notes"
 import shortenDescr from "../utils/noteShortDescr"
-import myMap from "../utils/mapLists"
 import Typography from "@mui/material/Typography"
 import NotFound from "../components/NotFound"
 import StickyNote2Icon from '@mui/icons-material/StickyNote2'
@@ -21,17 +20,19 @@ import {
   Redirect
 } from "react-router-dom"
 
-const App = () => {
+const App = ( ) => {
   let chosenNote=(-1);
-  const [NOTES, saveNote] = useState([]);
+
+  const [notes, saveNote] = useState(NOTES);
 
   useEffect(() => {
-    saveNote(JSON.parse(window.localStorage.getItem('notes')));
-  }, []);
-
-  useEffect(() => {
-    window.localStorage.setItem('notes', JSON.stringify(NOTES));
-  }, [NOTES]);
+    if (localStorage.notes) {
+      saveNote(JSON.parse(localStorage.getItem('notes')))
+    }
+    else {
+      saveNote(NOTES)
+    }
+  },[])
 
   function showChosenNote (id, text) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
@@ -62,14 +63,15 @@ const App = () => {
       const activeNote = document.getElementsByClassName("chosenNote")[0];
       const newText = activeNote.value;
       let item = document.getElementsByClassName('shortDescr')[chosenNote];   
-      let savedNotes = myMap(NOTES, (function(note){
-        if (note.id === chosenNote) {
-          note.text=newText;
+      let savedNotes = (()=>{
+        if (chosenNote>=0) {
+          notes[chosenNote].text=newText;
         }
-        return note;
-      }));   
+        localStorage.setItem('notes', JSON.stringify(notes));
+        return notes;
+      });   
       saveNote(savedNotes);
-      item.innerHTML = shortenDescr(NOTES[chosenNote].text);
+      item.innerHTML = shortenDescr(newText);
     }
     catch (err) {
       alert('Select a note to save!')
@@ -92,10 +94,10 @@ const App = () => {
             <div></div>
           </Route>
           <Route path="/shared-notes">
-            <SharedNotes notes={NOTES} sharedNoteChosen={showChosenSharedNote}/>
+            <SharedNotes notes={notes} sharedNoteChosen={showChosenSharedNote}/>
           </Route>
           <Route path="/notes">
-            <MyNotes notes={NOTES} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
+            <MyNotes notes={notes} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
           </Route>
           <Route path="/about">
             <AboutApp />
