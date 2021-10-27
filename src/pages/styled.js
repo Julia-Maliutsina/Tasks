@@ -1,28 +1,44 @@
-const BASIC_COLOR = "#3a74c4"
-const COLOR_LIGHT = "#e6f1ff"
+const backgroundMain = "#f7f7f7"
+const basicColor = "#3a74c4"
+const lightColor = "#e6f1ff"
+const greyColor = "#363636"
+const white = "#ffffff"
+const black = "#000000"
+const basicGradient = "linear-gradient(45deg, #3a74c4, #4588E6)"
+const lightGradient = "linear-gradient(35deg, #E5F0FC, #E3F2FF)"
+const buttonGradient = "linear-gradient(195deg, #cf93b6, #a66289)"
+const cardGradient = "linear-gradient(135deg, #fbf6fc, #e7d8e7)"
+const activeCardGradient = "linear-gradient(45deg, #dbc4db, #cf93b6)"
+const activeNoteGradient = "linear-gradient(35deg, #D99ABF, #cf93b6)"
+const sectionLine = "1px solid #a66289"
+const blueLine = "1px solid #CCD6E3"
+const blockShadow = "0 0 10px #A69D9E"
+const cardShadow = " 1px 2px 3px #747474"
+const focusShadow = "0 0 10px #824567"
+const activeNoteBorder = "2px solid #ccaabe"
 
-const WRAPPER = {
+const wrapper = {
   width: "90%",
   marginLeft: "auto",
   marginRight: "auto",
   height: "550px",
-  backgroundColor: "#f7f7f7",
+  backgroundColor: backgroundMain,
 }
 
-const HEADER = {
+const header = {
   textAlign: "left",
   width: "100%",
   height: "50px",
   padding: "10px",
-  background: "linear-gradient(45deg, #3a74c4, #4588E6)",
+  background: basicGradient,
   fontSize: "30px",
   lineHeight: "30px",
   fontFamily: "titles",
-  color: "#ffffff",
+  color: white,
   borderRadius: "10px 10px 0px 0px",
 }
 
-const ACTIVE_NOTE = {
+const activeNote = {
   display: "inlineBlock",
   width: "97%",
   marginTop: "25px",
@@ -30,42 +46,42 @@ const ACTIVE_NOTE = {
   padding: "10px",
   height: "400px",
   resize: "none",
-  border: "2px solid #ccaabe",
-  background: "#ffffff",
+  border: activeNoteBorder,
+  background: white,
   fontFamily: "notes",
   fontSize: "16px",
   textAlign: "justify",
   borderRadius: "10px",
-  boxShadow: "0 0 10px #A69D9E",
+  boxShadow: blockShadow,
 }
 
-const ALL_NOTES = {
+const allNotes = {
   display: "inlineBlock",
   width: "100%",
   height: "500px",
   marginTop: "0px",
   marginLeft: "2%",
-  background: "linear-gradient(35deg, #E5F0FC, #E3F2FF)",
+  background: lightGradient,
   overflowY: "scroll",
-  borderLeft: "1px solid #CCD6E3",
-  borderRight: "1px solid #CCD6E3",
+  borderLeft: blueLine,
+  borderRight: blueLine,
 }
 
-const TITLE_IN_LIST = {
+const titleInList = {
   fontWeight: "bold",
   width: "150px",
   fontFamily: "titles",
   fontSize: "16px",
 }
 
-const NOTE_IN_LIST = {
+const noteInList = {
   color: "#000",
   width: "360px",
   fontFamily: "notes",
 }
 
-const SAVE_BUTTON = {
-  background: "linear-gradient(195deg, #cf93b6, #a66289)",
+const primaryButton = {
+  background: buttonGradient,
   outline: "none",
   marginTop: "10px",
   marginLeft: "3%",
@@ -75,7 +91,7 @@ const SAVE_BUTTON = {
   borderRadius: "10px",
 }
 
-const ACTIVE_SHARED = {
+const activeShared = {
   display: "block",
   width: "98%",
   marginLeft: "1%",
@@ -83,138 +99,149 @@ const ACTIVE_SHARED = {
   marginBottom: "20px",
   padding: "10px",
   height: "200px",
-  border: "2px solid #ccaabe",
-  background: "#ffffff",
+  border: activeNoteBorder,
+  background: white,
   fontFamily: "notes",
   fontSize: "16px",
   textAlign: "justify",
-  color: "#000",
+  color: black,
   borderRadius: "10px",
-  boxShadow: "0 0 10px #A69D9E",
+  boxShadow: blockShadow,
 }
 
-const MENU = {
+const menu = {
   display: "inline-block",
   width: "80%",
   height: "50px",
   fontFamily: "notes",
   fontSize: "18px",
-  color: "#ffffff",
+  color: white,
   textAlign: "right",
 }
 
-const MENU_TEXT = {
+const menuText = {
   verticalAlign: "middle",
   paddingLeft: "3px",
 }
 
-const MENU_ICON = {
+const menuIcon = {
   verticalAlign: "middle",
 }
 
-const SHARED_NOTES = {
+const sharedNotes = {
   padding: "8px 10px 5px 20px",
   height: "300px",
   overflowY: "scroll",
-  background: COLOR_LIGHT,
+  background: lightColor,
 }
-const NOTE_IN_LIST_SHARED = {
+const noteInListShared = {
   color: "#000",
   minWidth: "250px",
   fontFamily: "notes",
   padding: "5px",
 }
 
-const TITLE_ABOUT = {
+const titleAbout = {
   fontFamily: "notes",
-  color: BASIC_COLOR,
+  color: basicColor,
   textAlign: "center",
   margin: "15px 0px 0px 0px",
   fontWeight: "bold",
 }
 
-const CHAPTER_ABOUT = {
-  background: "linear-gradient(195deg, #cf93b6, #a66289)",
+const chapterAbout = {
+  background: buttonGradient,
   fontFamily: "titles",
   padding: "10px",
-  color: "#ffffff",
+  color: white,
   borderRadius: "10px 10px 0px 0px",
 }
 
-const BLOCK_ABOUT = {
+const blockAbout = {
   width: "96%",
   margin: "2% 2% 2% 2%",
-  boxShadow: "0 0 10px #A69D9E",
+  boxShadow: blockShadow,
   borderRadius: "10px",
 }
 
-const TITLE = {
+const title = {
   paddingTop: "5px",
   margin: "0px",
   textAlign: "center",
 }
 
-const TEXT =  {
+const text =  {
   width: "100%",
   resize: "none",
   height: "280px",
   paddingTop: "10px",
   marginTop: "0px",
   border: "none",
-  borderTop: "1px solid #a66289",
+  borderTop: sectionLine,
   outline: "none",
   fontFamily: "notes",
   textAlign: "justify",
 }
 
-const TEXT_SHARED =  {
+const textShared =  {
   width: "100%",
   resize: "none",
   height: "100px",
   paddingTop: "10px",
   marginTop: "0px",
   border: "none",
-  borderTop: "1px solid #a66289",
+  borderTop: sectionLine,
   outline: "none",
   fontFamily: "notes",
   textAlign: "justify",
 }
 
-const TITLE_SHARED = {
+const titleShared = {
   padding: "5px 0px 10px 0px",
   margin: "0px",
   textAlign: "center",
 }
 
-const DATE = {
+const date = {
   paddingTop: "5px",
   margin: "0px",
   fontSize: "14px",
-  color: "#363636",
+  color: greyColor,
+}
+
+const sharedNoteCard = {
+    background: cardGradient,
+    borderRadius: "5px",
+    boxShadow: cardShadow,
 }
 
 const styles = {
-  Wrapper: WRAPPER,
-  Header: HEADER,
-  ActiveNote: ACTIVE_NOTE,
-  AllNotes: ALL_NOTES,
-  SaveButton: SAVE_BUTTON,
-  NoteInList: NOTE_IN_LIST,
-  NoteTitle: TITLE_IN_LIST,
-  NoteInLisShared: NOTE_IN_LIST_SHARED,
-  ActiveSharedNote: ACTIVE_SHARED,
-  Menu: MENU,
-  SharedNotesGrid: SHARED_NOTES,
-  AboutTitle: TITLE_ABOUT,
-  AboutChapter: CHAPTER_ABOUT,
-  AboutBlock: BLOCK_ABOUT,
-  MenuText: MENU_TEXT,
-  MenuIcon: MENU_ICON,
-  Text: TEXT,
-  Title: TITLE,
-  Date: DATE,
-  SharedText: TEXT_SHARED,
-  SharedTitle: TITLE_SHARED,
+  aboutBlock: blockAbout,
+  aboutChapter: chapterAbout,
+  aboutTitle: titleAbout,
+  activeNote: activeNote,
+  activeSharedNote: activeShared,
+  allNotes: allNotes,
+  date: date,
+  header: header,
+  menu: menu,
+  menuIcon: menuIcon,
+  menuText: menuText,
+  noteInList: noteInList,
+  noteInListShared: noteInListShared,
+  noteTitle: titleInList,
+  primaryButton: primaryButton,
+  sharedNotesGrid: sharedNotes,
+  sharedNoteCard: sharedNoteCard,
+  sharedText: textShared,
+  sharedTitle: titleShared,
+  text: text,
+  title: title,
+  wrapper: wrapper,
+  cardGradient: cardGradient,
+  activeCardGradient: activeCardGradient,
+  activeNoteGradient: activeNoteGradient,
+  focusShadow: focusShadow,
 }
 
 export default styles

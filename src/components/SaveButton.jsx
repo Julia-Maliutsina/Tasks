@@ -1,22 +1,22 @@
 import React from "react"
-import Button from '@mui/material/Button'
-import styles from "../pages/styled"
+import Button from "@mui/material/Button"
+import SaveIcon from "@mui/icons-material/Save"
 import PropTypes from "prop-types"
-import SaveIcon from '@mui/icons-material/Save'
+import styles from "../pages/styled"
 
-const Save = ({changeActiveNote}) => (
-    <Button 
-        style={styles.SaveButton} 
-        variant="contained"
-        onClick={()=>changeActiveNote()}>
-            <SaveIcon style={{marginRight: "5px"}}/>
-            Save changes
-    </Button>
+const PrimaryButton = ({ title, buttonFunction }) => (
+	<Button
+		style={styles.primaryButton}
+		variant="contained"
+		onClick={buttonFunction}
+	>
+		<SaveIcon style={{ marginRight: "5px" }} />
+		{title}
+	</Button>
 )
 
-
-Save.propTypes = {
-    changeActiveNote: PropTypes.func
+PrimaryButton.propTypes = {
+	buttonFunction: PropTypes.func,
 }
 
-export default Save
+export default PrimaryButton

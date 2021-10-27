@@ -1,11 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./pages/myNotes"
+import MyNotes from "./pages/myNotes"
 import reportWebVitals from "./reportWebVitals"
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <MyNotes />
   </React.StrictMode>,
   document.getElementById("root")
 )

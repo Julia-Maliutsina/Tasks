@@ -1,78 +1,48 @@
-@font-face {
-  font-family: titles;
-  src: url('../fonts/ArchitectsDaughter-Regular.ttf');
+:root {
+	--menu-active-color: #a66289;
+	--menu-active-background: #f7f7f7;
 }
 
 @font-face {
-  font-family: notes;
-  src: url('../fonts/PTSans-Regular.ttf');
+	font-family: titles;
+	src: url("../fonts/ArchitectsDaughter-Regular.ttf");
+}
+
+@font-face {
+	font-family: notes;
+	src: url("../fonts/PTSans-Regular.ttf");
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
-  padding: 5px 10px 15px 10px;
+	text-decoration: none;
+	color: inherit;
+	padding: 5px 10px 15px 10px;
 }
 
 .css-10hburv-MuiTypography-root {
-  font-family: inherit;
-  font-weight: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  display: inherit;
+	font-family: inherit;
+	font-weight: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	display: inherit;
 }
 
 .activeMenu {
-  background: #f7f7f7;
-  color: #a66289;
-  border-radius: 10px 10px 0px 0px;
-  position: relative;
-  height: 30px; 
-  width: 60px;
+	background: var(--menu-active-background);
+	color: var(--menu-active-color);
+	border-radius: 10px 10px 0px 0px;
+	position: relative;
+	height: 30px;
+	width: 60px;
 }
 
 .sharedNote {
-  background: linear-gradient(135deg, #fbf6fc, #e7d8e7);
-  border-radius: 5px;
-  box-shadow: 1px 2px 3px #747474;
+	background: linear-gradient(135deg, #fbf6fc, #e7d8e7);
+	border-radius: 5px;
+	box-shadow: 1px 2px 3px #747474;
 }
-
-.sharedTitle, .Title {
-  padding-top: 5px;
-  margin: 0px;
-  text-align: center;
-}
-
-.sharedText {
-  padding-top: 5px;
-  margin: 0px;
-  font-size: 16px;
-}
-
-.Text {
-  width: 100%;
-  resize: none;
-  height: 280px;
-  padding-top: 10px;
-  margin-top: 0px;
-  border: none;
-  border-top: 1px solid #a66289;
-  outline: none;
-  font-family: notes;
-  text-align: justify;
-}
-
-.sharedDate, .Date {
-  padding-top: 5px;
-  margin: 0px;
-  font-size: 14px;
-  color: #363636;
-}
-
-
-
