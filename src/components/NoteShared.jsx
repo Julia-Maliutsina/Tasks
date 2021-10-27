@@ -6,16 +6,16 @@ import shortenDescr from "../utils/noteShortDescr"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-const NoteShared = ({ note, clickSharedNote }) => (
+const NoteShared = ({ id, title, text, date, clickSharedNote }) => (
     <div>
         <Card sx={{
 minWidth: "200px", 
                 }}
-                onClick={()=>clickSharedNote(note.id, note.text, note.active)}
+                onClick={()=>console.log(title), ()=>clickSharedNote(id, text, title, date)}
                 class="sharedNote">
             <CardContent>
                 <Typography style={styles.NoteTitle} >
-                    {note.title} 
+                    {title} 
                 </Typography>
                 <Typography
                     sx={{ display: 'inline-block' }}
@@ -23,10 +23,10 @@ minWidth: "200px",
                     style={styles.NoteInLisShared}
                     className="shortDescr"
                 >
-                    {shortenDescr(note.text)}
+                    {shortenDescr(text)}
                 </Typography>
                 <Typography variant="body2">
-                    {note.date}
+                    {date}
                 </Typography>
             </CardContent>
         </Card>   

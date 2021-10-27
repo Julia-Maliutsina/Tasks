@@ -17,7 +17,9 @@ const MyNotes = ({showChosenNote, saveChangedNote, notes}) => (
     >
       <Notes notes={notes} noteChosen={showChosenNote}/>
       <div>
-        <textarea class="chosenNote" style={styles.ActiveNote} placeholder="Select note to display"/>
+        <div class="chosenNote" style={styles.ActiveNote}>
+          Select note to display
+        </div>
         <Save changeActiveNote={saveChangedNote}/>
       </div>
     </Box>

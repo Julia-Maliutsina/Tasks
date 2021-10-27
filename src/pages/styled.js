@@ -82,7 +82,7 @@ const ACTIVE_SHARED = {
   marginTop: "20px",
   marginBottom: "20px",
   padding: "10px",
-  height: "150px",
+  height: "200px",
   border: "2px solid #ccaabe",
   background: "#ffffff",
   fontFamily: "notes",

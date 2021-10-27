@@ -8,7 +8,7 @@ import shortenDescr from "../utils/noteShortDescr"
 
 const Note = ({ note, clickNote }) => (
     <ListItem divider 
-        onClick={()=>clickNote(note.id, note.text, note.active)}
+        onClick={()=>clickNote(note.id, note.title, note.text, note.date)}
     >
     <ListItemText      
     primary={

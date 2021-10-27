@@ -17,7 +17,7 @@ const SharedNotes = ({ notes, sharedNoteChosen }) => (
                 gap: 2,
                 }}
                 >
-                    {notes.map((note)=><NoteShared note={note} clickSharedNote={sharedNoteChosen}/>)}
+                    {notes.map((note)=><NoteShared id={note.id} title={note.title} date={note.date} text={note.text} clickSharedNote={sharedNoteChosen}/>)}
                 </Box>
             </div>
   

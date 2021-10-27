@@ -12,6 +12,7 @@ import NotFound from "../components/NotFound"
 import StickyNote2Icon from '@mui/icons-material/StickyNote2'
 import InfoIcon from '@mui/icons-material/Info'
 import OfflineShareIcon from '@mui/icons-material/OfflineShare'
+import SharedNoteActive from "../components/SharedNoteActive"
 import {
   BrowserRouter,
   Switch,
@@ -34,10 +35,9 @@ const App = ( ) => {
     }
   },[])
 
-  function showChosenNote (id, text) {
+  function showChosenNote (id, title, text, date) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
-    const noteText = text;
-    activeNote.value= noteText;
+    activeNote.innerHTML='<h3 class="Title">' + title + '</h3>' + '<textarea class="Text" >' + text + '</textarea>' + '<p class="Date">' + date + '</p>';
     const allNotes = document.getElementsByTagName('li');
     for (let n=0; n<allNotes.length; n++) {
       allNotes[n].style.background="inherit";
@@ -46,11 +46,11 @@ const App = ( ) => {
     noteInList.style.background= "linear-gradient(35deg, #D99ABF, #cf93b6)"; 
     chosenNote = id;
   }
-
-  function showChosenSharedNote (id, text) {
+ 
+  function showChosenSharedNote (id, text, title, date, active) {
     const activeSharedNote = document.getElementsByClassName("chosenSharedNote")[0];
-    const sharedNoteText = text;
-    activeSharedNote.innerHTML = sharedNoteText;
+    activeSharedNote.innerHTML = '<h3 class="sharedTitle">' + title + '</h3>' + '<p class="sharedText">' + text + '</p>' + '<p class="sharedDate">' + date + '</p>';
+    activeSharedNote.style.boxShadow = "0 0 10px #824567";
     const shareNotes = document.getElementsByClassName("sharedNote");
     for (let n=0; n<shareNotes.length; n++) {
       shareNotes[n].style.background="linear-gradient(135deg, #fbf6fc, #e7d8e7)";
@@ -61,8 +61,9 @@ const App = ( ) => {
   function saveChangedNote() {
     try{
       const activeNote = document.getElementsByClassName("chosenNote")[0];
-      const newText = activeNote.value;
-      let item = document.getElementsByClassName('shortDescr')[chosenNote];   
+      const newText = activeNote.getElementsByClassName("Text")[0].value;
+      let item = document.getElementsByClassName('shortDescr')[chosenNote];
+      item.innerHTML = shortenDescr(newText);
       let savedNotes = (()=>{
         if (chosenNote>=0) {
           notes[chosenNote].text=newText;
@@ -71,7 +72,6 @@ const App = ( ) => {
         return notes;
       });   
       saveNote(savedNotes);
-      item.innerHTML = shortenDescr(newText);
     }
     catch (err) {
       alert('Select a note to save!')

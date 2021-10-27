@@ -4,7 +4,7 @@ import Note from "./Note"
 import styles from "../pages/styled"
 import PropTypes from "prop-types"
 
-const Notes = ({ notes, noteChosen }) => (
+const Notes = ({ notes, noteChosen }) =>(
     <div style={styles.AllNotes}>
         <List>
             {notes.map((note)=><Note note={note} clickNote={noteChosen}/>)}
