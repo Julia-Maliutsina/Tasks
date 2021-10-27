@@ -4,10 +4,18 @@ import styles from "./styled"
 import PropTypes from "prop-types"
 import NoteShared from "../components/NoteShared"
 
-const SharedNotes = ({ notes, sharedNoteChosen }) => (
+const SharedNotes = ({ notes, active, sharedNoteChosen }) => (
     <div style={{ width: "100%" }}>
             <div class="chosenSharedNote" style={styles.ActiveSharedNote}>
-                Select note to display
+                <h3 style={styles.SharedTitle}>
+                    {active.title}
+                </h3>
+                <p style={styles.SharedText}>
+                    {active.text}
+                </p>
+                <p style={styles.Date}>
+                    {active.date}
+                </p>
             </div>
             <div style={styles.SharedNotesGrid}>
                 <Box

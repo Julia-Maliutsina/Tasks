@@ -53,7 +53,7 @@ const ALL_NOTES = {
 
 const TITLE_IN_LIST = {
   fontWeight: "bold",
-  width: "110px",
+  width: "150px",
   fontFamily: "titles",
   fontSize: "16px",
 }
@@ -148,6 +148,51 @@ const BLOCK_ABOUT = {
   borderRadius: "10px",
 }
 
+const TITLE = {
+  paddingTop: "5px",
+  margin: "0px",
+  textAlign: "center",
+}
+
+const TEXT =  {
+  width: "100%",
+  resize: "none",
+  height: "280px",
+  paddingTop: "10px",
+  marginTop: "0px",
+  border: "none",
+  borderTop: "1px solid #a66289",
+  outline: "none",
+  fontFamily: "notes",
+  textAlign: "justify",
+}
+
+const TEXT_SHARED =  {
+  width: "100%",
+  resize: "none",
+  height: "100px",
+  paddingTop: "10px",
+  marginTop: "0px",
+  border: "none",
+  borderTop: "1px solid #a66289",
+  outline: "none",
+  fontFamily: "notes",
+  textAlign: "justify",
+}
+
+const TITLE_SHARED = {
+  padding: "5px 0px 10px 0px",
+  margin: "0px",
+  textAlign: "center",
+}
+
+const DATE = {
+  paddingTop: "5px",
+  margin: "0px",
+  fontSize: "14px",
+  color: "#363636",
+}
+
 const styles = {
   Wrapper: WRAPPER,
   Header: HEADER,
@@ -165,6 +210,11 @@ const styles = {
   AboutBlock: BLOCK_ABOUT,
   MenuText: MENU_TEXT,
   MenuIcon: MENU_ICON,
+  Text: TEXT,
+  Title: TITLE,
+  Date: DATE,
+  SharedText: TEXT_SHARED,
+  SharedTitle: TITLE_SHARED,
 }
 
 export default styles

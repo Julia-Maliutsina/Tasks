@@ -6,6 +6,7 @@ import SharedNotes from "./sharedNotes"
 import AboutApp from "./about"
 import { useState, useEffect } from "react"
 import NOTES from "../config/constants/notes"
+import SHARED from "../config/constants/shared"
 import shortenDescr from "../utils/noteShortDescr"
 import Typography from "@mui/material/Typography"
 import NotFound from "../components/NotFound"
@@ -22,7 +23,7 @@ import {
 } from "react-router-dom"
 
 const App = ( ) => {
-  let chosenNote=(-1);
+  
 
   const [notes, saveNote] = useState(NOTES);
 
@@ -35,38 +36,45 @@ const App = ( ) => {
     }
   },[])
 
+  const [sharedChosenNote, displaySharedNote] = useState({title: 'Select note to display'});
+  const [myChosenNote, displayMyNote] = useState({title: 'Select note to display'});
+  const [num, changeActive] = useState([-1]);
+
+  let chosenNote={num};
+
   function showChosenNote (id, title, text, date) {
     const activeNote = document.getElementsByClassName("chosenNote")[0];
-    activeNote.innerHTML='<h3 class="Title">' + title + '</h3>' + '<textarea class="Text" >' + text + '</textarea>' + '<p class="Date">' + date + '</p>';
     const allNotes = document.getElementsByTagName('li');
     for (let n=0; n<allNotes.length; n++) {
       allNotes[n].style.background="inherit";
     }
     const noteInList = allNotes[id];
     noteInList.style.background= "linear-gradient(35deg, #D99ABF, #cf93b6)"; 
-    chosenNote = id;
+    changeActive(id);
+    document.getElementsByTagName("textarea")[0].value=text;
+    displayMyNote(notes[id]);
   }
  
   function showChosenSharedNote (id, text, title, date, active) {
     const activeSharedNote = document.getElementsByClassName("chosenSharedNote")[0];
-    activeSharedNote.innerHTML = '<h3 class="sharedTitle">' + title + '</h3>' + '<p class="sharedText">' + text + '</p>' + '<p class="sharedDate">' + date + '</p>';
     activeSharedNote.style.boxShadow = "0 0 10px #824567";
     const shareNotes = document.getElementsByClassName("sharedNote");
     for (let n=0; n<shareNotes.length; n++) {
       shareNotes[n].style.background="linear-gradient(135deg, #fbf6fc, #e7d8e7)";
     }
     shareNotes[id].style.background="linear-gradient(45deg, #dbc4db, #cf93b6)";
+    displaySharedNote(SHARED[id]);
   }
 
   function saveChangedNote() {
     try{
       const activeNote = document.getElementsByClassName("chosenNote")[0];
-      const newText = activeNote.getElementsByClassName("Text")[0].value;
-      let item = document.getElementsByClassName('shortDescr')[chosenNote];
+      const newText = document.getElementsByTagName("textarea")[0].value;
+      let item = document.getElementsByClassName('shortDescr')[chosenNote.num];
       item.innerHTML = shortenDescr(newText);
       let savedNotes = (()=>{
-        if (chosenNote>=0) {
-          notes[chosenNote].text=newText;
+        if ((chosenNote.num)>=0) {
+          notes[chosenNote.num].text=newText;
         }
         localStorage.setItem('notes', JSON.stringify(notes));
         return notes;
@@ -94,10 +102,10 @@ const App = ( ) => {
             <div></div>
           </Route>
           <Route path="/shared-notes">
-            <SharedNotes notes={notes} sharedNoteChosen={showChosenSharedNote}/>
+            <SharedNotes notes={SHARED} active={sharedChosenNote} sharedNoteChosen={showChosenSharedNote}/>
           </Route>
           <Route path="/notes">
-            <MyNotes notes={notes} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
+            <MyNotes notes={notes} active={myChosenNote} showChosenNote={showChosenNote} saveChangedNote={saveChangedNote}/>
           </Route>
           <Route path="/about">
             <AboutApp />

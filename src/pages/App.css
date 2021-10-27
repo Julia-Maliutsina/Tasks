@@ -43,7 +43,7 @@ a {
 }
 
 .sharedTitle, .Title {
-  padding: 0px;
+  padding-top: 5px;
   margin: 0px;
   text-align: center;
 }
@@ -57,9 +57,9 @@ a {
 .Text {
   width: 100%;
   resize: none;
-  height: 300px;
+  height: 280px;
   padding-top: 10px;
-  margin-top: 5px;
+  margin-top: 0px;
   border: none;
   border-top: 1px solid #a66289;
   outline: none;

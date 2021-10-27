@@ -6,7 +6,9 @@ import Save from "../components/SaveButton"
 import styles from "./styled.js"
 import PropTypes from "prop-types"
 
-const MyNotes = ({showChosenNote, saveChangedNote, notes}) => (
+const MyNotes = ({showChosenNote, saveChangedNote, notes, active}) => {
+  
+  return(
   <div style={{ width: "100%" }}>
     <Box
       sx={{
@@ -18,18 +20,28 @@ const MyNotes = ({showChosenNote, saveChangedNote, notes}) => (
       <Notes notes={notes} noteChosen={showChosenNote}/>
       <div>
         <div class="chosenNote" style={styles.ActiveNote}>
-          Select note to display
+          <h3 class="Title"> 
+            {active.title} 
+          </h3>
+          <p>
+          <textarea class="Text">
+          </textarea>
+          </p>
+          <p class="Date">
+            {active.date}
+          </p>
         </div>
         <Save changeActiveNote={saveChangedNote}/>
       </div>
     </Box>
   </div>
-)
+)}
 
 MyNotes.propTypes = {
   showChosenNote: PropTypes.func,
   saveChangedNote: PropTypes.func,
   notes: PropTypes.arrayOf(PropTypes.object),
+  active: PropTypes.object,
 }
 
 export default MyNotes

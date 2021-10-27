@@ -20,7 +20,7 @@ minWidth: "200px",
                 <Typography
                     sx={{ display: 'inline-block' }}
                     component="span"
-                    style={styles.NoteInLisShared}
+                    style={styles.NoteInListShared}
                     className="shortDescr"
                 >
                     {shortenDescr(text)}
