@@ -4,6 +4,8 @@ const PATHS = {
 	sharedNotes: "/shared-notes",
 	aboutApp: "/about",
 	notFound: "/not-found",
+	signIn: "/sign-in",
+	signUp: "/sign-up",
 }
 
 export default PATHS

@@ -17,10 +17,9 @@
 	box-sizing: border-box;
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
-	padding: 5px 10px 15px 10px;
+.activeMenu {
+	background: var(--menu-active-background);
+	color: var(--menu-active-color);
 }
 
 .css-10hburv-MuiTypography-root {
@@ -32,17 +31,29 @@ a {
 	display: inherit;
 }
 
-.activeMenu {
-	background: var(--menu-active-background);
-	color: var(--menu-active-color);
-	border-radius: 10px 10px 0px 0px;
-	position: relative;
-	height: 30px;
-	width: 60px;
+a {
+	color: inherit;
+	text-decoration: none;
 }
 
-.sharedNote {
+.menuSignIn {
+	vertical-align: middle;
+	padding: 5px 10px 5px 10px;
+	font-size: 14px;
+	line-height: 14px;
+	height: 20px;
+	border-radius: 3px;
+	background: linear-gradient(115deg, #cf93b6, #a66289);
+	color: white;
+	margin-left: 15px;
+}
+
+.activeMenuAuthorization {
 	background: linear-gradient(135deg, #fbf6fc, #e7d8e7);
-	border-radius: 5px;
-	box-shadow: 1px 2px 3px #747474;
+	color: #8d0d38;
+}
+
+.activeMenuRegistration {
+	text-decoration: underline;
+	font-weight: bold;
 }

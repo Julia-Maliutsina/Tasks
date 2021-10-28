@@ -1,12 +1,17 @@
+import { NoEncryption } from "@mui/icons-material"
+
 const backgroundMain = "#f7f7f7"
 const basicColor = "#3a74c4"
 const lightColor = "#e6f1ff"
 const greyColor = "#363636"
 const white = "#ffffff"
 const black = "#000000"
+const blueText = "#173661"
+const errorColor = "#8d0d38"
 const basicGradient = "linear-gradient(45deg, #3a74c4, #4588E6)"
 const lightGradient = "linear-gradient(35deg, #E5F0FC, #E3F2FF)"
 const buttonGradient = "linear-gradient(195deg, #cf93b6, #a66289)"
+const menuButtonsGradient = "linear-gradient(135deg, #ebf4ff, #cce4ff)"
 const cardGradient = "linear-gradient(135deg, #fbf6fc, #e7d8e7)"
 const activeCardGradient = "linear-gradient(45deg, #dbc4db, #cf93b6)"
 const activeNoteGradient = "linear-gradient(35deg, #D99ABF, #cf93b6)"
@@ -128,6 +133,22 @@ const menuIcon = {
   verticalAlign: "middle",
 }
 
+const menuSignUp = {
+  verticalAlign: "middle",
+  padding: "5px 10px 5px 10px",
+  fontSize: "14px",
+  lineHeight: "14px",
+  height: "20px",
+  borderRadius: "3px",
+  background: "transparent",
+  color: white,
+  margin: "0px",
+}
+
+const menuSignIn = {
+
+}
+
 const sharedNotes = {
   padding: "8px 10px 5px 20px",
   height: "300px",
@@ -170,7 +191,7 @@ const title = {
   textAlign: "center",
 }
 
-const text =  {
+const text = {
   width: "100%",
   resize: "none",
   height: "280px",
@@ -183,7 +204,7 @@ const text =  {
   textAlign: "justify",
 }
 
-const textShared =  {
+const textShared = {
   width: "100%",
   resize: "none",
   height: "100px",
@@ -210,22 +231,97 @@ const date = {
 }
 
 const sharedNoteCard = {
-    background: cardGradient,
-    borderRadius: "5px",
-    boxShadow: cardShadow,
+  background: cardGradient,
+  borderRadius: "5px",
+  boxShadow: cardShadow,
+}
+
+const submitButton = {
+  width: "100px",
+  height: "32px",
+  fontSize: "18px",
+  color: white,
+  fontFamily: "notes",
+  background: buttonGradient,
+  marginTop: "20px",
+  marginLeft: "210px",
+  borderRadius: "5px",
+  border: "none",
+}
+
+const form = {
+	width: "570px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	marginTop: "30px",
+	padding: "25px",
+	borderRadius: "10px",
+	background: lightGradient,
+	boxShadow: blockShadow,
+}
+
+const formInput = {
+  width: "240px",
+  height: "24px",
+  borderRadius: "3px",
+  border: blueLine,
+  outline: "none"
+}
+
+const formLabel = {
+	fontWeight: "bold",
+	display: "flex",
+	marginBottom: "5px",
+	fontFamily: "titles",
+	margin: "8px 0px 3px 0px",
+	color: blueText,
+}
+
+const inputError = {
+  color: errorColor,
+  fontSize: "12px",
+  fontFamily: "notes",
+}
+
+const formBlock = {
+  display: "inline-block",
+  width: "260px",
+  verticalAlign: "top",
+}
+
+const mainMenuTabs = 	{
+  textDecoration: "none",
+  padding: "5px 10px 15px 10px",
+  borderRadius: "10px 10px 0px 0px",
+  position: "relative",
+  height: "30px",
+  width: "60px",
+  marginLeft: "2px",
+  marginRight: "2px",
 }
 
 const styles = {
   aboutBlock: blockAbout,
   aboutChapter: chapterAbout,
   aboutTitle: titleAbout,
+  activeCardGradient: activeCardGradient,
   activeNote: activeNote,
+  activeNoteGradient: activeNoteGradient,
   activeSharedNote: activeShared,
   allNotes: allNotes,
+  cardGradient: cardGradient,
   date: date,
+  focusShadow: focusShadow,
+  form: form,
+  formBlock: formBlock,
+  formInput: formInput,
+  formLabel: formLabel,
   header: header,
   menu: menu,
+  menuSignUp: menuSignUp,
+  menuSignIn: menuSignIn,
   menuIcon: menuIcon,
+  menuMain: mainMenuTabs,
   menuText: menuText,
   noteInList: noteInList,
   noteInListShared: noteInListShared,
@@ -235,13 +331,11 @@ const styles = {
   sharedNoteCard: sharedNoteCard,
   sharedText: textShared,
   sharedTitle: titleShared,
+  submitButton: submitButton,
   text: text,
   title: title,
+  validationError: inputError,
   wrapper: wrapper,
-  cardGradient: cardGradient,
-  activeCardGradient: activeCardGradient,
-  activeNoteGradient: activeNoteGradient,
-  focusShadow: focusShadow,
 }
 
 export default styles

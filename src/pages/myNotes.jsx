@@ -18,7 +18,8 @@ import SHARED from "../../src/config/constants/shared"
 import MyNotesContainer from "./myNotesContainer"
 import SharedNotes from "./sharedNotes"
 import AboutApp from "./about"
-import shortenDescription from "../utils/noteShortDescription"
+import SignUpForm from "./signUp"
+import SignInForm from "./signIn"
 import NotFound from "../components/NotFound"
 import "./App.css"
 import styles from "./styled.js"
@@ -90,17 +91,43 @@ const MyNotes = () => {
 				<header style={styles.header}>
 					<span>My Notes</span>
 					<div style={styles.menu}>
-						<NavLink to={PATHS.myNotes} activeClassName="activeMenu">
+						<NavLink
+							to={PATHS.myNotes}
+							style={styles.menuMain}
+							activeClassName="activeMenu"
+						>
 							<StickyNote2Icon style={styles.menuIcon} />
 							<span style={styles.menuText}>My Notes</span>
 						</NavLink>
-						<NavLink to={PATHS.sharedNotes} activeClassName="activeMenu">
+						<NavLink
+							to={PATHS.sharedNotes}
+							style={styles.menuMain}
+							activeClassName="activeMenu"
+						>
 							<OfflineShareIcon style={styles.menuIcon} />
 							<span style={styles.menuText}>Shared Notes</span>
 						</NavLink>
-						<NavLink to={PATHS.aboutApp} activeClassName="activeMenu">
+						<NavLink
+							to={PATHS.aboutApp}
+							style={styles.menuMain}
+							activeClassName="activeMenu"
+						>
 							<InfoIcon style={styles.menuIcon} />
 							<span style={styles.menuText}>About</span>
+						</NavLink>
+						<NavLink
+							to={PATHS.signIn}
+							className="menuSignIn"
+							activeClassName="activeMenuAuthorization"
+						>
+							<span>Sign in</span>
+						</NavLink>
+						<NavLink
+							to={PATHS.signUp}
+							style={styles.menuSignUp}
+							activeClassName="activeMenuRegistration"
+						>
+							<span>Sign up</span>
 						</NavLink>
 					</div>
 				</header>
@@ -123,6 +150,12 @@ const MyNotes = () => {
 					</Route>
 					<Route path={PATHS.aboutApp}>
 						<AboutApp />
+					</Route>
+					<Route path={PATHS.signUp}>
+						<SignUpForm />
+					</Route>
+					<Route path={PATHS.signIn}>
+						<SignInForm />
 					</Route>
 					<Route path={PATHS.notFound}>
 						<NotFound />
