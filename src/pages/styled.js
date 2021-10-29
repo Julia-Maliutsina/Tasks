@@ -1,4 +1,4 @@
-import { NoEncryption } from "@mui/icons-material"
+import { NoEncryption, Notes } from "@mui/icons-material"
 
 const backgroundMain = "#f7f7f7"
 const basicColor = "#3a74c4"
@@ -300,6 +300,11 @@ const mainMenuTabs = 	{
   marginRight: "2px",
 }
 
+const error = {
+  color: errorColor,
+  fontSize: "12px"
+}
+
 const styles = {
   aboutBlock: blockAbout,
   aboutChapter: chapterAbout,
@@ -311,6 +316,7 @@ const styles = {
   allNotes: allNotes,
   cardGradient: cardGradient,
   date: date,
+  error: error,
   focusShadow: focusShadow,
   form: form,
   formBlock: formBlock,

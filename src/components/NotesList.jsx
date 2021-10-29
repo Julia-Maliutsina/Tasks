@@ -6,18 +6,18 @@ import Note from "./Note"
 import styles from "../pages/styled"
 
 const Notes = ({ notes, noteChosen }) => (
-	<div style={styles.allNotes}>
-		<List>
-			{notes.map((note) => (
-				<Note note={note} displayChosenNote={noteChosen} />
-			))}
-		</List>
-	</div>
+  <div style={styles.allNotes}>
+    <List>
+      {notes.map((note) => (
+        <Note note={note} displayChosenNote={noteChosen} />
+      ))}
+    </List>
+  </div>
 )
 
 Notes.propTypes = {
-	notes: PropTypes.arrayOf(PropTypes.object),
-	noteChosen: PropTypes.func,
+  notes: PropTypes.arrayOf(PropTypes.object),
+  noteChosen: PropTypes.func,
 }
 
 export default Notes
