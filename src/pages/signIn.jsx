@@ -1,38 +1,44 @@
 import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
+import axios from "axios"
+
+import INITIAL_VALUES from "../config/constants/formsInitialValues"
 
 import styles from "./styled"
 
-const initialValues = {
-  email: "",
-  name: "",
-  surname: "",
-  birthday: "",
-  password: "",
-  passwordConfirm: "",
-}
-
 const onSubmit = (values) => {
-  console.log(values)
+  axios
+    .get("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542")
+    .then((result) => {
+      let users = result.data
+      let isAuthorized = false
+      let notes = {}
+      let shared = {}
+      for (let u = 0; u < users.length; u++) {
+        if (
+          users[u].email === values.email &&
+          users[u].password === values.password
+        ) {
+          isAuthorized = true
+          notes = users[u].myNotes
+          shared = users[u].sharedNoted
+          break
+        }
+      }
+      if (!isAuthorized) {
+        alert("Invalid email or password")
+      }
+      console.log(notes, shared)
+    })
 }
 
 const validate = (values) => {
   let errors = {}
   if (!values.email) {
     errors.email = "*Required"
-  } else if (
-    !/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(
-      values.email
-    )
-  ) {
-    errors.email = "*Invalid email format"
   }
   if (!values.password) {
     errors.password = "*Required"
-  } else if (values.password.length < 9) {
-    errors.password = "*Password must contain at least 9 characters"
   }
   return errors
 }
@@ -42,7 +48,7 @@ const SignInForm = () => {
     <div>
       <h2 style={styles.aboutTitle}>Authorization</h2>
       <Formik
-        initialValues={initialValues}
+        initialValues={INITIAL_VALUES}
         onSubmit={onSubmit}
         validate={validate}
       >

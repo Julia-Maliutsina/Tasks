@@ -1,7 +1,4 @@
-import { NoEncryption, Notes } from "@mui/icons-material"
-
 const backgroundMain = "#f7f7f7"
-const basicColor = "#3a74c4"
 const lightColor = "#e6f1ff"
 const greyColor = "#363636"
 const white = "#ffffff"
@@ -11,9 +8,8 @@ const errorColor = "#8d0d38"
 const basicGradient = "linear-gradient(45deg, #3a74c4, #4588E6)"
 const lightGradient = "linear-gradient(35deg, #E5F0FC, #E3F2FF)"
 const buttonGradient = "linear-gradient(195deg, #cf93b6, #a66289)"
-const menuButtonsGradient = "linear-gradient(135deg, #ebf4ff, #cce4ff)"
-const cardGradient = "linear-gradient(135deg, #fbf6fc, #e7d8e7)"
-const activeCardGradient = "linear-gradient(45deg, #dbc4db, #cf93b6)"
+const cardGradient = "linear-gradient(115deg, #fafdff, #e6f0fc)"
+const activeCardGradient = "linear-gradient(135deg, #ffffff, #eeeeee)"
 const activeNoteGradient = "linear-gradient(35deg, #D99ABF, #cf93b6)"
 const sectionLine = "1px solid #a66289"
 const blueLine = "1px solid #CCD6E3"
@@ -164,7 +160,7 @@ const noteInListShared = {
 
 const titleAbout = {
   fontFamily: "notes",
-  color: basicColor,
+  color: blueText,
   textAlign: "center",
   margin: "15px 0px 0px 0px",
   fontWeight: "bold",
@@ -183,6 +179,7 @@ const blockAbout = {
   margin: "2% 2% 2% 2%",
   boxShadow: blockShadow,
   borderRadius: "10px",
+  color: blueText
 }
 
 const title = {
@@ -300,11 +297,6 @@ const mainMenuTabs = 	{
   marginRight: "2px",
 }
 
-const error = {
-  color: errorColor,
-  fontSize: "12px"
-}
-
 const styles = {
   aboutBlock: blockAbout,
   aboutChapter: chapterAbout,
@@ -316,7 +308,6 @@ const styles = {
   allNotes: allNotes,
   cardGradient: cardGradient,
   date: date,
-  error: error,
   focusShadow: focusShadow,
   form: form,
   formBlock: formBlock,

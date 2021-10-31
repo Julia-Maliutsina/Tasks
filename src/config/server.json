@@ -1,0 +1,255 @@
+{ "users" : 
+    [
+      {
+      "id": 0,
+      "name": "Leanne",
+      "surrname": "Graham",
+      "email": "Sincere@april.biz",
+      "birthday": "09/09/1995",
+      "password": "qwerty123",
+      "myNotes": [
+        {
+            "id": 0,
+            "text": "This is my first note in the app",
+            "title": "First note",
+            "date": "24.06.2021",
+            "active": false
+        },
+        {
+            "id": 1,
+            "text": "Southerners have a lot of expressions to relay their dislike of the summer's heat. 'Hotter'n blue blazes' and 'hotter than the hinges on the gates of Hades' are two I always remember hearing in my childhood. But there's another truth about the South in the summer: It's one of the most delicious places to be.",
+            "title": "Travel note",
+            "date": "01.08.2021",
+            "active": false
+        },
+        {
+            "id": 2,
+            "text": "Yogurt is a secret ingredient used in a variety of cakes to create a super moist, light, and fluffy texture. It adds a special something, a hint of tangy lusciousness to every bite! The fun part is that you can use anything from plain yogurt to your favorite flavored yogurt — strawberry, lemon, vanilla, and more.",
+            "title": "Cooking",
+            "date": "13.10.2021",
+            "active": false
+        },
+        {
+            "id": 3,
+            "text": "After I woke up this morning, I made the regrettable decision of waking up. I tried to go back to sleep, but I could not even relax. Today was one of those days where either I get up, or I get up. I then decided to go outside, but because it was raining, I got wet. I went back inside, felt tired enough to go back to bed, but I still had to change out of my wet clothes. Then I got a phone call from you know who.",
+            "title": "Diary",
+            "date": "10.12.2020",
+            "active": false
+        },
+        {
+            "id": 4,
+            "text": "Its been so long since I last shared anything with you, to be precise 7 months. Last time when we met was the day before I entered into labour room. Motherhood is what has kept me away from you for so long, I have so many things to share.",
+            "title": "Letter",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 5,
+            "text": "My baking skills are coming along nicely! (Every failure is a lesson, right?)",
+            "title": "Cooking",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 6,
+            "text": "Books to buy: Pride and Prejudice by Jane Austen, The Great Gatsby by F. Scott Fitzgerald, In Cold Blood by Truman Capote",
+            "title": "Books",
+            "date": "19.10.2021",
+            "active": false
+        }],
+        "sharedNotes": [
+        {
+            "id": 0,
+            "text": "This is my note",
+            "title": "Shared note",
+            "date": "24.06.2021",
+            "active": false
+        },
+        {
+            "id": 1,
+            "text": "Today I went to Bangalore railway station, Yeshwantpura, to receive my uncle and aunt who were coming from Mumbai. It was a bright sunny day. Sun was shining like a star. While I and my father were crossing the Orion mall, we saw three elephants that made me reminded of my Kerala trip.",
+            "title": "Travel note",
+            "date": "01.08.2021",
+            "active": false
+        },
+        {
+            "id": 2,
+            "text": "Yogurt is a secret ingredient used in a variety of cakes to create a super moist, light, and fluffy texture. It adds a special something, a hint of tangy lusciousness to every bite! The fun part is that you can use anything from plain yogurt to your favorite flavored yogurt — strawberry, lemon, vanilla, and more.",
+            "title": "Cooking",
+            "date": "13.10.2021",
+            "active": false
+        },
+        {
+            "id": 3,
+            "text": "After I woke up this morning, I made the regrettable decision of waking up. I tried to go back to sleep, but I could not even relax. Today was one of those days where either I get up, or I get up. I then decided to go outside, but because it was raining, I got wet. I went back inside, felt tired enough to go back to bed, but I still had to change out of my wet clothes. Then I got a phone call from you know who.",
+            "title": "Diary",
+            "date": "10.12.2020",
+            "active": false
+        },
+        {
+            "id": 4,
+            "text": "Its been so long since I last shared anything with you, to be precise 7 months. Last time when we met was the day before I entered into labour room. Motherhood is what has kept me away from you for so long, I have so many things to share.",
+            "title": "Letter",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 5,
+            "text": "My baking skills are coming along nicely! (Every failure is a lesson, right?)",
+            "title": "Cooking",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 6,
+            "text": "Books to buy: Pride and Prejudice by Jane Austen, The Great Gatsby by F. Scott Fitzgerald, In Cold Blood by Truman Capote",
+            "title": "Books",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 7,
+            "text": "Products to buy: milk, bread, chocolate, juice, vegetables, meat",
+            "title": "To buy",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 8,
+            "text": "After 10 years I see myself with some good qualifications (degree), working in a reputed institution, spending time with family and doing something for my society and mother nature. Over the next few years I will try to fulfill all my plans with all my strength. I will not leave any opportunity which proves to be a hallway to the completion of my goals. I will try my best to be a valuable and irreplaceable asset for the institution I work for. As any other youngster I also want to change happiness and success for myself as well as for my parents and siblings.",
+            "title": "Diary",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 9,
+            "text": "Countries: Argentina, USA, Spain, Canada, Indonesia",
+            "title": "Countries to visit",
+            "date": "19.10.2021",
+            "active": false
+        }]
+      },
+      {
+      "id": 1,
+      "name": "Ervin",
+      "surname": "Howell",
+      "email": "Shanna@melissa.tv",
+      "birthday": "12/05/1990",
+      "password": "123qwerty",
+      "myNotes": [
+        {
+            "id": 0,
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "title": "Duis aute irure",
+            "date": "14.06.2021",
+            "active": false
+        },
+        {
+            "id": 1,
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+            "title": "Quis autem vel",
+            "date": "13.07.2021",
+            "active": false
+        },
+        {
+            "id": 2,
+            "text": "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.",
+            "title": "Bonorum et Malorum",
+            "date": "13.10.2021",
+            "active": false
+        },
+        {
+            "id": 3,
+            "text": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+            "title": "Distinctio",
+            "date": "03.02.2020",
+            "active": false
+        },
+        {
+            "id": 4,
+            "text": "No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?",
+            "title": "Translation",
+            "date": "10.11.2021",
+            "active": false
+        },
+        {
+            "id": 5,
+            "text": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+            "title": "Quisquam",
+            "date": "09.12.2021",
+            "active": false
+        },
+        {
+            "id": 6,
+            "text": "Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+            "title": "Temporibus",
+            "date": "19.10.2021",
+            "active": false
+        }],
+        "sharedNotes": [
+        {
+            "id": 0,
+            "text": "In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always holds in these matters to this principle of selection: he rejects pleasures to secure other greater pleasures, or else he endures pains to avoid worse pains.",
+            "title": "Our shared note",
+            "date": "24.06.2021",
+            "active": false
+        },
+        {
+            "id": 1,
+            "text": "No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it?",
+            "title": "Translation",
+            "date": "10.11.2021",
+            "active": false
+        },
+        {
+            "id": 2,
+            "text": "Southerners have a lot of expressions to relay their dislike of the summer's heat. 'Hotter'n blue blazes' and 'hotter than the hinges on the gates of Hades' are two I always remember hearing in my childhood. But there's another truth about the South in the summer: It's one of the most delicious places to be.",
+            "title": "Travel note",
+            "date": "01.08.2021",
+            "active": false
+        },
+        {
+            "id": 3,
+            "text": "Today I went to Bangalore railway station, Yeshwantpura, to receive my uncle and aunt who were coming from Mumbai. It was a bright sunny day. Sun was shining like a star. While I and my father were crossing the Orion mall, we saw three elephants that made me reminded of my Kerala trip.",
+            "title": "Travel note",
+            "date": "10.12.2020",
+            "active": false
+        },
+        {
+            "id": 4,
+            "text": "Its been so long since I last shared anything with you, to be precise 7 months. Last time when we met was the day before I entered into labour room. Motherhood is what has kept me away from you for so long, I have so many things to share.",
+            "title": "Letter",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 5,
+            "text": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
+            "title": "Distinctio",
+            "date": "03.02.2020",
+            "active": false
+        },
+        {
+            "id": 6,
+            "text": "Books to buy: Pride and Prejudice by Jane Austen, The Great Gatsby by F. Scott Fitzgerald, In Cold Blood by Truman Capote",
+            "title": "Books",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 7,
+            "text": "Products to buy: milk, bread, chocolate, juice, vegetables, meat",
+            "title": "To buy",
+            "date": "19.10.2021",
+            "active": false
+        },
+        {
+            "id": 8,
+            "text": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+            "title": "Quisquam",
+            "date": "09.12.2021",
+            "active": false
+        }]
+      }
+    ]
+}

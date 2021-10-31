@@ -43,14 +43,15 @@ a {
   line-height: 14px;
   height: 20px;
   border-radius: 3px;
-  background: linear-gradient(115deg, #c282a7, #a56589);
-  color: white;
+  background: linear-gradient(135deg, #f3f9fd, #d2e1ec);
+  color: #3c4079;
+
   margin-left: 15px;
 }
 
 .activeMenuAuthorization {
-  background: linear-gradient(135deg, #fbf6fc, #e7d8e7);
-  color: #8d0d38;
+  background: #244185;
+  color: white;
 }
 
 .activeMenuRegistration {
