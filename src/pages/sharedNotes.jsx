@@ -7,7 +7,7 @@ import NoteShared from "../components/NoteShared"
 
 const SharedNotes = ({ notes, active, sharedNoteChosen }) => (
   <div style={{ width: "100%" }}>
-    <div class="chosenSharedNote" style={styles.activeSharedNote}>
+    <div className="chosenSharedNote" style={styles.activeSharedNote}>
       <h3 style={styles.sharedTitle}>{active.title}</h3>
       <p style={styles.sharedText}>{active.text}</p>
       <p style={styles.date}>{active.date}</p>

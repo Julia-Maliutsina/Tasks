@@ -10,10 +10,10 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom"
+import axios from "axios"
+import { createStore } from "redux"
 
 import PATHS from "../../src/config/routes/routes"
-import NOTES from "../../src/config/constants/notes"
-import SHARED from "../../src/config/constants/shared"
 
 import MyNotesContainer from "./myNotesContainer"
 import SharedNotes from "./sharedNotes"
@@ -24,20 +24,27 @@ import NotFound from "../components/NotFound"
 import "./App.css"
 import styles from "./styled.js"
 
-const MyNotes = () => {
+const MyNotes = ({ NOTES, SHARED, isAuthorized, submitAutorization }) => {
   const [myNotes, saveNote] = useState(NOTES)
 
   useEffect(() => {
     if (localStorage.myNotes) {
       saveNote(JSON.parse(localStorage.getItem("myNotes")))
     } else {
+      console.log(NOTES)
       saveNote(NOTES)
     }
-  }, [])
+  }, [NOTES])
+
+  if (localStorage.sharedNotes) {
+    SHARED = JSON.parse(localStorage.getItem("sharedNotes"))
+    console.log("called")
+  }
 
   const [sharedChosenNote, displaySharedNote] = useState({
     title: "Select note to display",
   })
+
   const [myChosenNote, displayMyNote] = useState({
     title: "Select note to display",
   })
@@ -155,7 +162,7 @@ const MyNotes = () => {
             <SignUpForm />
           </Route>
           <Route path={PATHS.signIn}>
-            <SignInForm />
+            <SignInForm submitAutorization={submitAutorization} />
           </Route>
           <Route path={PATHS.notFound}>
             <NotFound />

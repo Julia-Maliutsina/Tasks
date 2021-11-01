@@ -1,56 +1,19 @@
 import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import axios from "axios"
 
 import INITIAL_VALUES from "../config/constants/formsInitialValues"
+import validateSignIn from "../utils/validateSignIn"
 
 import styles from "./styled"
 
-const onSubmit = (values) => {
-  axios
-    .get("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542")
-    .then((result) => {
-      let users = result.data
-      let isAuthorized = false
-      let notes = {}
-      let shared = {}
-      for (let u = 0; u < users.length; u++) {
-        if (
-          users[u].email === values.email &&
-          users[u].password === values.password
-        ) {
-          isAuthorized = true
-          notes = users[u].myNotes
-          shared = users[u].sharedNoted
-          break
-        }
-      }
-      if (!isAuthorized) {
-        alert("Invalid email or password")
-      }
-      console.log(notes, shared)
-    })
-}
-
-const validate = (values) => {
-  let errors = {}
-  if (!values.email) {
-    errors.email = "*Required"
-  }
-  if (!values.password) {
-    errors.password = "*Required"
-  }
-  return errors
-}
-
-const SignInForm = () => {
+const SignInForm = ({ submitAutorization }) => {
   return (
     <div>
       <h2 style={styles.aboutTitle}>Authorization</h2>
       <Formik
         initialValues={INITIAL_VALUES}
-        onSubmit={onSubmit}
-        validate={validate}
+        onSubmit={submitAutorization}
+        validate={validateSignIn}
       >
         <Form style={styles.form}>
           <div style={styles.formBlock}>

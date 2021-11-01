@@ -23,7 +23,7 @@ const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
             styles.focusShadow
           ))
       }
-      class="sharedNote"
+      className="sharedNote"
       style={styles.sharedNoteCard}
     >
       <CardContent>

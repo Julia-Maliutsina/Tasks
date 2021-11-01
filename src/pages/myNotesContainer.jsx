@@ -24,7 +24,7 @@ const MyNotesContainer = ({
       >
         <Notes notes={notes} noteChosen={showChosenNote} />
         <div>
-          <div class="chosenNote" style={styles.activeNote}>
+          <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>
             <p>
               <textarea style={styles.text}></textarea>

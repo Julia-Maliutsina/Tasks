@@ -2,8 +2,8 @@ import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import axios from "axios"
 
-import validateSignUp from "../utils/validateSignUp"
 import INITIAL_VALUES from "../config/constants/formsInitialValues"
+import validateSignUp from "../utils/validateSignUp"
 
 import styles from "./styled"
 
