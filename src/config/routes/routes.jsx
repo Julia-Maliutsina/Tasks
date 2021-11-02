@@ -6,6 +6,7 @@ const PATHS = {
   notFound: "/not-found",
   signIn: "/sign-in",
   signUp: "/sign-up",
+  profile: "/profile"
 }
 
 export default PATHS

@@ -1,6 +1,7 @@
 import React from "react"
 import Box from "@mui/material/Box"
 import PropTypes from "prop-types"
+import Alert from '@mui/material/Alert'
 
 import Notes from "../components/NotesList"
 import Save from "../components/SaveButton"
@@ -21,9 +22,9 @@ const MyNotesContainer = ({
           gridTemplateColumns: "36% 60%",
           gap: 1,
         }}
-      >
+      > 
         <Notes notes={notes} noteChosen={showChosenNote} />
-        <div>
+        <div style={{position: "relative"}}>
           <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>
             <p>
@@ -32,6 +33,7 @@ const MyNotesContainer = ({
             <p style={styles.date}>{active.date}</p>
           </div>
           <Save title={"Save Changes"} buttonFunction={saveChangedNote} />
+          <Alert variant="filled" severity="info" id="saveNoteError" style={styles.saveError}>Select note to save!</Alert>
         </div>
       </Box>
     </div>

@@ -1,36 +1,19 @@
 import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
-import axios from "axios"
+import Link from '@mui/material/Link'
 
 import INITIAL_VALUES from "../config/constants/formsInitialValues"
 import validateSignUp from "../utils/validateSignUp"
 
 import styles from "./styled"
 
-const onSubmit = (values) => {
-  let newUser = {
-    id: 2,
-    name: values.name,
-    surrname: values.surname,
-    email: values.email,
-    birthday: values.birthday,
-    password: values.password,
-    myNotes: [],
-    sharedNotes: [],
-  }
-  console.log(newUser)
-  axios
-    .post("https://reqres.in/api/articles", newUser)
-    .then((response) => console.log(response))
-}
-
-const SignUpForm = () => {
+const SignUpForm = ({submitRegistration}) => {
   return (
     <div>
       <h2 style={styles.aboutTitle}>Registration</h2>
       <Formik
         initialValues={INITIAL_VALUES}
-        onSubmit={onSubmit}
+        onSubmit={submitRegistration}
         validate={validateSignUp}
       >
         <Form style={styles.form}>
@@ -121,6 +104,7 @@ const SignUpForm = () => {
               {(ErrorText) => <div className="error">{ErrorText}</div>}
             </ErrorMessage>
           </div>
+          <Link href="./sign-in" style={styles.authorizationLink}>Already have an account?</Link>
           <button style={styles.submitButton} type="submit">
             SIGN UP
           </button>

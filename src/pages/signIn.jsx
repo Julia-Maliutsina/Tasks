@@ -1,10 +1,12 @@
 import React from "react"
 import { Formik, Form, Field, ErrorMessage } from "formik"
+import Link from '@mui/material/Link'
+import Alert from '@mui/material/Alert'
 
 import INITIAL_VALUES from "../config/constants/formsInitialValues"
 import validateSignIn from "../utils/validateSignIn"
-
 import styles from "./styled"
+
 
 const SignInForm = ({ submitAutorization }) => {
   return (
@@ -15,7 +17,11 @@ const SignInForm = ({ submitAutorization }) => {
         onSubmit={submitAutorization}
         validate={validateSignIn}
       >
+        
         <Form style={styles.form}>
+        <Alert severity="error" id="signInError" style={styles.error}>
+          Invalid email or password! Please try again
+        </Alert>
           <div style={styles.formBlock}>
             <label style={styles.formLabel} htmlFor="email">
               Email
@@ -44,6 +50,7 @@ const SignInForm = ({ submitAutorization }) => {
               {(ErrorText) => <div className="error">{ErrorText}</div>}
             </ErrorMessage>
           </div>
+          <Link href="./sign-up" style={styles.authorizationLink}>Don't have an account yet?</Link>
           <button style={styles.submitButton} type="submit">
             LOG IN
           </button>
