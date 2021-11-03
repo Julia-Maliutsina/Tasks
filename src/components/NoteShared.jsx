@@ -2,6 +2,7 @@ import React from "react"
 import Typography from "@mui/material/Typography"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
+import ListItemButton from "@mui/material/ListItemButton"
 import PropTypes from "prop-types"
 
 import styles from "../pages/styled"
@@ -11,25 +12,23 @@ const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
   <div>
     <Card
       sx={{
-        minWidth: "200px",
+        minWidth: "250px",
       }}
-      onClick={
-        (() => console.log(title),
-        () =>
-          displaySharedNote(
-            id,
-            styles.cardGradient,
-            styles.activeCardGradient,
-            styles.focusShadow
-          ))
+      onClick={() =>
+        displaySharedNote(
+          id,
+          styles.cardGradient,
+          styles.activeCardGradient,
+          styles.focusShadow
+        )
       }
       className="sharedNote"
       style={styles.sharedNoteCard}
     >
-      <CardContent>
+      <ListItemButton>
         <Typography style={styles.noteTitle}>{title}</Typography>
         <Typography
-          sx={{ display: "inline-block" }}
+          sx={{ display: "block" }}
           component="span"
           style={styles.noteInListShared}
           className="shortDescription"
@@ -37,7 +36,7 @@ const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
           {shortenDescription(text)}
         </Typography>
         <Typography variant="body2">{date}</Typography>
-      </CardContent>
+      </ListItemButton>
     </Card>
   </div>
 )

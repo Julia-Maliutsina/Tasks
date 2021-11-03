@@ -1,13 +1,13 @@
-import React from "react"
-import { Formik, Form, Field, ErrorMessage } from "formik"
-import Link from '@mui/material/Link'
+import React from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import Link from "@mui/material/Link";
 
-import INITIAL_VALUES from "../config/constants/formsInitialValues"
-import validateSignUp from "../utils/validateSignUp"
+import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
+import validateSignUp from "../../src/utils/validateSignUp";
 
-import styles from "./styled"
+import styles from "./styled";
 
-const SignUpForm = ({submitRegistration}) => {
+const SignUpForm = ({ submitRegistration }) => {
   return (
     <div>
       <h2 style={styles.aboutTitle}>Registration</h2>
@@ -104,14 +104,16 @@ const SignUpForm = ({submitRegistration}) => {
               {(ErrorText) => <div className="error">{ErrorText}</div>}
             </ErrorMessage>
           </div>
-          <Link href="./sign-in" style={styles.authorizationLink}>Already have an account?</Link>
+          <Link href="./sign-in" style={styles.authorizationLink}>
+            Already have an account?
+          </Link>
           <button style={styles.submitButton} type="submit">
             SIGN UP
           </button>
         </Form>
       </Formik>
     </div>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

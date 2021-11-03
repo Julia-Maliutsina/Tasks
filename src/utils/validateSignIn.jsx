@@ -1,12 +1,12 @@
 const validateSignIn = (values) => {
-  let errors = {}
+  let errors = {};
   if (!values.email) {
-    errors.email = "*Required"
+    errors.email = "*Required";
   }
   if (!values.password) {
-    errors.password = "*Required"
+    errors.password = "*Required";
   }
-  return errors
-}
+  return errors;
+};
 
-export default validateSignIn
+export default validateSignIn;

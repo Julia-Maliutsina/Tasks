@@ -5,6 +5,6 @@ const INITIAL_VALUES = {
   birthday: "",
   password: "",
   passwordConfirm: "",
-}
+};
 
-export default INITIAL_VALUES
+export default INITIAL_VALUES;

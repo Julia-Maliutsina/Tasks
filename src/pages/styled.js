@@ -75,6 +75,7 @@ const allNotes = {
 }
 
 const titleInList = {
+	display: "block",
 	fontWeight: "bold",
 	width: "150px",
 	fontFamily: "titles",
@@ -164,7 +165,7 @@ const sharedNotes = {
 }
 const noteInListShared = {
 	color: "#000",
-	minWidth: "250px",
+	minWidth: "300px",
 	fontFamily: "notes",
 	padding: "5px",
 }
@@ -356,16 +357,6 @@ const error = {
 	outline: "1px solid red",
 }
 
-const saveError = {
-	display: "none",
-	position: "absolute",
-	top: "437px",
-	left: "200px",
-	height: "40px",
-	padding: "3px 10px 3px 10px",
-	width: "400px",
-	background: basicGradient,
-}
 
 const noNotesMessage = {
 	fontFamily: "titles",
@@ -413,7 +404,6 @@ const styles = {
 	profileTable: profileTable,
 	profileTableInfo: profileTableInfo,
 	profileTableTitle: profileTableTitle,
-	saveError: saveError,
 	sharedNotesGrid: sharedNotes,
 	sharedNoteCard: sharedNoteCard,
 	sharedText: textShared,

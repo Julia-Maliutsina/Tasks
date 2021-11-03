@@ -1,8 +1,8 @@
-import React from "react"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
+import React from "react";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
-import styles from "./styled"
+import styles from "./styled";
 
 const AboutApp = () => (
   <div style={{ width: "100%" }}>
@@ -46,6 +46,6 @@ const AboutApp = () => (
       </div>
     </Box>
   </div>
-)
+);
 
-export default AboutApp
+export default AboutApp;

@@ -4,11 +4,11 @@ import SaveIcon from "@mui/icons-material/Save"
 import PropTypes from "prop-types"
 import styles from "../pages/styled"
 
-const PrimaryButton = ({ title, buttonFunction }) => (
+const PrimaryButton = ({ title, buttonFunction, newText }) => (
   <Button
     style={styles.primaryButton}
     variant="contained"
-    onClick={buttonFunction}
+    onClick={() => buttonFunction(newText)}
   >
     <SaveIcon style={{ marginRight: "5px" }} />
     {title}
