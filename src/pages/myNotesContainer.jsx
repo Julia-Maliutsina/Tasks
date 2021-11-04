@@ -16,6 +16,7 @@ const MyNotesContainer = ({
   notes,
   active,
   isNoteChosen,
+  userId,
 }) => {
   let text = active.text;
   const [newText, changeText] = useState(text);
@@ -45,7 +46,7 @@ const MyNotesContainer = ({
           gap: 1,
         }}
       >
-        <Notes notes={notes} noteChosen={showChosenNote} />
+        <Notes userId={userId} noteChosen={showChosenNote} />
         <div style={{ position: "relative" }}>
           <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>

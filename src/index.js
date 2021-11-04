@@ -11,6 +11,7 @@ let NOTES = []
 let SHARED = []
 let profileInfo = {}
 let isAuthorized = false
+let userId = -1
 
 if (localStorage.sharedNotes) {
   SHARED = JSON.parse(localStorage.getItem("sharedNotes"));
@@ -24,9 +25,12 @@ if (localStorage.profileInfo) {
 if (localStorage.isAuthorized) {
   isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"));
 }
+if (localStorage.userId) {
+  userId = JSON.parse(localStorage.getItem("userId"));
+}
 
 function authorizeUser(
-  state = { isAuthorized: false, notes: [], shared: [], profileInfo: {} },
+  state = { isAuthorized: false, notes: [], shared: [], profileInfo: {}, userId: -1 },
   action
 ) {
   switch (action.type) {
@@ -36,6 +40,7 @@ function authorizeUser(
         notes: NOTES,
         shared: SHARED,
         profileInfo: profileInfo,
+        userId: userId,
       }      
     case "signUp":
       return {
@@ -43,6 +48,7 @@ function authorizeUser(
         notes: [],
         shared: [],
         profileInfo: action.payload.profileInfo,
+        userId: action.payload.userId
       }
     case "signIn":
       return {
@@ -50,6 +56,7 @@ function authorizeUser(
         notes: action.payload.NOTES,
         shared: action.payload.SHARED,
         profileInfo: action.payload.profileInfo,
+        userId: action.payload.userId,
       }
     case "signOut":
       return {
@@ -57,6 +64,7 @@ function authorizeUser(
         notes: [],
         shared: [],
         profileInfo: {},
+        userId: -1
       }
     default:
       return state
@@ -78,6 +86,7 @@ store.subscribe(() => {
   localStorage.setItem("sharedNotes", JSON.stringify(state.shared))
   localStorage.setItem("isAuthorized", JSON.stringify(state.isAuthorized))
   localStorage.setItem("profileInfo", JSON.stringify(state.profileInfo))
+  localStorage.setItem("userId", JSON.stringify(state.userId))  
   ReactDOM.render(
     <React.StrictMode>
       <MyNotes
@@ -85,8 +94,9 @@ store.subscribe(() => {
         SHARED={state.shared}
         profileInfo={state.profileInfo}
         isAuthorized={state.isAuthorized}
-        submitRegistration={(values)=>submitRegistration(values, store)}
-        submitAutorization={(values)=>submitAutorization(values, NOTES, SHARED, store)}
+        userId={userId}
+        submitRegistration={(values)=>submitRegistration(values, store, userId)}
+        submitAutorization={(values)=>submitAutorization(values, NOTES, SHARED, store, userId)}
         signOut={signOut}
       />
     </React.StrictMode>,

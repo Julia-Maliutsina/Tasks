@@ -1,16 +1,17 @@
 import axios from "axios"
 
-const submitAutorization = (values, NOTES, SHARED, store) => {
+const submitAutorization = (values, NOTES, SHARED, store, userId) => {
     axios
       .get("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542")
       .then((result) => {
         const USERS = result.data
         let userExists = false
-        for (let userId = 0; userId < USERS.length; userId++) {
+        for (let id = 0; id < USERS.length; id++) {
           if (
-            USERS[userId].email === values.email &&
-            USERS[userId].password === values.password
+            USERS[id].email === values.email &&
+            USERS[id].password === values.password
           ) {
+            userId=id
             userExists = true
             NOTES = USERS[userId].myNotes
             SHARED = USERS[userId].sharedNotes
@@ -22,10 +23,10 @@ const submitAutorization = (values, NOTES, SHARED, store) => {
             }
             store.dispatch({
               type: "signIn",
-              payload: { NOTES, SHARED, profileInfo },
+              payload: { NOTES, SHARED, profileInfo, userId },
             })
             break
-            }
+          }
         }
         if (!userExists) {
           document.getElementById("signInError").style.display = "flex"

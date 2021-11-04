@@ -11,6 +11,7 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import PATHS from "../../src/config/routes/routes";
 import MESSAGES from "../../src/config/constants/messages";
@@ -25,11 +26,14 @@ import NotFound from "../components/NotFound";
 import "./App.css";
 import styles from "./styled.js";
 
+const queryClient = new QueryClient();
+
 const MyNotes = ({
   NOTES,
   SHARED,
   profileInfo,
   isAuthorized,
+  userId,
   submitRegistration,
   submitAutorization,
   signOut,
@@ -44,16 +48,8 @@ const MyNotes = ({
     }
   }, [NOTES]);
 
-  if (localStorage.sharedNotes) {
-    SHARED = JSON.parse(localStorage.getItem("sharedNotes"));
-  }
-
   if (localStorage.isAuthorized) {
     isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"));
-  }
-
-  if (localStorage.profileInfo) {
-    profileInfo = JSON.parse(localStorage.getItem("profileInfo"));
   }
 
   const [sharedChosenNote, displaySharedNote] = useState({
@@ -157,24 +153,29 @@ const MyNotes = ({
           <Route exact path="/"></Route>
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
-              <SharedNotes
-                notes={SHARED}
-                active={sharedChosenNote}
-                sharedNoteChosen={showChosenSharedNote}
-              />
+              <QueryClientProvider client={queryClient}>
+                <SharedNotes
+                  active={sharedChosenNote}
+                  sharedNoteChosen={showChosenSharedNote}
+                  userId={userId}
+                />
+              </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />
             )}
           </Route>
           <Route path={PATHS.myNotes}>
             {isAuthorized ? (
-              <MyNotesContainer
-                notes={myNotes}
-                active={myChosenNote}
-                showChosenNote={showChosenNote}
-                saveChangedNote={saveChangedNote}
-                isNoteChosen={isNoteChosen}
-              />
+              <QueryClientProvider client={queryClient}>
+                <MyNotesContainer
+                  notes={myNotes}
+                  active={myChosenNote}
+                  showChosenNote={showChosenNote}
+                  saveChangedNote={saveChangedNote}
+                  isNoteChosen={isNoteChosen}
+                  userId={userId}
+                />
+              </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />
             )}

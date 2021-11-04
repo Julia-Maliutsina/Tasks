@@ -1,15 +1,16 @@
 import axios from "axios"
 
-const submitRegistration = (values, store) => {
+const submitRegistration = (values, store, id) => {
+  axios
+      .get("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542")
+      .then((result) => {id = result.data.length; console.log(id)})
     const profileInfo = {
-      id: 2,
+      userId: id,
       name: values.name,
       surname: values.surname,
       email: values.email,
       birthday: values.birthday,
       password: values.password,
-      myNotes: [],
-      sharedNotes: [],
     }
     store.dispatch({
         type: "signUp",
