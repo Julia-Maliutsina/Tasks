@@ -69,7 +69,7 @@ function signOut() {
   store.dispatch({
     type: "signOut",
   })
-  localStorage.clear()
+  localStorage.clear();
 }
 
 store.subscribe(() => {

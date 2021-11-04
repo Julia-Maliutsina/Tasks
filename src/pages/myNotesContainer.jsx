@@ -26,10 +26,8 @@ const MyNotesContainer = ({
 
   function handleChange(textareaValue) {
     changeText(textareaValue);
-    console.log(newText);
   }
 
-  console.log(isNoteChosen);
   let alert;
 
   if (isNoteChosen) {

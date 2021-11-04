@@ -15,12 +15,13 @@ const submitRegistration = (values, store) => {
         type: "signUp",
         payload: { profileInfo },
       })
-    //axios
-    //  .post(
-    //    "https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542",
-    //    profileInfo
-    //  )
-    //  .then((response) => console.log(response));
+    axios
+      .post(
+       "https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542",
+        profileInfo
+      )
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error))
 
 }
 
