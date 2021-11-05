@@ -5,6 +5,7 @@ const white = "#ffffff"
 const black = "#000000"
 const blueText = "#173661"
 const errorColor = "#8d0d38"
+const basicBlue = '#3a74c4'
 const basicGradient =
 	"linear-gradient(45deg, #3a74c4, #4588E6)"
 const lightGradient =
@@ -28,7 +29,8 @@ const wrapper = {
 	width: "90%",
 	marginLeft: "auto",
 	marginRight: "auto",
-	height: "550px",
+	minHeight: "600px",
+	maxHeight: "2000px",
 	backgroundColor: backgroundMain,
 }
 
@@ -65,26 +67,23 @@ const activeNote = {
 const allNotes = {
 	display: "inlineBlock",
 	width: "100%",
-	height: "500px",
-	marginTop: "0px",
+	marginTop: "10px",
 	marginLeft: "2%",
 	background: lightGradient,
-	overflowY: "scroll",
-	borderLeft: blueLine,
-	borderRight: blueLine,
+	border: blueLine,
 }
 
 const titleInList = {
 	display: "block",
 	fontWeight: "bold",
-	width: "150px",
+	width: "250px",
 	fontFamily: "titles",
 	fontSize: "16px",
 }
 
 const noteInList = {
 	color: "#000",
-	width: "360px",
+	width: "300px",
 	fontFamily: "notes",
 }
 
@@ -369,6 +368,7 @@ const noNotesMessage = {
 	marginRight: "auto",
 	marginTop: "10px",
 }
+
 
 const styles = {
 	aboutBlock: blockAbout,

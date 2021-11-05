@@ -12,6 +12,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
+import upgradeNotes from "../api/notesUpdate";
 
 import PATHS from "../../src/config/routes/routes";
 import MESSAGES from "../../src/config/constants/messages";
@@ -80,7 +81,7 @@ const MyNotes = ({
       chooseNote(true);
       let savedNotes = () => {
         myNotes[activeId].text = newText;
-        localStorage.setItem("myNotes", JSON.stringify(myNotes));
+        upgradeNotes(myNotes, userId);
         return myNotes;
       };
       saveNote(savedNotes);
@@ -141,7 +142,6 @@ const MyNotes = ({
                   className="menuSignIn"
                   activeClassName="activeMenuAuthorization"
                 >
-                  {" "}
                   <AccountCircleIcon style={styles.menuIconProfile} />
                   <span>Profile</span>
                 </NavLink>

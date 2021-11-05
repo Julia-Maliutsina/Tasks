@@ -1,5 +1,5 @@
 :root {
-  --menu-active-color: #a66289;
+  --menu-active-color: #721456;
   --menu-active-background: #f7f7f7;
 }
 
@@ -80,4 +80,35 @@ button:hover {
 
 .Mui-selected {
   background: linear-gradient(35deg, #d99abf, #cf93b6);
+}
+
+.buttonsNotes {
+  width: 450px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.buttonsNotes h4 {
+  font-size: 16px;
+  font-family: notes;
+  display: inline-block;
+  margin: 10px;
+  color: #173661;
+}
+
+#filterButton {
+  background: #a66289;
+  font-size: 12px;
+  border-color: white;
+}
+
+#filterButtonClicked {
+  color: white;
+  background: #cf93b6;
+  font-size: 12px;
+}
+
+.buttonsNotes .MuiSvgIcon-root path {
+  fill: #244185;
+  width: 40px;
 }

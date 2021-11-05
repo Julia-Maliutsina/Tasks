@@ -1,19 +1,19 @@
-import React from "react"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemText from "@mui/material/ListItemText"
-import Typography from "@mui/material/Typography"
-import PropTypes from "prop-types"
+import React from "react";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import PropTypes from "prop-types";
 
-import styles from "../pages/styled"
-import shortenDescription from "../utils/noteShortDescription"
+import styles from "../pages/styled";
+import shortenDescription from "../utils/noteShortDescription";
 
 const Note = ({ note, displayChosenNote }) => {
   return (
     <ListItemButton
       divider
       onClick={() => {
-        displayChosenNote(note.id)
+        displayChosenNote(note.id);
       }}
     >
       <ListItemText
@@ -33,12 +33,13 @@ const Note = ({ note, displayChosenNote }) => {
         }
         style={styles.noteInList}
       />
+      <IosShareIcon />
     </ListItemButton>
-  )
-}
+  );
+};
 Note.propTypes = {
   note: PropTypes.object,
   displayChosenNote: PropTypes.func,
-}
+};
 
-export default Note
+export default Note;

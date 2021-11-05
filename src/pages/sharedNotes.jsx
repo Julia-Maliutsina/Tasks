@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
+import { CircularProgress } from "@mui/material";
 import { useQuery } from "react-query";
 
 import MESSAGES from "../../src/config/constants/messages";
@@ -10,7 +11,7 @@ import styles from "./styled";
 import NoteShared from "../components/NoteShared";
 
 const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
-  const { data, isSuccess, error } = useQuery("shared", () =>
+  const { data, isSuccess, isLoading } = useQuery("shared", () =>
     fetch("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542").then(
       (res) => res.json()
     )
@@ -23,6 +24,18 @@ const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
         <p style={styles.date}>{active.date}</p>
       </div>
       <div style={styles.sharedNotesGrid}>
+        {isLoading && (
+          <CircularProgress
+            style={{
+              marginLeft: "48%",
+              marginTop: "50px",
+            }}
+            size={40}
+            thickness={4}
+            value={100}
+            disableShrink
+          />
+        )}
         {isSuccess && !data[userId] ? (
           <Alert
             variant="filled"

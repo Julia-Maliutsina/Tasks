@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { ButtonGroup, Button, IconButton, Icon } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useState, useEffect } from "react";
 
 import Notes from "../components/NotesList";
@@ -46,7 +48,35 @@ const MyNotesContainer = ({
           gap: 1,
         }}
       >
-        <Notes userId={userId} noteChosen={showChosenNote} />
+        <div>
+          <div class="buttonsNotes">
+            <h4>Filter by: </h4>
+            <ButtonGroup
+              variant="contained"
+              style={{ display: "inline-block" }}
+            >
+              <Button id="filterButton">Title</Button>
+              <Button id="filterButton">Date</Button>
+              <Button id="filterButtonClicked" disabled>
+                Default
+              </Button>
+            </ButtonGroup>
+            <h4
+              style={{
+                height: "36px",
+                borderLeft: "1px solid #ccc",
+                padding: "5px 0px 5px 15px",
+                marginLeft: "20px",
+              }}
+            >
+              Add note:
+            </h4>
+            <IconButton style={{ height: 29, width: 29 }}>
+              <AddCircleIcon color="info" fontSize="large" />
+            </IconButton>
+          </div>
+          <Notes userId={userId} noteChosen={showChosenNote} />
+        </div>
         <div style={{ position: "relative" }}>
           <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>
