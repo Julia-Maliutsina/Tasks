@@ -1,12 +1,11 @@
-import React from "react"
-import Typography from "@mui/material/Typography"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import ListItemButton from "@mui/material/ListItemButton"
-import PropTypes from "prop-types"
+import React from "react";
+import Typography from "@mui/material/Typography";
+import { Card, CardContent } from "@mui/material";
+import ListItemButton from "@mui/material/ListItemButton";
+import PropTypes from "prop-types";
 
-import styles from "../pages/styled"
-import shortenDescription from "../utils/noteShortDescription"
+import styles from "../pages/styled";
+import shortenDescription from "../utils/noteShortDescription";
 
 const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
   <div>
@@ -15,35 +14,32 @@ const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
         minWidth: "250px",
       }}
       onClick={() =>
-        displaySharedNote(
-          id,
-          styles.cardGradient,
-          styles.activeCardGradient,
-          styles.focusShadow
-        )
+        displaySharedNote(id, styles.activeCardGradient, styles.focusShadow)
       }
       className="sharedNote"
       style={styles.sharedNoteCard}
     >
       <ListItemButton>
-        <Typography style={styles.noteTitle}>{title}</Typography>
-        <Typography
-          sx={{ display: "block" }}
-          component="span"
-          style={styles.noteInListShared}
-          className="shortDescription"
-        >
-          {shortenDescription(text)}
-        </Typography>
-        <Typography variant="body2">{date}</Typography>
+        <CardContent>
+          <Typography style={styles.noteTitle}>{title}</Typography>
+          <Typography
+            sx={{ display: "block" }}
+            component="span"
+            style={styles.noteInListShared}
+            className="shortDescription"
+          >
+            {shortenDescription(text)}
+          </Typography>
+          <Typography variant="body2">{date}</Typography>
+        </CardContent>
       </ListItemButton>
     </Card>
   </div>
-)
+);
 
 NoteShared.propTypes = {
   note: PropTypes.object,
   displaySharedNote: PropTypes.func,
-}
+};
 
-export default NoteShared
+export default NoteShared;

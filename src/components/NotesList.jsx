@@ -78,8 +78,8 @@ const Notes = ({ userId, noteChosen }) => {
                     {isSuccess &&
                       data[userId].myNotes.map((note, i) => (
                         <Draggable
-                          draggableId={"draggable" + note.id}
-                          key={note.id}
+                          draggableId={"draggable" + i}
+                          key={i}
                           index={i}
                         >
                           {(provided, snapshot) => (

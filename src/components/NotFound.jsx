@@ -1,15 +1,28 @@
-import React from "react"
-import { Route } from "react-router-dom"
-import Typography from "@mui/material/Typography"
+import React from "react";
+import { Route } from "react-router-dom";
+import { Alert, AlertTitle } from "@mui/material";
 
 const NotFound = () => (
   <Route path="/not-found">
-    <div style={{ width: "400px", marginLeft: "35%", marginTop: "200px" }}>
-      <Typography component="div" style={{ fontSize: "32px" }}>
-        404 - Page not found
-      </Typography>
+    <div
+      style={{
+        width: "500px",
+        marginLeft: "auto",
+        marginRight: "auto",
+        marginTop: "200px",
+      }}
+    >
+      <Alert
+        icon={false}
+        variant="filled"
+        style={{ fontSize: "24px" }}
+        severity="error"
+      >
+        <AlertTitle style={{ fontSize: "32px" }}>Error 404</AlertTitle>
+        Page not found
+      </Alert>
     </div>
   </Route>
-)
+);
 
-export default NotFound
+export default NotFound;

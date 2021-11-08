@@ -3,14 +3,26 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import { ButtonGroup, Button, IconButton, Icon } from "@mui/material";
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  ButtonGroup,
+  Button,
+  IconButton,
+} from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { useState, useEffect } from "react";
 
 import Notes from "../components/NotesList";
 import Save from "../components/SaveButton";
 import "./App.css";
 import styles from "./styled.js";
+
+import PrimaryButton from "../components/SaveButton";
 
 const MyNotesContainer = ({
   showChosenNote,
@@ -26,6 +38,29 @@ const MyNotesContainer = ({
   useEffect(() => {
     changeText(text);
   }, [text]);
+
+  const [newNoteOpen, setOpen] = useState(false);
+
+  const [newNoteTitle, setNewTitle] = useState("");
+  const [newNoteText, setNewText] = useState("");
+
+  const addNoteOpen = () => {
+    setOpen(true);
+  };
+
+  const addNoteClose = () => {
+    setOpen(false);
+  };
+
+  const addNoteSubmit = () => {
+    let newNoteDate = new Date();
+    const newNote = {
+      title: newNoteTitle,
+      text: newNoteText,
+      date: newNoteDate.toLocaleDateString(),
+    };
+    console.log(newNote);
+  };
 
   function handleChange(textareaValue) {
     changeText(textareaValue);
@@ -49,7 +84,7 @@ const MyNotesContainer = ({
         }}
       >
         <div>
-          <div class="buttonsNotes">
+          <div className="buttonsNotes">
             <h4>Filter by: </h4>
             <ButtonGroup
               variant="contained"
@@ -71,9 +106,62 @@ const MyNotesContainer = ({
             >
               Add note:
             </h4>
-            <IconButton style={{ height: 29, width: 29 }}>
+            <IconButton style={{ height: 29, width: 29 }} onClick={addNoteOpen}>
               <AddCircleIcon color="info" fontSize="large" />
             </IconButton>
+            <Dialog open={newNoteOpen} onClose={addNoteClose}>
+              <DialogTitle style={styles.newNote}>New note</DialogTitle>
+              <DialogContent>
+                <DialogContentText
+                  style={{
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    padding: "5px",
+                    fontSize: "14px",
+                  }}
+                >
+                  Enter title and description of your new note.
+                </DialogContentText>
+                <TextareaAutosize
+                  id="title"
+                  placeholder="Title"
+                  className="activeNote"
+                  minRows={null}
+                  maxLength={40}
+                  style={styles.newNoteTitle}
+                  onChange={(e) => setNewTitle(e.target.value)}
+                />
+                <TextareaAutosize
+                  id="text"
+                  placeholder="Description"
+                  className="activeNote"
+                  minRows={null}
+                  maxLength={1200}
+                  style={styles.newNoteText}
+                  onChange={(e) => setNewText(e.target.value)}
+                />
+              </DialogContent>
+              <DialogActions
+                style={{
+                  margin: "0px 20px 15px 0px",
+                  height: "40px",
+                  padding: "0px",
+                }}
+              >
+                <Button style={styles.cancelButton} onClick={addNoteClose}>
+                  <CancelIcon style={{ marginRight: "5px" }} />
+                  Cancel
+                </Button>
+                <PrimaryButton
+                  title="Save note"
+                  buttonFunction={() => {
+                    addNoteSubmit();
+                    addNoteClose();
+                  }}
+                  newText
+                />
+              </DialogActions>
+            </Dialog>
           </div>
           <Notes userId={userId} noteChosen={showChosenNote} />
         </div>
@@ -84,7 +172,8 @@ const MyNotesContainer = ({
               id="displayedNote"
               className="activeNote"
               minRows={null}
-              style={{ height: 300 }}
+              maxLength={1200}
+              style={styles.text}
               value={newText}
               onChange={(event) => handleChange(event.target.value)}
             />

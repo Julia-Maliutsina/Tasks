@@ -11,7 +11,7 @@ let NOTES = []
 let SHARED = []
 let profileInfo = {}
 let isAuthorized = false
-let userId = -1
+let userId = "-1"
 
 if (localStorage.sharedNotes) {
   SHARED = JSON.parse(localStorage.getItem("sharedNotes"));
@@ -59,12 +59,13 @@ function authorizeUser(
         userId: action.payload.userId,
       }
     case "signOut":
+      localStorage.clear();
       return {
         isAuthorized: false,
         notes: [],
         shared: [],
         profileInfo: {},
-        userId: -1
+        userId: "-1"
       }
     default:
       return state
@@ -77,7 +78,6 @@ function signOut() {
   store.dispatch({
     type: "signOut",
   })
-  localStorage.clear();
 }
 
 store.subscribe(() => {
@@ -105,6 +105,6 @@ store.subscribe(() => {
 })
 
 store.dispatch({
-  type: "loadPage"})
+type: "loadPage"})
 
 reportWebVitals()

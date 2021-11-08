@@ -5,15 +5,14 @@ const white = "#ffffff"
 const black = "#000000"
 const blueText = "#173661"
 const errorColor = "#8d0d38"
-const basicBlue = '#3a74c4'
 const basicGradient =
 	"linear-gradient(45deg, #3a74c4, #4588E6)"
 const lightGradient =
 	"linear-gradient(35deg, #E5F0FC, #E3F2FF)"
 const buttonGradient =
-	"linear-gradient(195deg, #cf93b6, #a66289)"
+	"linear-gradient(135deg, #D48AAB, #EBABC8)"
 const cardGradient =
-	"linear-gradient(115deg, #fafdff, #e6f0fc)"
+	"linear-gradient(115deg, #FFD7E2, #FFBAD9)"
 const activeCardGradient =
 	"linear-gradient(135deg, #ffffff, #eeeeee)"
 const activeNoteGradient =
@@ -26,7 +25,7 @@ const focusShadow = "0 0 10px #824567"
 const activeNoteBorder = "2px solid #ccaabe"
 
 const wrapper = {
-	width: "90%",
+	width: "100%",
 	marginLeft: "auto",
 	marginRight: "auto",
 	minHeight: "600px",
@@ -39,12 +38,11 @@ const header = {
 	width: "100%",
 	height: "50px",
 	padding: "10px",
-	background: basicGradient,
+	background: blueText,
 	fontSize: "30px",
 	lineHeight: "30px",
 	fontFamily: "titles",
 	color: white,
-	borderRadius: "10px 10px 0px 0px",
 }
 
 const activeNote = {
@@ -53,18 +51,19 @@ const activeNote = {
 	marginTop: "25px",
 	marginLeft: "3%",
 	padding: "10px",
-	height: "400px",
+	height: "450px",
 	resize: "none",
 	border: activeNoteBorder,
 	background: white,
 	fontFamily: "notes",
 	fontSize: "16px",
 	textAlign: "justify",
-	borderRadius: "10px",
+	borderRadius: "5px",
 	boxShadow: blockShadow,
 }
 
 const allNotes = {
+	minHeight: "70px",
 	display: "inlineBlock",
 	width: "100%",
 	marginTop: "10px",
@@ -76,7 +75,7 @@ const allNotes = {
 const titleInList = {
 	display: "block",
 	fontWeight: "bold",
-	width: "250px",
+	minWidth: "150px",
 	fontFamily: "titles",
 	fontSize: "16px",
 }
@@ -95,7 +94,8 @@ const primaryButton = {
 	padding: "5px 10px 5px 10px",
 	fontFamily: "notes",
 	fontSize: "14px",
-	borderRadius: "10px",
+	borderRadius: "5px",
+	color: white
 }
 
 const activeShared = {
@@ -112,13 +112,13 @@ const activeShared = {
 	fontSize: "16px",
 	textAlign: "justify",
 	color: black,
-	borderRadius: "10px",
+	borderRadius: "5px",
 	boxShadow: blockShadow,
 }
 
 const menu = {
 	display: "inline-block",
-	width: "80%",
+	width: "85%",
 	height: "50px",
 	fontFamily: "notes",
 	fontSize: "18px",
@@ -164,7 +164,7 @@ const sharedNotes = {
 }
 const noteInListShared = {
 	color: "#000",
-	minWidth: "300px",
+	minWidth: "150px",
 	fontFamily: "notes",
 	padding: "5px",
 }
@@ -182,14 +182,14 @@ const chapterAbout = {
 	fontFamily: "titles",
 	padding: "10px",
 	color: white,
-	borderRadius: "10px 10px 0px 0px",
+	borderRadius: "5px 5px 0px 0px",
 }
 
 const blockAbout = {
 	width: "96%",
 	margin: "2% 2% 2% 2%",
 	boxShadow: blockShadow,
-	borderRadius: "10px",
+	borderRadius: "5px",
 	color: blueText,
 }
 
@@ -202,9 +202,9 @@ const title = {
 const text = {
 	width: "100%",
 	resize: "none",
-	height: "280px",
+	height: "340px",
 	paddingTop: "10px",
-	marginTop: "0px",
+	marginTop: "10px",
 	border: "none",
 	borderTop: sectionLine,
 	outline: "none",
@@ -240,7 +240,7 @@ const date = {
 
 const sharedNoteCard = {
 	background: cardGradient,
-	borderRadius: "5px",
+	borderRadius: "0px",
 	boxShadow: cardShadow,
 }
 
@@ -263,7 +263,7 @@ const form = {
 	marginRight: "auto",
 	marginTop: "30px",
 	padding: "25px",
-	borderRadius: "10px",
+	borderRadius: "5px",
 	background: lightGradient,
 	boxShadow: blockShadow,
 }
@@ -300,7 +300,7 @@ const formBlock = {
 const mainMenuTabs = {
 	textDecoration: "none",
 	padding: "5px 10px 15px 10px",
-	borderRadius: "10px 10px 0px 0px",
+	borderRadius: "5px 5px 0px 0px",
 	position: "relative",
 	height: "30px",
 	width: "60px",
@@ -312,7 +312,7 @@ const profileTable = {
 	width: "450px",
 	margin: "20px auto 20px auto",
 	background: white,
-	borderRadius: "10px",
+	borderRadius: "5px",
 	boxShadow: blockShadow,
 	fontFamily: "notes",
 	fontSize: "16px",
@@ -370,6 +370,55 @@ const noNotesMessage = {
 }
 
 
+const newNoteText = {
+   width: "100%",
+   maxHeight: "300px",
+   minHeight: "40px",
+   fontFamily: "notes",
+   fontSize: "16px",
+   textAlign: "justify",
+   color: blueText,
+   borderRadius: "5px",
+   margin: "5px",
+   padding: "10px",
+   border: "1px solid #3a74c4"
+}
+
+const newNoteTitle = {
+	width: "100%",
+	height: "40px",
+	fontFamily: "notes",
+	fontSize: "16px",
+	textAlign: "justify",
+	color: blueText,
+	borderRadius: "5px",
+	margin: "5px",
+	padding: "10px",
+	border: "1px solid #3a74c4"
+}
+
+const newNote = {
+	margin: "10px auto 0px auto", 
+	padding: "5px",
+	color: blueText,
+	fontFamily: "titles",
+	fontSize: "20px",
+	fontWeight: "bold",
+}
+
+const cancelButton = {
+	background: basicGradient,
+	outline: "none",
+	marginTop: "15px",
+	marginLeft: "3%",
+	padding: "5px 10px 5px 10px",
+	fontFamily: "notes",
+	fontSize: "14px",
+	borderRadius: "5px",
+	color: white,
+	marginRight: "calc(45% - 10px)",
+}
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
@@ -380,6 +429,7 @@ const styles = {
 	activeSharedNote: activeShared,
 	allNotes: allNotes,
 	authorizationLink: authorizationLink,
+	cancelButton: cancelButton,
 	cardGradient: cardGradient,
 	date: date,
 	error: error,
@@ -396,6 +446,9 @@ const styles = {
 	menuIconProfile: menuIconProfile,
 	menuMain: mainMenuTabs,
 	menuText: menuText,
+	newNote: newNote,
+	newNoteText: newNoteText,
+	newNoteTitle: newNoteTitle,
 	noNotes: noNotesMessage,
 	noteInList: noteInList,
 	noteInListShared: noteInListShared,

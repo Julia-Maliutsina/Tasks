@@ -49,7 +49,7 @@ a {
 }
 
 .activeMenuAuthorization {
-  background: #244185;
+  background: #bb7192;
   color: white;
 }
 
@@ -97,14 +97,14 @@ button:hover {
 }
 
 #filterButton {
-  background: #a66289;
+  background: #d48aab;
   font-size: 12px;
   border-color: white;
 }
 
 #filterButtonClicked {
   color: white;
-  background: #cf93b6;
+  background: #a86d88;
   font-size: 12px;
 }
 

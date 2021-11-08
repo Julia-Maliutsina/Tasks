@@ -1,8 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import StickyNote2Icon from "@mui/icons-material/StickyNote2";
-import InfoIcon from "@mui/icons-material/Info";
-import OfflineShareIcon from "@mui/icons-material/OfflineShare";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
   BrowserRouter,
@@ -99,7 +96,6 @@ const MyNotes = ({
               style={styles.menuMain}
               activeClassName="activeMenu"
             >
-              <StickyNote2Icon style={styles.menuIcon} />
               <span style={styles.menuText}>My Notes</span>
             </NavLink>
             <NavLink
@@ -107,7 +103,6 @@ const MyNotes = ({
               style={styles.menuMain}
               activeClassName="activeMenu"
             >
-              <OfflineShareIcon style={styles.menuIcon} />
               <span style={styles.menuText}>Shared Notes</span>
             </NavLink>
             <NavLink
@@ -115,7 +110,6 @@ const MyNotes = ({
               style={styles.menuMain}
               activeClassName="activeMenu"
             >
-              <InfoIcon style={styles.menuIcon} />
               <span style={styles.menuText}>About</span>
             </NavLink>
             {!isAuthorized ? (
@@ -185,10 +179,7 @@ const MyNotes = ({
           </Route>
           <Route path={PATHS.signUp}>
             {!isAuthorized ? (
-              <SignUpForm
-                isAuthorized={isAuthorized}
-                submitRegistration={submitRegistration}
-              />
+              <SignUpForm submitRegistration={submitRegistration} />
             ) : (
               <Redirect to={PATHS.profile} />
             )}
