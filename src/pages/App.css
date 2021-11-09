@@ -102,12 +102,6 @@ button:hover {
   border-color: white;
 }
 
-#filterButtonClicked {
-  color: white;
-  background: #a86d88;
-  font-size: 12px;
-}
-
 .buttonsNotes .MuiSvgIcon-root path {
   fill: #244185;
   width: 40px;

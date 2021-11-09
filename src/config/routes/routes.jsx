@@ -1,4 +1,5 @@
 const PATHS = {
+  initial: "/",
   base: "/Tasks",
   myNotes: "/notes",
   sharedNotes: "/shared-notes",

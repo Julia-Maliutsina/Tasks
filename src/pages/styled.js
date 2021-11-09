@@ -95,7 +95,7 @@ const primaryButton = {
 	fontFamily: "notes",
 	fontSize: "14px",
 	borderRadius: "5px",
-	color: white
+	color: white,
 }
 
 const activeShared = {
@@ -166,7 +166,7 @@ const noteInListShared = {
 	color: "#000",
 	minWidth: "150px",
 	fontFamily: "notes",
-	padding: "5px",
+	padding: "5px 0px 5px 0px",
 }
 
 const titleAbout = {
@@ -356,7 +356,6 @@ const error = {
 	outline: "1px solid red",
 }
 
-
 const noNotesMessage = {
 	fontFamily: "titles",
 	fontSize: "16px",
@@ -369,19 +368,18 @@ const noNotesMessage = {
 	marginTop: "10px",
 }
 
-
 const newNoteText = {
-   width: "100%",
-   maxHeight: "300px",
-   minHeight: "40px",
-   fontFamily: "notes",
-   fontSize: "16px",
-   textAlign: "justify",
-   color: blueText,
-   borderRadius: "5px",
-   margin: "5px",
-   padding: "10px",
-   border: "1px solid #3a74c4"
+	width: "100%",
+	maxHeight: "300px",
+	minHeight: "40px",
+	fontFamily: "notes",
+	fontSize: "16px",
+	textAlign: "justify",
+	color: blueText,
+	borderRadius: "5px",
+	margin: "5px",
+	padding: "10px",
+	border: "1px solid #3a74c4",
 }
 
 const newNoteTitle = {
@@ -394,11 +392,11 @@ const newNoteTitle = {
 	borderRadius: "5px",
 	margin: "5px",
 	padding: "10px",
-	border: "1px solid #3a74c4"
+	border: "1px solid #3a74c4",
 }
 
 const newNote = {
-	margin: "10px auto 0px auto", 
+	margin: "10px auto 0px auto",
 	padding: "5px",
 	color: blueText,
 	fontFamily: "titles",
@@ -419,20 +417,136 @@ const cancelButton = {
 	marginRight: "calc(45% - 10px)",
 }
 
+const progressCircle = {
+	marginLeft: "48%",
+	marginTop: "50px",
+}
+
+const droppableAreaNotesList = {
+	height: "450px",
+	overflow: "auto",
+}
+
+const draggableNote = {}
+
+const notFoundAlert = {
+	fontSize: "24px",
+	width: "500px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	marginTop: "200px",
+}
+
+const notFoundAlertTitle = {
+	fontSize: "32px",
+}
+
+const saveButtonIcon = {
+	marginRight: "5px",
+}
+
+const aboutText = {
+	padding: "10px",
+}
+
+const buttonGroup = {
+	display: "inline-block",
+}
+
+const addNote = {
+	height: "36px",
+	borderLeft: "1px solid #ccc",
+	padding: "5px 0px 5px 15px",
+	marginLeft: "20px",
+}
+
+const addButtonIcon = {
+	height: "29px",
+	width: "29px",
+}
+
+const addNoteMessage = {
+	marginLeft: "auto",
+	marginRight: "auto",
+	padding: "5px",
+	fontSize: "14px",
+}
+
+const addNoteButtons = {
+	margin: "0px 20px 15px 0px",
+	height: "40px",
+	padding: "0px",
+}
+
+const alertNoteNotChosen = {
+	display: "none",
+	position: "absolute",
+	top: "437px",
+	left: "200px",
+	height: "40px",
+	padding: "3px 10px 3px 10px",
+	width: "400px",
+}
+
+const profilePage = {
+	width: "450px",
+	marginLeft: "auto",
+	marginRight: "auto",
+	textAlign: "center",
+}
+
+const cancelFilter = {
+	background: basicGradient,
+	outline: "none",
+	padding: "5px 10px 5px 10px",
+	fontFamily: "notes",
+	fontSize: "14px",
+	borderRadius: "5px",
+	color: white,
+	marginRight: "20px",
+}
+
+const applyFilter = {
+	background: buttonGradient,
+	outline: "none",
+	fontFamily: "notes",
+	fontSize: "14px",
+	borderRadius: "5px",
+	color: white,
+}
+
+const filters = {
+	height: "300px",
+	width: "200px",
+	overflow: "auto",
+}
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
+	aboutText: aboutText,
 	aboutTitle: titleAbout,
 	activeCardGradient: activeCardGradient,
 	activeNote: activeNote,
 	activeNoteGradient: activeNoteGradient,
 	activeSharedNote: activeShared,
+	addButtonIcon: addButtonIcon,
+	addNote: addNote,
+	addNoteButtons: addNoteButtons,
+	addNoteMessage: addNoteMessage,
+	alertNoteNotChosen: alertNoteNotChosen,
 	allNotes: allNotes,
+	applyFilter: applyFilter,
 	authorizationLink: authorizationLink,
+	buttonGroup: buttonGroup,
 	cancelButton: cancelButton,
+	cancelFilter: cancelFilter,
 	cardGradient: cardGradient,
 	date: date,
+	dragable: draggableNote,
+	droppable: droppableAreaNotesList,
 	error: error,
+	filters: filters,
 	focusShadow: focusShadow,
 	form: form,
 	formBlock: formBlock,
@@ -453,10 +567,15 @@ const styles = {
 	noteInList: noteInList,
 	noteInListShared: noteInListShared,
 	noteTitle: titleInList,
+	notFoundAlert: notFoundAlert,
+	notFoundAlertTitle: notFoundAlertTitle,
 	primaryButton: primaryButton,
+	profilePage: profilePage,
 	profileTable: profileTable,
 	profileTableInfo: profileTableInfo,
 	profileTableTitle: profileTableTitle,
+	progressCircle: progressCircle,
+	saveIcon: saveButtonIcon,
 	sharedNotesGrid: sharedNotes,
 	sharedNoteCard: sharedNoteCard,
 	sharedText: textShared,

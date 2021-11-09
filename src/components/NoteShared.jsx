@@ -4,8 +4,8 @@ import { Card, CardContent } from "@mui/material";
 import ListItemButton from "@mui/material/ListItemButton";
 import PropTypes from "prop-types";
 
-import styles from "../pages/styled";
-import shortenDescription from "../utils/noteShortDescription";
+import styles from "../../src/pages/styled";
+import shortenDescription from "../../src/utils/noteShortDescription";
 
 const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
   <div>

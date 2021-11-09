@@ -3,9 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from "@mui/material/Link";
 import Alert from "@mui/material/Alert";
 
-import INITIAL_VALUES from "../config/constants/formsInitialValues";
-import validateSignIn from "../utils/validateSignIn";
-import styles from "./styled";
+import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
+import validateSignIn from "../../src/utils/validateSignIn";
+
+import styles from "../../src/pages/styled";
 
 const SignInForm = ({ submitAutorization }) => {
   return (

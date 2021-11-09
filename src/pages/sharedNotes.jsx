@@ -7,8 +7,8 @@ import { useQuery } from "react-query";
 
 import MESSAGES from "../../src/config/constants/messages";
 
-import styles from "./styled";
-import NoteShared from "../components/NoteShared";
+import styles from "../../src/pages/styled";
+import NoteShared from "../../src/components/NoteShared";
 
 const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
   const { data, isSuccess, isLoading } = useQuery("shared", () =>
@@ -26,10 +26,7 @@ const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
       <div style={styles.sharedNotesGrid}>
         {isLoading && (
           <CircularProgress
-            style={{
-              marginLeft: "48%",
-              marginTop: "50px",
-            }}
+            style={styles.progressCircle}
             size={40}
             thickness={4}
             value={100}
@@ -54,9 +51,9 @@ const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
             }}
           >
             {isSuccess &&
-              data[userId].sharedNotes.map((note) => (
+              data[userId].sharedNotes.map((note,i) => (
                 <NoteShared
-                  id={note.id}
+                  id={i}
                   title={note.title}
                   date={note.date}
                   text={note.text}

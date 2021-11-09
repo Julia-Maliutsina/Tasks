@@ -2,7 +2,8 @@ import React from "react"
 import Button from "@mui/material/Button"
 import SaveIcon from "@mui/icons-material/Save"
 import PropTypes from "prop-types"
-import styles from "../pages/styled"
+
+import styles from "../../src/pages/styled"
 
 const PrimaryButton = ({ title, buttonFunction, newText }) => (
   <Button
@@ -10,7 +11,7 @@ const PrimaryButton = ({ title, buttonFunction, newText }) => (
     variant="contained"
     onClick={() => buttonFunction(newText)}
   >
-    <SaveIcon style={{ marginRight: "5px" }} />
+    <SaveIcon style={styles.saveIcon} />
     {title}
   </Button>
 )

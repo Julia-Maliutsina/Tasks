@@ -2,23 +2,19 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Alert, AlertTitle } from "@mui/material";
 
+import PATHS from "../../src/config/routes/routes"
+import styles from "../../src/pages/styled";
+
 const NotFound = () => (
-  <Route path="/not-found">
-    <div
-      style={{
-        width: "500px",
-        marginLeft: "auto",
-        marginRight: "auto",
-        marginTop: "200px",
-      }}
-    >
+  <Route path={PATHS.notFound}>
+    <div>
       <Alert
         icon={false}
         variant="filled"
-        style={{ fontSize: "24px" }}
+        style={styles.notFoundAlert}
         severity="error"
       >
-        <AlertTitle style={{ fontSize: "32px" }}>Error 404</AlertTitle>
+        <AlertTitle style={styles.notFoundAlertTitle}>Error 404</AlertTitle>
         Page not found
       </Alert>
     </div>

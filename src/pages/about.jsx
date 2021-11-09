@@ -17,7 +17,7 @@ const AboutApp = () => (
         <Typography
           variant="subtitle1"
           component="div"
-          style={{ padding: "10px" }}
+          style={styles.aboutText}
         >
           «My Notes» is a simple and practical app that helps you to create and
           save your personal notes whenever and whereever needed. You can:
@@ -35,7 +35,7 @@ const AboutApp = () => (
         <Typography
           variant="subtitle1"
           component="div"
-          style={{ padding: "10px" }}
+          style={styles.aboutText}
         >
           In the nearest future the ability to add todo lists and set
           notifications will be added to the app. Users will have an oportunity

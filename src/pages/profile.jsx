@@ -25,12 +25,7 @@ const Profile = ({ profileInfo, signOut }) => {
   return (
     <div style={{ width: "100%" }}>
       <Box
-        style={{
-          width: "450px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          textAlign: "center",
-        }}
+        style={styles.profilePage}
       >
         <Typography variant="h5" component="div" style={styles.aboutTitle}>
           My Profile

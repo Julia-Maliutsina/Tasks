@@ -5,8 +5,8 @@ import Typography from "@mui/material/Typography";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import PropTypes from "prop-types";
 
-import styles from "../pages/styled";
-import shortenDescription from "../utils/noteShortDescription";
+import styles from "../../src/pages/styled";
+import shortenDescription from "../../src/utils/noteShortDescription";
 
 const Note = ({ note, displayChosenNote }) => {
   return (

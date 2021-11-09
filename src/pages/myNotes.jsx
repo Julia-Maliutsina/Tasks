@@ -54,17 +54,10 @@ const MyNotes = ({
     title: MESSAGES.NOTES_INIT,
   });
 
-  const [myChosenNote, displayMyNote] = useState({
-    title: MESSAGES.NOTES_INIT,
-    text: "",
-  });
   const [activeId, changeActive] = useState([-1]);
-
-  const [isNoteChosen, chooseNote] = useState(true);
 
   function showChosenNote(id) {
     changeActive(id);
-    displayMyNote(myNotes[id]);
   }
 
   function showChosenSharedNote(id) {
@@ -72,10 +65,7 @@ const MyNotes = ({
   }
 
   function saveChangedNote(newText) {
-    if (activeId < 0) {
-      chooseNote(false);
-    } else {
-      chooseNote(true);
+    if (activeId >= 0) {
       let savedNotes = () => {
         myNotes[activeId].text = newText;
         upgradeNotes(myNotes, userId);
@@ -144,7 +134,7 @@ const MyNotes = ({
           </div>
         </header>
         <Switch>
-          <Route exact path="/"></Route>
+          <Route exact path={PATHS.initial}></Route>
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
@@ -163,10 +153,9 @@ const MyNotes = ({
               <QueryClientProvider client={queryClient}>
                 <MyNotesContainer
                   notes={myNotes}
-                  active={myChosenNote}
+                  id={activeId}
                   showChosenNote={showChosenNote}
                   saveChangedNote={saveChangedNote}
-                  isNoteChosen={isNoteChosen}
                   userId={userId}
                 />
               </QueryClientProvider>
