@@ -3,25 +3,38 @@ import Box from "@mui/material/Box";
 import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
 import { CircularProgress } from "@mui/material";
-import { useQuery } from "react-query";
+import { useState } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
 
 import styles from "../../src/pages/styled";
 import NoteShared from "../../src/components/NoteShared";
+import useGetSharedNotes from "../../src/api/sharedNotes";
 
-const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
-  const { data, isSuccess, isLoading } = useQuery("shared", () =>
-    fetch("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542").then(
-      (res) => res.json()
-    )
-  );
+const SharedNotes = ({ userId }) => {
+  const { data, isSuccess, isLoading } = useGetSharedNotes();
+
+  let sharedNotes = [];
+  if (isSuccess && data[userId]) {
+    sharedNotes = data[userId].sharedNotes;
+  }
+
+  const [sharedChosenNote, displaySharedNote] = useState({
+    title: MESSAGES.NOTES_INIT,
+    text: "",
+    date: "",
+  });
+
+  function showChosenSharedNote(id) {
+    displaySharedNote(data[userId].sharedNotes[id]);
+  }
+
   return (
     <div style={{ width: "100%" }}>
       <div className="chosenSharedNote" style={styles.activeSharedNote}>
-        <h3 style={styles.sharedTitle}>{active.title}</h3>
-        <p style={styles.sharedText}>{active.text}</p>
-        <p style={styles.date}>{active.date}</p>
+        <h3 style={styles.sharedTitle}>{sharedChosenNote.title}</h3>
+        <p style={styles.sharedText}>{sharedChosenNote.text}</p>
+        <p style={styles.date}>{sharedChosenNote.date}</p>
       </div>
       <div style={styles.sharedNotesGrid}>
         {isLoading && (
@@ -51,15 +64,15 @@ const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
             }}
           >
             {isSuccess &&
-              data[userId].sharedNotes.map((note,i) => (
-                <NoteShared
-                  id={i}
-                  title={note.title}
-                  date={note.date}
-                  text={note.text}
-                  displaySharedNote={sharedNoteChosen}
-                />
-              ))}
+              sharedNotes.map((note, i) => {
+                return (
+                  <NoteShared
+                    id={i}
+                    note={note}
+                    displaySharedNote={showChosenSharedNote}
+                  />
+                );
+              })}
           </Box>
         )}
       </div>
@@ -67,8 +80,7 @@ const SharedNotes = ({ active, sharedNoteChosen, userId }) => {
   );
 };
 SharedNotes.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
-  sharedNoteChosen: PropTypes.func,
+  userId: PropTypes.number,
 };
 
 export default SharedNotes;

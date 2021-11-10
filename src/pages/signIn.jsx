@@ -1,26 +1,33 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import Link from "@mui/material/Link";
-import Alert from "@mui/material/Alert";
+import { Link, Alert, Snackbar } from "@mui/material";
+import { useState } from "react";
 
 import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
 import validateSignIn from "../../src/utils/validateSignIn";
+import submit from "../api/submitSignIn";
 
 import styles from "../../src/pages/styled";
 
 const SignInForm = ({ submitAutorization }) => {
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlertOpen(false);
+  };
+
   return (
     <div>
       <h2 style={styles.aboutTitle}>Authorization</h2>
       <Formik
         initialValues={INITIAL_VALUES}
-        onSubmit={submitAutorization}
+        onSubmit={(values) => submit(values, submitAutorization, setAlertOpen)}
         validate={validateSignIn}
       >
         <Form style={styles.form}>
-          <Alert severity="error" id="signInError" style={styles.error}>
-            Invalid email or password! Please try again
-          </Alert>
           <div style={styles.formBlock}>
             <label style={styles.formLabel} htmlFor="email">
               Email
@@ -57,6 +64,19 @@ const SignInForm = ({ submitAutorization }) => {
           </button>
         </Form>
       </Formik>
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={3000}
+        onClose={handleAlertClose}
+      >
+        <Alert
+          onClose={handleAlertClose}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Invalid email or password!
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

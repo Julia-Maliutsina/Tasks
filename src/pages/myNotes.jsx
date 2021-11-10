@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import {
   BrowserRouter,
@@ -9,10 +8,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import upgradeNotes from "../api/notesUpdate";
 
 import PATHS from "../../src/config/routes/routes";
-import MESSAGES from "../../src/config/constants/messages";
 
 import MyNotesContainer from "./myNotesContainer";
 import SharedNotes from "./sharedNotes";
@@ -36,43 +33,8 @@ const MyNotes = ({
   submitAutorization,
   signOut,
 }) => {
-  const [myNotes, saveNote] = useState(NOTES);
-
-  useEffect(() => {
-    if (localStorage.myNotes) {
-      saveNote(JSON.parse(localStorage.getItem("myNotes")));
-    } else {
-      saveNote(NOTES);
-    }
-  }, [NOTES]);
-
   if (localStorage.isAuthorized) {
     isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"));
-  }
-
-  const [sharedChosenNote, displaySharedNote] = useState({
-    title: MESSAGES.NOTES_INIT,
-  });
-
-  const [activeId, changeActive] = useState([-1]);
-
-  function showChosenNote(id) {
-    changeActive(id);
-  }
-
-  function showChosenSharedNote(id) {
-    displaySharedNote(SHARED[id]);
-  }
-
-  function saveChangedNote(newText) {
-    if (activeId >= 0) {
-      let savedNotes = () => {
-        myNotes[activeId].text = newText;
-        upgradeNotes(myNotes, userId);
-        return myNotes;
-      };
-      saveNote(savedNotes);
-    }
   }
 
   return (
@@ -138,11 +100,7 @@ const MyNotes = ({
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <SharedNotes
-                  active={sharedChosenNote}
-                  sharedNoteChosen={showChosenSharedNote}
-                  userId={userId}
-                />
+                <SharedNotes userId={userId} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />
@@ -151,13 +109,7 @@ const MyNotes = ({
           <Route path={PATHS.myNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <MyNotesContainer
-                  notes={myNotes}
-                  id={activeId}
-                  showChosenNote={showChosenNote}
-                  saveChangedNote={saveChangedNote}
-                  userId={userId}
-                />
+                <MyNotesContainer userId={userId} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />

@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import styles from "../../src/pages/styled";
 import shortenDescription from "../../src/utils/noteShortDescription";
 
-const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
+const NoteShared = ({ id, note, displaySharedNote }) => (
   <div>
     <Card
       sx={{
@@ -21,16 +21,16 @@ const NoteShared = ({ id, title, text, date, displaySharedNote }) => (
     >
       <ListItemButton>
         <CardContent>
-          <Typography style={styles.noteTitle}>{title}</Typography>
+          <Typography style={styles.noteTitle}>{note.title}</Typography>
           <Typography
             sx={{ display: "block" }}
             component="span"
             style={styles.noteInListShared}
             className="shortDescription"
           >
-            {shortenDescription(text)}
+            {shortenDescription(note.text)}
           </Typography>
-          <Typography variant="body2">{date}</Typography>
+          <Typography variant="body2">{note.date}</Typography>
         </CardContent>
       </ListItemButton>
     </Card>

@@ -1,23 +1,25 @@
 import axios from "axios"
 
+import URLS from "../../src/config/constants/url"
+
 const updateNotes = (notes, id) => {
-	let users = []
-	axios
-		.get(
-			"https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542"
-		)
-		.then((result) => {
-			users = result.data
-			users[id].myNotes = notes
-			return users
-		})
-		.then((users) =>
-			axios.post(
-				"https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542",
-				users
-			)
-		)
-		.catch((error) => error)
+  let users = [];
+  axios
+	.get(
+      URLS.FAKE_API
+	)
+	.then((result) => {
+	  users = result.data
+	  users[id].myNotes = notes
+      return users
+	})
+	.then((users) =>
+	  axios.post(
+		URLS.FAKE_API,
+		users
+	  )
+	)
+	.catch((error) => error)
 }
 
 export default updateNotes

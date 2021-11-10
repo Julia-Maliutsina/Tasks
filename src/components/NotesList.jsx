@@ -12,11 +12,17 @@ import styles from "../../src/pages/styled";
 import applyNotesFilters from "../../src/utils/applyFilters";
 import Note from "../../src/components/Note";
 
-const Notes = ({ noteChosen, allNotes, isLoading, isSuccess, filterDates, filterTitles }) => {
-
+const Notes = ({
+  noteChosen,
+  allNotes,
+  isLoading,
+  isSuccess,
+  filterDates,
+  filterTitles,
+}) => {
   const [page, setPage] = useState(1);
-  
-  const notes = applyNotesFilters(filterDates, filterTitles, allNotes)
+
+  const notes = applyNotesFilters(filterDates, filterTitles, allNotes);
 
   return (
     <div style={styles.allNotes}>
@@ -33,14 +39,10 @@ const Notes = ({ noteChosen, allNotes, isLoading, isSuccess, filterDates, filter
         onDragEnd={(parameters) => {
           const sourceIndex = parameters.source.index;
           const destinationIndex = parameters.destination.index;
-          notes.splice(
-            destinationIndex,
-            0,
-            notes.splice(sourceIndex, 1)[0]
-          );
+          notes.splice(destinationIndex, 0, notes.splice(sourceIndex, 1)[0]);
         }}
       >
-        {isSuccess && !notes ? (
+        {isSuccess && notes.length === 0 ? (
           <Alert
             variant="filled"
             severity="info"
@@ -95,9 +97,9 @@ const Notes = ({ noteChosen, allNotes, isLoading, isSuccess, filterDates, filter
                           )}
                         </Draggable>
                       ))}
+                    {provided.placeholder}
                   </InfiniteScroll>
                 </List>
-                {provided.placeholder}
               </div>
             )}
           </Droppable>

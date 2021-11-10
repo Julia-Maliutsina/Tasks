@@ -4,11 +4,9 @@ import MyNotes from "./pages/myNotes"
 import reportWebVitals from "./reportWebVitals"
 import { createStore } from "redux"
 
-import submitAutorization from "./api/authorization"
+import getProfile from "./api/authorization"
 import submitRegistration from "./api/registration"
 
-let NOTES = []
-let SHARED = []
 let profileInfo = {}
 let isAuthorized = false
 let userId = "-1"
@@ -30,8 +28,6 @@ if (localStorage.userId) {
 function authorizeUser(
 	state = {
 		isAuthorized: false,
-		notes: [],
-		shared: [],
 		profileInfo: {},
 		userId: -1,
 	},
@@ -41,33 +37,25 @@ function authorizeUser(
 		case "loadPage":
 			return {
 				isAuthorized: isAuthorized,
-				notes: NOTES,
-				shared: SHARED,
 				profileInfo: profileInfo,
 				userId: userId,
 			}
 		case "signUp":
 			return {
 				isAuthorized: true,
-				notes: [],
-				shared: [],
 				profileInfo: action.payload.profileInfo,
 				userId: action.payload.userId,
 			}
 		case "signIn":
 			return {
 				isAuthorized: true,
-				notes: action.payload.NOTES,
-				shared: action.payload.SHARED,
 				profileInfo: action.payload.profileInfo,
-				userId: action.payload.userId,
+				userId: action.payload.id
 			}
 		case "signOut":
 			localStorage.clear()
 			return {
 				isAuthorized: false,
-				notes: [],
-				shared: [],
 				profileInfo: {},
 				userId: "-1",
 			}
@@ -87,14 +75,6 @@ function signOut() {
 store.subscribe(() => {
 	let state = store.getState()
 	localStorage.setItem(
-		"myNotes",
-		JSON.stringify(state.notes)
-	)
-	localStorage.setItem(
-		"sharedNotes",
-		JSON.stringify(state.shared)
-	)
-	localStorage.setItem(
 		"isAuthorized",
 		JSON.stringify(state.isAuthorized)
 	)
@@ -109,21 +89,16 @@ store.subscribe(() => {
 	ReactDOM.render(
 		<React.StrictMode>
 			<MyNotes
-				NOTES={state.notes}
-				SHARED={state.shared}
 				profileInfo={state.profileInfo}
 				isAuthorized={state.isAuthorized}
 				userId={userId}
 				submitRegistration={(values) =>
 					submitRegistration(values, store, userId)
 				}
-				submitAutorization={(values) =>
-					submitAutorization(
-						values,
-						state.notes,
-						state.shared,
+				submitAutorization={(id) =>
+					getProfile(
 						store,
-						userId
+						id
 					)
 				}
 				signOut={signOut}

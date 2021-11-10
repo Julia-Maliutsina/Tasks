@@ -15,14 +15,16 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  FormControl
+  FormControl,
+  Snackbar,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useState, useEffect } from "react";
-import { useQuery } from "react-query";
 
-import MESSAGES from "../../src/config/constants/messages"
+import MESSAGES from "../../src/config/constants/messages";
+import upgradeNotes from "../../src/api/notesUpdate";
+import useGetNotes from "../../src/api/notes";
 
 import Notes from "../../src/components/NotesList";
 import Save from "../../src/components/SaveButton";
@@ -30,26 +32,36 @@ import PrimaryButton from "../../src/components/SaveButton";
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
 
-const MyNotesContainer = ({
-  showChosenNote,
-  saveChangedNote,
-  id,
-  userId,
-}) => {
+const MyNotesContainer = ({ userId }) => {
+  const { data, isSuccess, isLoading } = useGetNotes();
 
-  const { data, isSuccess, isLoading } = useQuery("shared", () =>
-    fetch("https://mocki.io/v1/6e70ca5e-cb79-4b2f-8c99-8b99b08eb542").then(
-      (res) => res.json()
-    )
-  );
-  let notes=[];
-  let active = MESSAGES.NOTES_INIT;
-  if (isSuccess) {
-    notes = data[userId].myNotes
-    if (id>=0) {
-      active = notes[id];
-    }
+  let notes = [];
+  let dates = [];
+  let titles = [];
+  let active = {
+    title: MESSAGES.NOTES_INIT,
+    text: "",
+    date: "",
   };
+
+  const [activeId, changeActive] = useState([-1]);
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  if (isSuccess && data[userId]) {
+    notes = data[userId].myNotes;
+    if (activeId >= 0) {
+      active = notes[activeId];
+    }
+    dates = notes.map((note) => note.date);
+    titles = notes.map((note) => note.title);
+  }
+
+  const uniqueDates = dates.filter(
+    (item, position) => dates.indexOf(item) === position
+  );
+  const uniqueTitles = titles.filter(
+    (item, position) => titles.indexOf(item) === position
+  );
 
   const text = active.text;
   const [newText, changeText] = useState(text);
@@ -62,13 +74,27 @@ const MyNotesContainer = ({
   const [newNoteTitle, setNewTitle] = useState("");
   const [newNoteText, setNewText] = useState("");
 
-  const [filterDateOpen, setFilterDateOpen] = useState(false)
-  const [filterDatesArray, setDateFilters] = useState([])
-  const [filtersByDate, applyDatesFilter] = useState([])
+  const [filterDateOpen, setFilterDateOpen] = useState(false);
+  const [filterDatesArray, setDateFilters] = useState([]);
+  const [filtersByDate, applyDatesFilter] = useState([]);
 
-  const [filterTitleOpen, setFilterTitleOpen] = useState(false)
-  const [filterTitlesArray, setTitleFilters] = useState([])
-  const [filtersByTitle, applyTitlesFilter] = useState([])
+  const [filterTitleOpen, setFilterTitleOpen] = useState(false);
+  const [filterTitlesArray, setTitleFilters] = useState([]);
+  const [filtersByTitle, applyTitlesFilter] = useState([]);
+
+  function showChosenNote(id) {
+    changeActive(id);
+  }
+
+  function saveChangedNote(newText) {
+    if (activeId >= 0) {
+      notes[activeId].text = newText;
+      upgradeNotes(notes, userId);
+      return notes;
+    } else {
+      setAlertOpen(true);
+    }
+  }
 
   const changeDateFilters = (event) => {
     if (event.target.checked) {
@@ -76,21 +102,20 @@ const MyNotesContainer = ({
       setDateFilters(filterDatesArray);
     } else {
       let date = filterDatesArray.indexOf(event.target.name);
-      filterDatesArray.splice(date,date)
+      filterDatesArray.splice(date, date);
     }
-    console.log(filterDatesArray)
-  }
+  };
 
   const applyDateFilters = () => {
     applyDatesFilter(filterDatesArray);
     setFilterDateOpen(false);
-    localStorage.setItem("filterDatesArray", JSON.stringify(filterDatesArray))
-  }
+    localStorage.setItem("filterDatesArray", JSON.stringify(filterDatesArray));
+  };
 
   const filterNotesByDate = () => {
-    setFilterDateOpen(true); 
+    setFilterDateOpen(true);
     setDateFilters([]);
-  }
+  };
 
   const changeTitleFilters = (event) => {
     if (event.target.checked) {
@@ -98,29 +123,30 @@ const MyNotesContainer = ({
       setTitleFilters(filterTitlesArray);
     } else {
       let title = filterTitlesArray.indexOf(event.target.name);
-      filterTitlesArray.splice(title,title);
+      filterTitlesArray.splice(title, title);
     }
-    console.log(filterTitlesArray)
-  }
+  };
 
   const applyTitleFilters = () => {
     applyTitlesFilter(filterTitlesArray);
     setFilterTitleOpen(false);
-  }
+  };
 
   const filterNotesByTitle = () => {
-    setFilterTitleOpen(true); 
+    setFilterTitleOpen(true);
     setTitleFilters([]);
-  }
+  };
 
   const discardFilters = () => {
-    setDateFilters([]); 
-    applyDatesFilter([]); 
-    setTitleFilters([]); 
-    applyTitlesFilter([])
-  }
+    setDateFilters([]);
+    applyDatesFilter([]);
+    setTitleFilters([]);
+    applyTitlesFilter([]);
+  };
 
   const addNoteOpen = () => {
+    setNewTitle("");
+    setNewText("");
     setOpen(true);
   };
 
@@ -130,10 +156,7 @@ const MyNotesContainer = ({
 
   const addNoteSubmit = () => {
     let newNoteDate = new Date();
-    if (newNoteTitle.length===0 || newNoteText===0) {
-
-    }
-    else {
+    if (newNoteTitle.length > 0 || newNoteText.text > 0) {
       const newNote = {
         title: newNoteTitle,
         text: newNoteText,
@@ -147,6 +170,13 @@ const MyNotesContainer = ({
     changeText(textareaValue);
   }
 
+  const handleAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlertOpen(false);
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <Box
@@ -159,30 +189,25 @@ const MyNotesContainer = ({
         <div>
           <div className="buttonsNotes">
             <h4>Filter by: </h4>
-            <ButtonGroup
-              variant="contained"
-              style={styles.buttonGroup}
-            >
-              <Button id="filterButton" onClick={filterNotesByTitle}>Title</Button>
-              <Button id="filterButton" onClick={filterNotesByDate}>Date</Button>
+            <ButtonGroup variant="contained" style={styles.buttonGroup}>
+              <Button id="filterButton" onClick={filterNotesByTitle}>
+                Title
+              </Button>
+              <Button id="filterButton" onClick={filterNotesByDate}>
+                Date
+              </Button>
               <Button id="filterButton" onClick={discardFilters}>
                 Show all
               </Button>
             </ButtonGroup>
-            <h4
-              style={styles.addNote}
-            >
-              Add note:
-            </h4>
+            <h4 style={styles.addNote}>Add note:</h4>
             <IconButton style={styles.addButtonIcon} onClick={addNoteOpen}>
               <AddCircleIcon color="info" fontSize="large" />
             </IconButton>
             <Dialog open={newNoteOpen} onClose={addNoteClose}>
               <DialogTitle style={styles.newNote}>New note</DialogTitle>
               <DialogContent>
-                <DialogContentText
-                  style={styles.addNoteMessage}
-                >
+                <DialogContentText style={styles.addNoteMessage}>
                   Enter title and description of your new note.
                 </DialogContentText>
                 <TextareaAutosize
@@ -206,9 +231,7 @@ const MyNotesContainer = ({
                   onChange={(e) => setNewText(e.target.value)}
                 />
               </DialogContent>
-              <DialogActions
-                style={styles.addNoteButtons}
-              >
+              <DialogActions style={styles.addNoteButtons}>
                 <Button style={styles.cancelButton} onClick={addNoteClose}>
                   <CancelIcon style={styles.saveIcon} />
                   Cancel
@@ -220,72 +243,89 @@ const MyNotesContainer = ({
                 />
               </DialogActions>
             </Dialog>
-            <Dialog open={filterDateOpen} onClose={()=>setFilterDateOpen(false)}>
+            <Dialog
+              open={filterDateOpen}
+              onClose={() => setFilterDateOpen(false)}
+            >
               <DialogTitle style={styles.newNote}>Filter by dates</DialogTitle>
               <DialogContent>
-                <DialogContentText
-                  style={styles.addNoteMessage}
-                >
+                <DialogContentText style={styles.addNoteMessage}>
                   Choose dates to display
                 </DialogContentText>
-                <FormControl style={{height: "300px", width: "200px", overflow: "auto"}}>
-                <FormGroup>
-                  {notes.map((note, i) => (                     
-                  <FormControlLabel
-                    control={
-                      <Checkbox onChange={changeDateFilters} name={note.date} />
-                    }
-                    label={note.date}
-                  />
-                  ))}
-                </FormGroup>
+                <FormControl
+                  style={{ height: "300px", width: "200px", overflow: "auto" }}
+                >
+                  <FormGroup>
+                    {uniqueDates.map((date, i) => (
+                      <FormControlLabel
+                        control={
+                          <Checkbox onChange={changeDateFilters} name={date} />
+                        }
+                        label={date}
+                      />
+                    ))}
+                  </FormGroup>
                 </FormControl>
               </DialogContent>
-              <DialogActions
-                style={styles.addNoteButtons}
-              >
-                <Button style={styles.cancelFilter} onClick={()=>setFilterDateOpen(false)}>
+              <DialogActions style={styles.addNoteButtons}>
+                <Button
+                  style={styles.cancelFilter}
+                  onClick={() => setFilterDateOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button style={styles.applyFilter} onClick={applyDateFilters}>
                   Filter notes
                 </Button>
               </DialogActions>
-            </Dialog>          
-            <Dialog open={filterTitleOpen} onClose={()=>setFilterTitleOpen(false)}>
+            </Dialog>
+            <Dialog
+              open={filterTitleOpen}
+              onClose={() => setFilterTitleOpen(false)}
+            >
               <DialogTitle style={styles.newNote}>Filter by titles</DialogTitle>
               <DialogContent>
-                <DialogContentText
-                  style={styles.addNoteMessage}
-                >
+                <DialogContentText style={styles.addNoteMessage}>
                   Choose notes to display
                 </DialogContentText>
                 <FormControl style={styles.filters}>
-                <FormGroup>
-                  {notes.map((note, i) => (                     
-                  <FormControlLabel
-                    control={
-                      <Checkbox onChange={changeTitleFilters} name={note.title} />
-                    }
-                    label={note.title}
-                  />
-                  ))}
-                </FormGroup>
+                  <FormGroup>
+                    {uniqueTitles.map((title, i) => (
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            onChange={changeTitleFilters}
+                            name={title}
+                          />
+                        }
+                        label={title}
+                      />
+                    ))}
+                  </FormGroup>
                 </FormControl>
               </DialogContent>
-              <DialogActions
-                style={styles.addNoteButtons}
-              >
-                <Button style={styles.cancelFilter} onClick={()=>setFilterTitleOpen(false)}>
+              <DialogActions style={styles.addNoteButtons}>
+                <Button
+                  style={styles.cancelFilter}
+                  onClick={() => setFilterTitleOpen(false)}
+                >
                   Cancel
                 </Button>
                 <Button style={styles.applyFilter} onClick={applyTitleFilters}>
                   Filter notes
                 </Button>
               </DialogActions>
-            </Dialog>          
+            </Dialog>
           </div>
-          <Notes userId={userId} noteChosen={showChosenNote} allNotes={notes} isLoading={isLoading} isSuccess={isSuccess} filterDates={filtersByDate} filterTitles={filtersByTitle} />
+          <Notes
+            userId={userId}
+            noteChosen={showChosenNote}
+            allNotes={notes}
+            isLoading={isLoading}
+            isSuccess={isSuccess}
+            filterDates={filtersByDate}
+            filterTitles={filtersByTitle}
+          />
         </div>
         <div style={{ position: "relative" }}>
           <div className="chosenNote" style={styles.activeNote}>
@@ -306,14 +346,19 @@ const MyNotesContainer = ({
             buttonFunction={saveChangedNote}
             newText={newText}
           />
-          <Alert
-            variant="filled"
-            severity="info"
-            id="saveNoteError"
-            style={styles.alertNoteNotChosen}
+          <Snackbar
+            open={alertOpen}
+            autoHideDuration={3000}
+            onClose={handleAlertClose}
           >
-            Select note to save!
-          </Alert>
+            <Alert
+              onClose={handleAlertClose}
+              severity="info"
+              sx={{ width: "100%" }}
+            >
+              {MESSAGES.NOT_CHOSEN}
+            </Alert>
+          </Snackbar>
         </div>
       </Box>
     </div>
@@ -321,10 +366,7 @@ const MyNotesContainer = ({
 };
 
 MyNotesContainer.propTypes = {
-  showChosenNote: PropTypes.func,
-  saveChangedNote: PropTypes.func,
-  notes: PropTypes.arrayOf(PropTypes.object),
-  active: PropTypes.object,
+  userId: PropTypes.number,
 };
 
 export default MyNotesContainer;
