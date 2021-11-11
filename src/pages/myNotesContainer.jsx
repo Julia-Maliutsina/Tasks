@@ -31,9 +31,10 @@ import Save from "../../src/components/SaveButton";
 import PrimaryButton from "../../src/components/SaveButton";
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
+import createNewNote from "../../src/api/newNote";
 
-const MyNotesContainer = ({ userId }) => {
-  const { data, isSuccess, isLoading } = useGetNotes();
+const MyNotesContainer = ({ user }) => {
+  const { data, isSuccess, isLoading } = useGetNotes(user);
 
   let notes = [];
   let dates = [];
@@ -47,12 +48,13 @@ const MyNotesContainer = ({ userId }) => {
   const [activeId, changeActive] = useState([-1]);
   const [alertOpen, setAlertOpen] = useState(false);
 
-  if (isSuccess && data[userId]) {
-    notes = data[userId].myNotes;
+  if (isSuccess && data) {
+    notes = data;
     if (activeId >= 0) {
       active = notes[activeId];
     }
-    dates = notes.map((note) => note.date);
+    console.log(notes);
+    dates = notes.map((note) => note.createdAt.substr(0, 10));
     titles = notes.map((note) => note.title);
   }
 
@@ -89,7 +91,7 @@ const MyNotesContainer = ({ userId }) => {
   function saveChangedNote(newText) {
     if (activeId >= 0) {
       notes[activeId].text = newText;
-      upgradeNotes(notes, userId);
+      upgradeNotes(notes, 1);
       return notes;
     } else {
       setAlertOpen(true);
@@ -155,13 +157,8 @@ const MyNotesContainer = ({ userId }) => {
   };
 
   const addNoteSubmit = () => {
-    let newNoteDate = new Date();
-    if (newNoteTitle.length > 0 || newNoteText.text > 0) {
-      const newNote = {
-        title: newNoteTitle,
-        text: newNoteText,
-        date: newNoteDate.toLocaleDateString(),
-      };
+    if (newNoteTitle.length > 0 || newNoteText.length > 0) {
+      createNewNote(newNoteTitle, newNoteText, user);
       addNoteClose();
     }
   };
@@ -318,7 +315,6 @@ const MyNotesContainer = ({ userId }) => {
             </Dialog>
           </div>
           <Notes
-            userId={userId}
             noteChosen={showChosenNote}
             allNotes={notes}
             isLoading={isLoading}
@@ -366,7 +362,7 @@ const MyNotesContainer = ({ userId }) => {
 };
 
 MyNotesContainer.propTypes = {
-  userId: PropTypes.number,
+  user: PropTypes.string,
 };
 
 export default MyNotesContainer;

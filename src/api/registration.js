@@ -16,15 +16,7 @@ const submitRegistration = (values, store) => {
 	  newUser
 	)
 	.then((response) => {
-	  axios
-		.get(
-		URLS.FAKE_API
-		)
-		.then((result) => {
-		const id = result.data.length
-		console.log(id)
 		const profileInfo = {
-			userId: id,
 			name: values.name,
 			surname: values.surname,
 			email: values.email,
@@ -34,7 +26,6 @@ const submitRegistration = (values, store) => {
 		store.dispatch({
 		type: "signUp",
 		payload: { profileInfo },
-		})
 		})
     })
 	.catch((error) => {

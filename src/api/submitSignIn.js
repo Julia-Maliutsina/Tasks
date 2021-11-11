@@ -18,7 +18,7 @@ const submit = (values, submitAutorization, setAlertOpen) => {
       birthday: user.birthday.substr(0,10),
       email:user.email,
     }
-    submitAutorization(USER_INFO, 1);
+    submitAutorization(USER_INFO, encoded);
   })
   .catch((error) =>{
     setAlertOpen(true);

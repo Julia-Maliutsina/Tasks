@@ -2,20 +2,34 @@ import axios from "axios"
 
 import URLS from "../../src/config/constants/url"
 
-const createNewNote = (notes, id) => {
-  let users=[]
-  axios
-    .get(URLS.FAKE_API)
-    .then((result) => {users = result.data})
-    users[id].myNotes=notes
-  axios
-    .post(
-      URLS.FAKE_API,
-      users
-    )
-    .then((response) => console.log(response))
-    .catch((error) => console.log(error))
+const createNewNote = (newNoteTitle, newNoteText, user) => {
 
+  axios({
+    method: 'GET',
+    url: URLS.SERVER_NOTES,
+    headers: {Authorization: `Basic ${user}`}
+  })
+  .then((result) => {
+    const id = result.data.length;
+    const date = new Date();
+    const newNote = {
+      "id": id,
+      "title": newNoteTitle,
+      "description": newNoteText,
+      "createdAt": date.toISOString(),
+      "updatedAt": date.toISOString()
+    }
+    return newNote
+  })
+  .then((newNote)=>
+  axios({
+    method: 'POST',
+    url: URLS.SERVER_NOTES,
+    headers: {Authorization: `Basic ${user}`},
+    data: newNote,
+  })
+  .then((response)=>console.log(response.data))
+  )
 }
 
 export default createNewNote

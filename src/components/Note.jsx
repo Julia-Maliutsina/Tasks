@@ -8,33 +8,36 @@ import PropTypes from "prop-types";
 import styles from "../../src/pages/styled";
 import shortenDescription from "../../src/utils/noteShortDescription";
 
-const Note = ({ note, displayChosenNote }) => (
-  <ListItemButton
-    divider
-    onClick={() => {
-      displayChosenNote(note.id);
-    }}
-  >
-    <ListItemText
-      primary={<Typography style={styles.noteTitle}>{note.title}</Typography>}
-      secondary={
-        <React.Fragment>
-          <Typography
-            sx={{ display: "inline-block" }}
-            component="span"
-            style={styles.noteInList}
-            className="shortDescription"
-          >
-            {shortenDescription(note.text)}
-          </Typography>
-          {note.date}
-        </React.Fragment>
-      }
-      style={styles.noteInList}
-    />
-    <IosShareIcon />
-  </ListItemButton>
-);
+const Note = ({ note, displayChosenNote }) => {
+  console.log(note);
+  return (
+    <ListItemButton
+      divider
+      onClick={() => {
+        displayChosenNote(note.id);
+      }}
+    >
+      <ListItemText
+        primary={<Typography style={styles.noteTitle}>{note.title}</Typography>}
+        secondary={
+          <React.Fragment>
+            <Typography
+              sx={{ display: "inline-block" }}
+              component="span"
+              style={styles.noteInList}
+              className="shortDescription"
+            >
+              {shortenDescription(note.description)}
+            </Typography>
+            {note.createdAt.substr(0, 10)}
+          </React.Fragment>
+        }
+        style={styles.noteInList}
+      />
+      <IosShareIcon />
+    </ListItemButton>
+  );
+};
 Note.propTypes = {
   note: PropTypes.object,
   displayChosenNote: PropTypes.func,

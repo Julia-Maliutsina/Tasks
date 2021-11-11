@@ -7,7 +7,7 @@ import submitRegistration from "./api/registration"
 
 let profileInfo = {}
 let isAuthorized = false
-let userId = (-1)
+let encoded = ""
 
 if (localStorage.profileInfo) {
 	profileInfo = JSON.parse(
@@ -19,15 +19,15 @@ if (localStorage.isAuthorized) {
 		localStorage.getItem("isAuthorized")
 	)
 }
-if (localStorage.userId) {
-	userId = JSON.parse(localStorage.getItem("userId"))
+if (localStorage.encoded) {
+	encoded = JSON.parse(localStorage.getItem("encoded"))
 }
 
 function authorizeUser(
 	state = {
 		isAuthorized: false,
 		profileInfo: {},
-		userId: -1,
+		encoded: "",
 	},
 	action
 ) {
@@ -36,26 +36,26 @@ function authorizeUser(
 			return {
 				isAuthorized: isAuthorized,
 				profileInfo: profileInfo,
-				userId: userId,
+				encoded: encoded,
 			}
 		case "signUp":
 			return {
 				isAuthorized: true,
 				profileInfo: action.payload.profileInfo,
-				userId: action.payload.userId,
+				encoded: action.payload.encoded,
 			}
 		case "signIn":
 			return {
 				isAuthorized: true,
 				profileInfo: action.payload.profileInfo,
-				userId: action.payload.id
+				encoded: action.payload.user,
 			}
 		case "signOut":
 			localStorage.clear()
 			return {
 				isAuthorized: false,
 				profileInfo: {},
-				userId: "-1",
+				encoded: "",
 			}
 		default:
 			return state
@@ -70,40 +70,43 @@ function signOut() {
 	})
 }
 
-const openProfile = ( profileInfo, id ) => {
+const openProfile = ( profileInfo, encoded ) => {
+  const user = encoded.toString();
+  localStorage.setItem(
+	"isAuthorized",
+	JSON.stringify(true)
+)
+localStorage.setItem(
+	"profileInfo",
+	JSON.stringify(profileInfo)
+)
+localStorage.setItem(
+	"encoded",
+	JSON.stringify(encoded)
+)
   store.dispatch({
     type: "signIn",
-    payload: { profileInfo, id},
+    payload: { profileInfo, user },
   })
 }
 
 store.subscribe(() => {
 	let state = store.getState()
-	localStorage.setItem(
-		"isAuthorized",
-		JSON.stringify(state.isAuthorized)
-	)
-	localStorage.setItem(
-		"profileInfo",
-		JSON.stringify(state.profileInfo)
-	)
-	localStorage.setItem(
-		"userId",
-		JSON.stringify(state.userId)
-	)
+
+	console.log(state);
 	ReactDOM.render(
 		<React.StrictMode>
 			<MyNotes
 				profileInfo={state.profileInfo}
 				isAuthorized={state.isAuthorized}
-				userId={userId}
+				user={state.encoded}
 				submitRegistration={(values) =>
-					submitRegistration(values, store, userId)
+					submitRegistration(values, store)
 				}
-				submitAutorization={(userInfo, id) =>
+				submitAutorization={(userInfo, encoded) =>
 					openProfile(
 						userInfo,
-						id
+						encoded
 					)
 				}
 				signOut={signOut}

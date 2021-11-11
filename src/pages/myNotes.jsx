@@ -28,7 +28,7 @@ const MyNotes = ({
   SHARED,
   profileInfo,
   isAuthorized,
-  userId,
+  user,
   submitRegistration,
   submitAutorization,
   signOut,
@@ -100,7 +100,7 @@ const MyNotes = ({
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <SharedNotes userId={userId} />
+                <SharedNotes userId={1} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />
@@ -109,7 +109,7 @@ const MyNotes = ({
           <Route path={PATHS.myNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <MyNotesContainer userId={userId} />
+                <MyNotesContainer user={user} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />

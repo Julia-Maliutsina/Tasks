@@ -1,15 +1,15 @@
-const applyNotesFilters = (filterDates, filterTitles, notes)=>{
-  if (filterDates.length>0) {
+const applyNotesFilters = (filterDates, filterTitles, notes) => {
+  if (filterDates.length > 0) {
     notes = notes.filter(function (note) {
-      return filterDates.indexOf(note.date) !== -1;
-    })
+      return filterDates.indexOf(note.createdAt) !== -1;
+    });
   }
-  if (filterTitles.length>0) {
+  if (filterTitles.length > 0) {
     notes = notes.filter(function (note) {
       return filterTitles.indexOf(note.title) !== -1;
-    })
+    });
   }
-  return notes
-}
+  return notes;
+};
 
-export default applyNotesFilters
+export default applyNotesFilters;
