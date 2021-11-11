@@ -41,8 +41,8 @@ const MyNotesContainer = ({ user }) => {
   let titles = [];
   let active = {
     title: MESSAGES.NOTES_INIT,
-    text: "",
-    date: "",
+    description: "",
+    createdAt: "",
   };
 
   const [activeId, changeActive] = useState([-1]);
@@ -53,7 +53,6 @@ const MyNotesContainer = ({ user }) => {
     if (activeId >= 0) {
       active = notes[activeId];
     }
-    console.log(notes);
     dates = notes.map((note) => note.createdAt.substr(0, 10));
     titles = notes.map((note) => note.title);
   }
@@ -65,7 +64,7 @@ const MyNotesContainer = ({ user }) => {
     (item, position) => titles.indexOf(item) === position
   );
 
-  const text = active.text;
+  const text = active.description;
   const [newText, changeText] = useState(text);
 
   useEffect(() => {
@@ -90,9 +89,9 @@ const MyNotesContainer = ({ user }) => {
 
   function saveChangedNote(newText) {
     if (activeId >= 0) {
-      notes[activeId].text = newText;
-      upgradeNotes(notes, 1);
-      return notes;
+      notes[activeId].description = newText;
+      upgradeNotes(notes[activeId], activeId, user);
+      console.log(notes[activeId]);
     } else {
       setAlertOpen(true);
     }
@@ -335,7 +334,7 @@ const MyNotesContainer = ({ user }) => {
               value={newText}
               onChange={(event) => handleChange(event.target.value)}
             />
-            <p style={styles.date}>{active.date}</p>
+            <p style={styles.date}>{active.createdAt.substr(0, 10)}</p>
           </div>
           <Save
             title={"Save Changes"}

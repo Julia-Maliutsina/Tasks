@@ -91,9 +91,7 @@ localStorage.setItem(
 }
 
 store.subscribe(() => {
-	let state = store.getState()
-
-	console.log(state);
+	let state = store.getState();
 	ReactDOM.render(
 		<React.StrictMode>
 			<MyNotes

@@ -2,23 +2,23 @@ import axios from "axios"
 
 import URLS from "../../src/config/constants/url"
 
-const updateNotes = (notes, id) => {
-  let users = [];
-  axios
-	.get(
-      URLS.FAKE_API
-	)
-	.then((result) => {
-	  users = result.data
-	  users[id].myNotes = notes
-      return users
+const updateNotes = (note, id, user) => {
+  const NOTE_URL = URLS.SERVER_NOTES + id;
+  const date = new Date();
+	const noteUpdated = {
+		"id": note.id,
+		"title": note.title,
+		"description": note.description,
+		"createdAt": note.createdAt,
+		"updatedAt": date.toISOString(),
+	}
+	axios({
+	  method: 'PUT',
+	  url: NOTE_URL,
+	  headers: {Authorization: `Basic ${user}`},
+	  data: noteUpdated,
 	})
-	.then((users) =>
-	  axios.post(
-		URLS.FAKE_API,
-		users
-	  )
-	)
+	.then((response) => response)
 	.catch((error) => error)
 }
 

@@ -9,7 +9,6 @@ import styles from "../../src/pages/styled";
 import shortenDescription from "../../src/utils/noteShortDescription";
 
 const Note = ({ note, displayChosenNote }) => {
-  console.log(note);
   return (
     <ListItemButton
       divider
