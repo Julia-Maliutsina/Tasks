@@ -1,20 +1,28 @@
 import axios from "axios";
-import URLS from "../config/constants/url";
+import {encode as base64_encode} from 'base-64';
+
+import URLS from "../../src/config/constants/url";
 
 const submit = (values, submitAutorization, setAlertOpen) => {
-  axios.get(URLS.FAKE_API).then((result) => {
-    const users = result.data;
-    for (let id = 0; id < users.length; id++) {
-      if (
-        users[id].email === values.email &&
-        users[id].password === values.password
-      ) {
-        submitAutorization(id);
-      } else {
-        setAlertOpen(true);
-      }
+  const encoded = base64_encode(values.email + ':' + values.password);
+  axios({
+    method: 'GET',
+    url: URLS.SERVER_AUTH,
+    headers: {Authorization: `Basic ${encoded}`}
+  })
+  .then((result) => {
+    const user = result.data;
+    const USER_INFO = {
+      name: user.firstName,
+      surname: user.lastName,
+      birthday: user.birthday.substr(0,10),
+      email:user.email,
     }
-  });
+    submitAutorization(USER_INFO, 1);
+  })
+  .catch((error) =>{
+    setAlertOpen(true);
+  })
 };
 
 export default submit

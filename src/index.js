@@ -3,13 +3,11 @@ import ReactDOM from "react-dom"
 import MyNotes from "./pages/myNotes"
 import reportWebVitals from "./reportWebVitals"
 import { createStore } from "redux"
-
-import getProfile from "./api/authorization"
 import submitRegistration from "./api/registration"
 
 let profileInfo = {}
 let isAuthorized = false
-let userId = "-1"
+let userId = (-1)
 
 if (localStorage.profileInfo) {
 	profileInfo = JSON.parse(
@@ -72,6 +70,13 @@ function signOut() {
 	})
 }
 
+const openProfile = ( profileInfo, id ) => {
+  store.dispatch({
+    type: "signIn",
+    payload: { profileInfo, id},
+  })
+}
+
 store.subscribe(() => {
 	let state = store.getState()
 	localStorage.setItem(
@@ -95,9 +100,9 @@ store.subscribe(() => {
 				submitRegistration={(values) =>
 					submitRegistration(values, store, userId)
 				}
-				submitAutorization={(id) =>
-					getProfile(
-						store,
+				submitAutorization={(userInfo, id) =>
+					openProfile(
+						userInfo,
 						id
 					)
 				}
