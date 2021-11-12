@@ -521,9 +521,23 @@ const filters = {
 	overflow: "auto",
 }
 
+const welcomeBlock = {
+	width: "60%",
+	margin: "10% auto 0px auto",
+	boxShadow: blockShadow,
+	borderRadius: "5px",
+	color: blueText,
+	textAlign: "center",
+}
+
+const listAbout = {
+	padding: "3px 8px 3px 8px"
+}
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
+	aboutList: listAbout,
 	aboutText: aboutText,
 	aboutTitle: titleAbout,
 	activeCardGradient: activeCardGradient,
@@ -585,6 +599,7 @@ const styles = {
 	text: text,
 	title: title,
 	validationError: inputError,
+	welcomeBlock: welcomeBlock,
 	wrapper: wrapper,
 }
 

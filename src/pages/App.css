@@ -106,3 +106,7 @@ button:hover {
   fill: #244185;
   width: 40px;
 }
+
+.MuiListItem-padding {
+  padding: 3px;
+}

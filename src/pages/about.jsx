@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import styles from "./styled";
+import { List, ListItem } from "@mui/material";
 
 const AboutApp = () => (
   <div style={{ width: "100%" }}>
@@ -19,13 +20,22 @@ const AboutApp = () => (
           component="div"
           style={styles.aboutText}
         >
-          «My Notes» is a simple and practical app that helps you to create and
-          save your personal notes whenever and whereever needed. You can:
-          <li>look through your notes,</li>
-          <li>filter them by title and date, </li>
-          <li>change note. </li>
-          Moreover «My Notes» allows you to share your personal notes with other
-          users of our app.
+          «My Notes» is a simple and practical app that helps you to
+          <strong> create and save </strong> your personal notes whenever and
+          whereever needed. You can:
+          <List style={styles.aboutList}>
+            <ListItem disablePadding={true}>
+              - look through your notes,
+            </ListItem>
+            <ListItem disablePadding={true}>
+              - filter them by title and date,
+            </ListItem>
+            <ListItem disablePadding={true}>- add new notes, </ListItem>
+            <ListItem disablePadding={true}>- change your note. </ListItem>
+          </List>
+          Moreover «My Notes» allows you to
+          <strong> share your personal notes</strong> with other users of our
+          app.
         </Typography>
       </div>
       <div style={styles.aboutBlock}>

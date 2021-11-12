@@ -14,4 +14,3 @@ const useGetNotes = (user) =>
   );
 
 export default useGetNotes;
-

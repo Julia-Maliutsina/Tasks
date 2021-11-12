@@ -2,8 +2,8 @@ import axios from "axios"
 
 import URLS from "../../src/config/constants/url"
 
-const updateNotes = (note, id, user) => {
-  const NOTE_URL = URLS.SERVER_NOTES + id;
+const updateNotes = (note, id, user, store) => {
+  const NOTE_URL = URLS.SERVER_NOTES + '/' + id;
   const date = new Date();
 	const noteUpdated = {
 		"id": note.id,

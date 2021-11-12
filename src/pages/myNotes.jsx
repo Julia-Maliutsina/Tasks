@@ -17,6 +17,7 @@ import AboutApp from "./about";
 import SignUpForm from "./signUp";
 import SignInForm from "./signIn";
 import Profile from "./profile";
+import WelcomePage from "./main";
 import NotFound from "../components/NotFound";
 import "./App.css";
 import styles from "./styled.js";
@@ -24,14 +25,13 @@ import styles from "./styled.js";
 const queryClient = new QueryClient();
 
 const MyNotes = ({
-  NOTES,
-  SHARED,
   profileInfo,
   isAuthorized,
   user,
   submitRegistration,
   submitAutorization,
   signOut,
+  store,
 }) => {
   if (localStorage.isAuthorized) {
     isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"));
@@ -96,7 +96,9 @@ const MyNotes = ({
           </div>
         </header>
         <Switch>
-          <Route exact path={PATHS.initial}></Route>
+          <Route exact path={PATHS.initial}>
+            <WelcomePage isAuthorized={isAuthorized} name={profileInfo.name} />
+          </Route>
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
@@ -109,7 +111,7 @@ const MyNotes = ({
           <Route path={PATHS.myNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <MyNotesContainer user={user} />
+                <MyNotesContainer user={user} store={store} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />

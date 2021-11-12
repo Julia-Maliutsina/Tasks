@@ -33,7 +33,10 @@ import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
 import createNewNote from "../../src/api/newNote";
 
-const MyNotesContainer = ({ user }) => {
+const MyNotesContainer = ({ user, store }) => {
+  const ID_INITIAL = -1;
+  const ID_MINIMAL = 0;
+
   const { data, isSuccess, isLoading } = useGetNotes(user);
 
   let notes = [];
@@ -45,12 +48,12 @@ const MyNotesContainer = ({ user }) => {
     createdAt: "",
   };
 
-  const [activeId, changeActive] = useState([-1]);
+  const [activeId, changeActive] = useState([ID_INITIAL]);
   const [alertOpen, setAlertOpen] = useState(false);
 
   if (isSuccess && data) {
     notes = data;
-    if (activeId >= 0) {
+    if (activeId >= ID_MINIMAL) {
       active = notes[activeId];
     }
     dates = notes.map((note) => note.createdAt.substr(0, 10));
@@ -88,10 +91,12 @@ const MyNotesContainer = ({ user }) => {
   }
 
   function saveChangedNote(newText) {
-    if (activeId >= 0) {
+    if (activeId >= ID_MINIMAL) {
       notes[activeId].description = newText;
-      upgradeNotes(notes[activeId], activeId, user);
-      console.log(notes[activeId]);
+      upgradeNotes(notes[activeId], activeId, user, store);
+      store.dispatch({
+        type: "loadPage",
+      });
     } else {
       setAlertOpen(true);
     }
@@ -156,8 +161,8 @@ const MyNotesContainer = ({ user }) => {
   };
 
   const addNoteSubmit = () => {
-    if (newNoteTitle.length > 0 || newNoteText.length > 0) {
-      createNewNote(newNoteTitle, newNoteText, user);
+    if (newNoteTitle.length > 3 || newNoteText.length > 3) {
+      createNewNote(newNoteTitle, newNoteText, user, store);
       addNoteClose();
     }
   };
@@ -221,7 +226,7 @@ const MyNotesContainer = ({ user }) => {
                   placeholder="Description"
                   className="activeNote"
                   minRows={null}
-                  maxLength={1200}
+                  maxLength={500}
                   minLength={1}
                   style={styles.newNoteText}
                   onChange={(e) => setNewText(e.target.value)}
@@ -314,10 +319,10 @@ const MyNotesContainer = ({ user }) => {
             </Dialog>
           </div>
           <Notes
+            isSuccess={isSuccess}
+            isLoading={isLoading}
             noteChosen={showChosenNote}
             allNotes={notes}
-            isLoading={isLoading}
-            isSuccess={isSuccess}
             filterDates={filtersByDate}
             filterTitles={filtersByTitle}
           />
@@ -329,7 +334,7 @@ const MyNotesContainer = ({ user }) => {
               id="displayedNote"
               className="activeNote"
               minRows={null}
-              maxLength={1200}
+              maxLength={500}
               style={styles.text}
               value={newText}
               onChange={(event) => handleChange(event.target.value)}

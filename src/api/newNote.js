@@ -2,8 +2,7 @@ import axios from "axios"
 
 import URLS from "../../src/config/constants/url"
 
-const createNewNote = (newNoteTitle, newNoteText, user) => {
-
+const createNewNote = (newNoteTitle, newNoteText, user, store) => {
   axios({
     method: 'GET',
     url: URLS.SERVER_NOTES,
@@ -22,13 +21,13 @@ const createNewNote = (newNoteTitle, newNoteText, user) => {
     return newNote
   })
   .then((newNote)=>
-  axios({
-    method: 'POST',
-    url: URLS.SERVER_NOTES,
-    headers: {Authorization: `Basic ${user}`},
-    data: newNote,
-  })
-  .then((response)=>console.log(response.data))
+    axios({
+      method: 'POST',
+      url: URLS.SERVER_NOTES,
+      headers: {Authorization: `Basic ${user}`},
+      data: newNote,
+    })
+    .then((response)=> response)
   )
 }
 

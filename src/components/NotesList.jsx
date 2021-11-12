@@ -21,9 +21,7 @@ const Notes = ({
   filterTitles,
 }) => {
   const [page, setPage] = useState(1);
-
   const notes = applyNotesFilters(filterDates, filterTitles, allNotes);
-
   return (
     <div style={styles.allNotes}>
       {isLoading && (

@@ -108,6 +108,7 @@ store.subscribe(() => {
 					)
 				}
 				signOut={signOut}
+				store={store}
 			/>
 		</React.StrictMode>,
 		document.getElementById("root")
