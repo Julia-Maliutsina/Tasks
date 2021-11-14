@@ -2,10 +2,10 @@
 
 <p>Before sign up only "about" page is available. User has to fill sign up or sign in form to get access to other pages. </p>
 <p>After sign up (using "note app training server") user is redirected to "profile" page. There are no notes at "notes" and "shared-notes" pages, as the user is new.</p>
-<p>After sign in user is also redirected to "profile" page. To test sign in 2 users have been added:</p>
+<p>After sign in user is also redirected to "profile" page. To test sign in 1 user has been added:</p>
   <ul>
-  <li>email: Sincere@april.biz password: qwerty123</li>
-  <li>email: Shanna@melissa.tv  password: 123qwerty</li>
+  <li>email: julia@test.ts password: 123qweqwe</li>
   </ul>
-<p>Their notes are available at "notes" and "shared-notes" pages.</p> 
-<p>Order of user's notes can be changed by drag&drop. User's notes can be changed, new notes can be added. However "note app training server" hasn't been applied here yet, so changes won't be displayed.</p>
+<p>User's notes are available at "notes" page.</p> 
+<p>Order of user's notes can be changed by drag&drop. User's notes can be changed, new notes can be added. "Note app training server" has been applied here already, so saved changes will be displayed after reloading page.</p>
+<p>Server isn't ready for displaying shared notes, so on this page fake API is used, showing the same notes for all users.</p>
