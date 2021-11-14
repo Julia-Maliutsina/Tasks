@@ -37,7 +37,9 @@ const MyNotesContainer = ({ user, store }) => {
   const ID_INITIAL = -1;
   const ID_MINIMAL = 0;
 
-  const { data, isSuccess, isLoading } = useGetNotes(user);
+  let page = 1;
+
+  const { data, isSuccess, isLoading } = useGetNotes(user, page);
 
   let notes = [];
   let dates = [];
@@ -52,7 +54,9 @@ const MyNotesContainer = ({ user, store }) => {
   const [alertOpen, setAlertOpen] = useState(false);
 
   if (isSuccess && data) {
-    notes = data;
+    for (let item = 0; item < data.length; item++) {
+      notes.push(data[item]);
+    }
     if (activeId >= ID_MINIMAL) {
       active = notes[activeId];
     }
