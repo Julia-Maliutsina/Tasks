@@ -423,7 +423,7 @@ const progressCircle = {
 }
 
 const droppableAreaNotesList = {
-	height: "450px",
+	height: "350px",
 	overflow: "auto",
 }
 
@@ -534,6 +534,76 @@ const listAbout = {
 	padding: "3px 8px 3px 8px"
 }
 
+const shareNote = {
+	textAlign: "center",
+	width: "450px",
+	padding: "5px",
+	color: blueText,
+	fontFamily: "titles",
+	fontSize: "20px",
+	fontWeight: "bold",
+}
+
+const shareNoteTitles = {
+	margin: "5px 0px 5px 0px",
+	fontFamily: "notes",
+	fontSize: "16px",
+	color: blueText,
+	fontWeight: "bold"
+}
+
+const shareNoteText = {
+	width: "400px",
+	textAlign: "justify",
+	margin: "5px 0px 5px 0px",
+	fontFamily: "notes",
+	fontSize: "14px",
+	color: black	
+}
+
+const userToShare = {
+	width: "80%",
+	height: "30px",
+	fontFamily: "notes",
+	fontSize: "16px",
+	lineHeight: "16px",
+	textAlign: "justify",
+	color: blueText,
+	borderRadius: "5px",
+	marginTop: "10px",
+	padding: "5px",
+	border: "1px solid #3a74c4",
+}
+
+const cancelShareButton = {
+	background: basicGradient,
+	outline: "none",
+	marginTop: "15px",
+	marginLeft: "3%",
+	padding: "5px 10px 5px 10px",
+	fontFamily: "notes",
+	fontSize: "14px",
+	borderRadius: "5px",
+	color: white,
+	marginRight: "calc(47%)",
+}
+
+const addUsers = {
+  background: blueText,
+  textAlign: "center",
+  margin: "-18px 0px 0px 10px",
+  height: "30px",
+  color: white
+}
+
+const emailsList = {
+	padding: "3px",
+	fontFamily: "notes",
+	fontSize: "14px",
+	lineHeight: "18px",
+	background: lightGradient
+  }
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
@@ -548,6 +618,7 @@ const styles = {
 	addNote: addNote,
 	addNoteButtons: addNoteButtons,
 	addNoteMessage: addNoteMessage,
+	addUsers: addUsers,
 	alertNoteNotChosen: alertNoteNotChosen,
 	allNotes: allNotes,
 	applyFilter: applyFilter,
@@ -555,10 +626,12 @@ const styles = {
 	buttonGroup: buttonGroup,
 	cancelButton: cancelButton,
 	cancelFilter: cancelFilter,
+	cancelShareButton: cancelShareButton,
 	cardGradient: cardGradient,
 	date: date,
 	dragable: draggableNote,
 	droppable: droppableAreaNotesList,
+	emailsList: emailsList,
 	error: error,
 	filters: filters,
 	focusShadow: focusShadow,
@@ -594,10 +667,14 @@ const styles = {
 	sharedNoteCard: sharedNoteCard,
 	sharedText: textShared,
 	sharedTitle: titleShared,
+	shareNote: shareNote,
+	shareNoteText: shareNoteText,
+	shareNoteTitles: shareNoteTitles,
 	signOutButton: signOutButton,
 	submitButton: submitButton,
 	text: text,
 	title: title,
+	userToShare: userToShare,
 	validationError: inputError,
 	welcomeBlock: welcomeBlock,
 	wrapper: wrapper,

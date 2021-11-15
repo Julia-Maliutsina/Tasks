@@ -20,15 +20,15 @@ import {
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import SaveIcon from "@mui/icons-material/Save";
 import { useState, useEffect } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
 import upgradeNotes from "../../src/api/notesUpdate";
-import useGetNotes from "../../src/api/notes";
+import useGetNotes from "../api/loadPage.js";
 
 import Notes from "../../src/components/NotesList";
 import Save from "../../src/components/SaveButton";
-import PrimaryButton from "../../src/components/SaveButton";
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
 import createNewNote from "../../src/api/newNote";
@@ -36,34 +36,19 @@ import createNewNote from "../../src/api/newNote";
 const MyNotesContainer = ({ user, store }) => {
   const ID_INITIAL = -1;
   const ID_MINIMAL = 0;
+  const PAGE_INITIAL = 1;
 
-  let page = 1;
+  const [page, setPage] = useState(PAGE_INITIAL);
+  const [notes, setNotes] = useGetNotes(user, page);
 
-  const { data, isSuccess, isLoading } = useGetNotes(user, page);
-
-  let notes = [];
-  let dates = [];
-  let titles = [];
-  let active = {
+  const ACTIVE_INIT = {
     title: MESSAGES.NOTES_INIT,
     description: "",
     createdAt: "",
   };
 
-  const [activeId, changeActive] = useState([ID_INITIAL]);
-  const [alertOpen, setAlertOpen] = useState(false);
-
-  if (isSuccess && data) {
-    for (let item = 0; item < data.length; item++) {
-      notes.push(data[item]);
-    }
-    if (activeId >= ID_MINIMAL) {
-      active = notes[activeId];
-    }
-    dates = notes.map((note) => note.createdAt.substr(0, 10));
-    titles = notes.map((note) => note.title);
-  }
-
+  const dates = notes.map((note) => note.createdAt.substr(0, 10));
+  const titles = notes.map((note) => note.title);
   const uniqueDates = dates.filter(
     (item, position) => dates.indexOf(item) === position
   );
@@ -71,16 +56,25 @@ const MyNotesContainer = ({ user, store }) => {
     (item, position) => titles.indexOf(item) === position
   );
 
-  const text = active.description;
-  const [newText, changeText] = useState(text);
+  const [activeId, changeActive] = useState([ID_INITIAL]);
+  const [active, setActive] = useState(ACTIVE_INIT);
 
   useEffect(() => {
-    changeText(text);
-  }, [text]);
+    if (notes && activeId >= 0) {
+      setActive(notes[activeId]);
+    }
+  }, [activeId, notes]);
+
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [newText, changeText] = useState(active.description);
+
+  useEffect(() => {
+    changeText(active.description);
+  }, [active.description]);
 
   const [newNoteOpen, setOpen] = useState(false);
-  const [newNoteTitle, setNewTitle] = useState("");
-  const [newNoteText, setNewText] = useState("");
+  const [newNoteTitle, setNewNoteTitle] = useState("");
+  const [newNoteText, setNewNoteText] = useState("");
 
   const [filterDateOpen, setFilterDateOpen] = useState(false);
   const [filterDatesArray, setDateFilters] = useState([]);
@@ -155,9 +149,11 @@ const MyNotesContainer = ({ user, store }) => {
   };
 
   const addNoteOpen = () => {
-    setNewTitle("");
-    setNewText("");
+    setNewNoteTitle("");
+    setNewNoteText("");
     setOpen(true);
+    changeActive(ID_INITIAL);
+    setActive(ACTIVE_INIT);
   };
 
   const addNoteClose = () => {
@@ -165,8 +161,9 @@ const MyNotesContainer = ({ user, store }) => {
   };
 
   const addNoteSubmit = () => {
+    console.log(newNoteTitle, newNoteText);
     if (newNoteTitle.length > 3 || newNoteText.length > 3) {
-      createNewNote(newNoteTitle, newNoteText, user, store);
+      createNewNote(newNoteTitle, newNoteText, user, setNotes, setPage);
       addNoteClose();
     }
   };
@@ -223,7 +220,7 @@ const MyNotesContainer = ({ user, store }) => {
                   maxLength={40}
                   minLength={1}
                   style={styles.newNoteTitle}
-                  onChange={(e) => setNewTitle(e.target.value)}
+                  onChange={(e) => setNewNoteTitle(e.target.value)}
                 />
                 <TextareaAutosize
                   id="text"
@@ -233,7 +230,7 @@ const MyNotesContainer = ({ user, store }) => {
                   maxLength={500}
                   minLength={1}
                   style={styles.newNoteText}
-                  onChange={(e) => setNewText(e.target.value)}
+                  onChange={(e) => setNewNoteText(e.target.value)}
                 />
               </DialogContent>
               <DialogActions style={styles.addNoteButtons}>
@@ -241,11 +238,14 @@ const MyNotesContainer = ({ user, store }) => {
                   <CancelIcon style={styles.saveIcon} />
                   Cancel
                 </Button>
-                <PrimaryButton
-                  title="Save note"
-                  buttonFunction={addNoteSubmit}
-                  newText
-                />
+                <Button
+                  style={styles.primaryButton}
+                  variant="contained"
+                  onClick={addNoteSubmit}
+                >
+                  <SaveIcon style={styles.saveIcon} />
+                  Save note
+                </Button>
               </DialogActions>
             </Dialog>
             <Dialog
@@ -323,12 +323,12 @@ const MyNotesContainer = ({ user, store }) => {
             </Dialog>
           </div>
           <Notes
-            isSuccess={isSuccess}
-            isLoading={isLoading}
             noteChosen={showChosenNote}
-            allNotes={notes}
+            loadedNotes={notes}
             filterDates={filtersByDate}
             filterTitles={filtersByTitle}
+            setPage={setPage}
+            page={page}
           />
         </div>
         <div style={{ position: "relative" }}>
