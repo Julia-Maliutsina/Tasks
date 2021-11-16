@@ -16,13 +16,7 @@ const Notes = ({
   page,
   changePosition,
   shareNote,
-  openShare,
-  usersToShare,
-  userEmailValue,
-  setUserToShare,
-  addUserToList,
-  cancelShare,
-  shareNoteSubmit,
+  removeNote,
 }) => {
   return (
     <div style={styles.allNotes}>
@@ -80,14 +74,7 @@ const Notes = ({
                             <Note
                               note={note}
                               displayChosenNote={noteChosen}
-                              shareNote={shareNote}
-                              openShare={openShare}
-                              usersToShare={usersToShare}
-                              userEmailValue={userEmailValue}
-                              setUserToShare={setUserToShare}
-                              addUserToList={addUserToList}
-                              cancelShare={cancelShare}
-                              shareNoteSubmit={shareNoteSubmit}
+                              removeNote={removeNote}
                             />
                           </div>
                         )}

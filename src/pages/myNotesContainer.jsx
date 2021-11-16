@@ -17,10 +17,14 @@ import {
   Checkbox,
   FormControl,
   Snackbar,
+  ListItem,
 } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import SaveIcon from "@mui/icons-material/Save";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import AddIcon from "@mui/icons-material/Add";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useState, useEffect } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
@@ -192,13 +196,14 @@ const MyNotesContainer = ({ user, store }) => {
     );
   };
 
+  const removeNote = (noteId) => {};
+
   const [openShare, shareNoteOpen] = useState(false);
-  const [noteToShare, setNoteToShare] = useState({});
+  const [noteToShare, setNoteToShare] = useState(ACTIVE_INIT);
   const [userEmailValue, setUser] = useState("");
   const [usersToShare, setUsersToShare] = useState([]);
 
-  const shareNote = (event, note) => {
-    event.preventDefault();
+  const shareNote = (note) => {
     shareNoteOpen(true);
     setNoteToShare(note);
   };
@@ -216,16 +221,23 @@ const MyNotesContainer = ({ user, store }) => {
 
   const shareNoteSubmit = () => {
     console.log(noteToShare, usersToShare);
-    setNoteToShare({});
+    setNoteToShare(ACTIVE_INIT);
     setUsersToShare([]);
     shareNoteOpen(false);
   };
 
   const cancelShare = () => {
-    setNoteToShare({});
+    setNoteToShare(ACTIVE_INIT);
     setUsersToShare([]);
     setUser("");
     shareNoteOpen(false);
+  };
+
+  const removeUser = (emailId) => {
+    let usersArray = usersToShare;
+    usersArray.splice(emailId, 1);
+    setUsersToShare(usersArray);
+    setUser(" ");
   };
 
   return (
@@ -378,15 +390,72 @@ const MyNotesContainer = ({ user, store }) => {
             page={page}
             changePosition={changePosition}
             shareNote={shareNote}
-            openShare={openShare}
-            usersToShare={usersToShare}
-            userEmailValue={userEmailValue}
-            setUserToShare={setUserToShare}
-            addUserToList={addUserToList}
-            cancelShare={cancelShare}
-            shareNoteSubmit={shareNoteSubmit}
+            removeNote={removeNote}
           />
         </div>
+        <Dialog open={openShare} onClose={() => {}}>
+          <DialogTitle style={styles.shareNote}>Share note</DialogTitle>
+          <DialogContent>
+            <DialogContentText style={{ width: 300 }}>
+              <h4 style={styles.shareNoteTitles}>Title:</h4>
+              <p style={styles.shareNoteText}>{noteToShare.title}</p>
+              <h4 style={styles.shareNoteTitles}>Description:</h4>
+              <p style={styles.shareNoteText}>{noteToShare.description}</p>
+              <h4 style={styles.shareNoteTitles}>Date:</h4>
+              <p style={styles.shareNoteText}>
+                {noteToShare.createdAt.substr(0, 10)}
+              </p>
+            </DialogContentText>
+            <DialogContentText style={styles.shareNoteTitles}>
+              Share with:
+            </DialogContentText>
+            {usersToShare.map((email, emailId) => (
+              <ListItem style={styles.emailsList}>
+                <span style={{ width: "95%" }}>{email}</span>
+                <IconButton
+                  style={{ width: "10px", height: "10px" }}
+                  onClick={(e) => removeUser(emailId)}
+                >
+                  <ClearIcon fontSize="small" />
+                </IconButton>
+              </ListItem>
+            ))}
+            <TextareaAutosize
+              id="userToShare"
+              placeholder="user@gmail.com"
+              value={userEmailValue}
+              className="activeNote"
+              minRows={null}
+              maxLength={40}
+              minLength={5}
+              style={styles.userToShare}
+              onFocus={() => setUser("")}
+              onChange={(e) => setUserToShare(e.target.value)}
+            />
+            <Button style={styles.addUsers} onClick={addUserToList}>
+              <AddIcon
+                fontSize="small"
+                color="inherit"
+                style={{ display: "inline" }}
+              />
+              <span>Add</span>
+            </Button>
+          </DialogContent>
+          <DialogActions style={styles.addNoteButtons}>
+            <Button style={styles.cancelShareButton} onClick={cancelShare}>
+              <CancelIcon style={styles.saveIcon} />
+              Cancel
+            </Button>
+            <Button
+              style={styles.primaryButton}
+              variant="contained"
+              onClick={() => shareNoteSubmit}
+            >
+              <IosShareIcon style={styles.saveIcon} />
+              Share
+            </Button>
+          </DialogActions>
+        </Dialog>
         <div style={{ position: "relative" }}>
           <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>

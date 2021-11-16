@@ -604,6 +604,15 @@ const emailsList = {
 	background: lightGradient
   }
 
+const deleteIcon = { 
+	marginTop: "3px", 
+	color: errorColor 
+}
+
+const shareIcon = {
+	color: blueText
+}
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
@@ -629,6 +638,7 @@ const styles = {
 	cancelShareButton: cancelShareButton,
 	cardGradient: cardGradient,
 	date: date,
+	deleteIcon: deleteIcon,
 	dragable: draggableNote,
 	draggingBackground: "#edf5fc",
 	draggingShadow: "0 0 5px #ccc",
@@ -669,6 +679,7 @@ const styles = {
 	sharedNoteCard: sharedNoteCard,
 	sharedText: textShared,
 	sharedTitle: titleShared,
+	shareIcon: shareIcon,
 	shareNote: shareNote,
 	shareNoteText: shareNoteText,
 	shareNoteTitles: shareNoteTitles,
