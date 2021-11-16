@@ -5,7 +5,6 @@ import URLS from "../../src/config/constants/url"
 const createNewNote = (newNoteTitle, newNoteText, user, setNotes, setPage) => {
   let notes=[];
   const date = new Date();
-
   function getNotes(page) {
     axios({
       method: 'GET',
@@ -20,8 +19,9 @@ const createNewNote = (newNoteTitle, newNoteText, user, setNotes, setPage) => {
         getNotes(page+1)
       }
       else {
+        const ID = notes.length + 1;
         const newNote = {
-          "id": notes.length,
+          "id": ID,
           "title": newNoteTitle,
           "description": newNoteText,
           "createdAt": date.toISOString(),

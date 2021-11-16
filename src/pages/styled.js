@@ -630,6 +630,8 @@ const styles = {
 	cardGradient: cardGradient,
 	date: date,
 	dragable: draggableNote,
+	draggingBackground: "#edf5fc",
+	draggingShadow: "0 0 5px #ccc",
 	droppable: droppableAreaNotesList,
 	emailsList: emailsList,
 	error: error,

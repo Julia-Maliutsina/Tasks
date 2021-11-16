@@ -42,7 +42,7 @@ function authorizeUser(
 			return {
 				isAuthorized: true,
 				profileInfo: action.payload.profileInfo,
-				encoded: action.payload.encoded,
+				encoded: action.payload.user,
 			}
 		case "signIn":
 			return {

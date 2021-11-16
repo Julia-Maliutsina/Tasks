@@ -1,8 +1,10 @@
 import axios from "axios"
+import { encode as base64_encode } from "base-64";
 
 import URLS from "../../src/config/constants/url"
 
 const submitRegistration = (values, store) => {
+	const encoded = base64_encode(values.email + ':' + values.password);
 	const newUser = {
 		email: values.email,
 		password: values.password,
@@ -23,9 +25,22 @@ const submitRegistration = (values, store) => {
 			birthday: values.birthday,
 			password: values.password,
 		}
+		const user = encoded.toString();
+		localStorage.setItem(
+		  "isAuthorized",
+		  JSON.stringify(true)
+		)
+		localStorage.setItem(
+			"profileInfo",
+			JSON.stringify(profileInfo)
+		)
+		localStorage.setItem(
+			"encoded",
+			JSON.stringify(encoded)
+		)
 		store.dispatch({
 		type: "signUp",
-		payload: { profileInfo },
+		payload: { profileInfo, user },
 		})
     })
 	.catch((error) => {

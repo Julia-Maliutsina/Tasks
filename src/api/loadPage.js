@@ -12,7 +12,9 @@ const useGetNotes = (user, page) => {
     headers: {Authorization: `Basic ${user}`}
   })
   .then((result) =>
-    setNotes([...notes, ...result.data]))}, [page])
+    setNotes([...notes, ...result.data]))
+  .catch((error)=>{console.log(error)})
+  }, [page])
 
   return [notes, setNotes]
 }

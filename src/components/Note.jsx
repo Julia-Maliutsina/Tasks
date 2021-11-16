@@ -18,54 +18,27 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import AddIcon from "@mui/icons-material/Add";
 import PropTypes from "prop-types";
-import { useState } from "react";
 
 import styles from "../../src/pages/styled";
 import shortenDescription from "../../src/utils/noteShortDescription";
-import { GamesOutlined, ReportGmailerrorred } from "@mui/icons-material";
 
-const Note = ({ note, displayChosenNote }) => {
-  const [openShare, shareNoteOpen] = useState(false);
-  const [noteToShare, setNoteToShare] = useState({});
-  const [userEmailValue, setUser] = useState("");
-  const [usersToShare, setUsersToShare] = useState([]);
-
-  const shareNote = (event, note) => {
-    event.preventDefault();
-    shareNoteOpen(true);
-    setNoteToShare(note);
-  };
-
-  const setUserToShare = (userEmail) => {
-    setUser(userEmail);
-  };
-
-  const addUserToList = () => {
-    let usersArray = usersToShare;
-    usersArray.push(userEmailValue);
-    setUsersToShare(usersArray);
-    setUser("");
-  };
-
-  const shareNoteSubmit = () => {
-    console.log(noteToShare, usersToShare);
-    setNoteToShare({});
-    setUsersToShare([]);
-    shareNoteOpen(false);
-  };
-
-  const cancelShare = () => {
-    setNoteToShare({});
-    setUsersToShare([]);
-    setUser("");
-    shareNoteOpen(false);
-  };
-
+const Note = ({
+  note,
+  displayChosenNote,
+  shareNote,
+  openShare,
+  usersToShare,
+  userEmailValue,
+  setUserToShare,
+  addUserToList,
+  cancelShare,
+  shareNoteSubmit,
+}) => {
   return (
     <ListItem divider>
       <ListItemButton
         onClick={() => {
-          displayChosenNote(note.id);
+          displayChosenNote(note);
         }}
       >
         <ListItemText

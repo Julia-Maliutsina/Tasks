@@ -1,41 +1,34 @@
-import React, { useState } from "react";
 import List from "@mui/material/List";
 import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
-import { CircularProgress } from "@mui/material";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import MESSAGES from "../../src/config/constants/messages";
 
 import styles from "../../src/pages/styled";
-import applyNotesFilters from "../../src/utils/applyFilters";
 import Note from "../../src/components/Note";
 
 const Notes = ({
   noteChosen,
-  loadedNotes,
-  filterDates,
-  filterTitles,
+  notesToDisplay,
   setPage,
   page,
+  changePosition,
+  shareNote,
+  openShare,
+  usersToShare,
+  userEmailValue,
+  setUserToShare,
+  addUserToList,
+  cancelShare,
+  shareNoteSubmit,
 }) => {
-  const notesToDisplay = applyNotesFilters(
-    filterDates,
-    filterTitles,
-    loadedNotes
-  );
   return (
     <div style={styles.allNotes}>
       <DragDropContext
         onDragEnd={(parameters) => {
-          const sourceIndex = parameters.source.index;
-          const destinationIndex = parameters.destination.index;
-          notesToDisplay.splice(
-            destinationIndex,
-            0,
-            notesToDisplay.splice(sourceIndex, 1)[0]
-          );
+          changePosition(parameters);
         }}
       >
         {notesToDisplay.length === 0 ? (
@@ -77,14 +70,25 @@ const Notes = ({
                             style={{
                               ...provided.draggableProps.style,
                               boxShadow: snapshot.isDragging
-                                ? "0 0 5px #ccc"
+                                ? styles.draggingShadow
                                 : "none",
                               background: snapshot.isDragging
-                                ? "#edf5fc"
+                                ? styles.draggingBackground
                                 : "inherit",
                             }}
                           >
-                            <Note note={note} displayChosenNote={noteChosen} />
+                            <Note
+                              note={note}
+                              displayChosenNote={noteChosen}
+                              shareNote={shareNote}
+                              openShare={openShare}
+                              usersToShare={usersToShare}
+                              userEmailValue={userEmailValue}
+                              setUserToShare={setUserToShare}
+                              addUserToList={addUserToList}
+                              cancelShare={cancelShare}
+                              shareNoteSubmit={shareNoteSubmit}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -102,7 +106,7 @@ const Notes = ({
 };
 
 Notes.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
+  notesToDisplay: PropTypes.arrayOf(PropTypes.object),
   noteChosen: PropTypes.func,
 };
 

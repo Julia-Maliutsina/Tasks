@@ -24,7 +24,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import { useState, useEffect } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
-import upgradeNotes from "../../src/api/notesUpdate";
+import updateNotes from "../../src/api/notesUpdate";
 import useGetNotes from "../api/loadPage.js";
 
 import Notes from "../../src/components/NotesList";
@@ -32,6 +32,7 @@ import Save from "../../src/components/SaveButton";
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
 import createNewNote from "../../src/api/newNote";
+import applyNotesFilters from "../../src/utils/applyFilters";
 
 const MyNotesContainer = ({ user, store }) => {
   const ID_INITIAL = -1;
@@ -42,6 +43,7 @@ const MyNotesContainer = ({ user, store }) => {
   const [notes, setNotes] = useGetNotes(user, page);
 
   const ACTIVE_INIT = {
+    id: ID_INITIAL,
     title: MESSAGES.NOTES_INIT,
     description: "",
     createdAt: "",
@@ -56,21 +58,13 @@ const MyNotesContainer = ({ user, store }) => {
     (item, position) => titles.indexOf(item) === position
   );
 
-  const [activeId, changeActive] = useState([ID_INITIAL]);
   const [active, setActive] = useState(ACTIVE_INIT);
-
-  useEffect(() => {
-    if (notes && activeId >= 0) {
-      setActive(notes[activeId]);
-    }
-  }, [activeId, notes]);
-
-  const [alertOpen, setAlertOpen] = useState(false);
   const [newText, changeText] = useState(active.description);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
     changeText(active.description);
-  }, [active.description]);
+  }, [active]);
 
   const [newNoteOpen, setOpen] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState("");
@@ -84,14 +78,20 @@ const MyNotesContainer = ({ user, store }) => {
   const [filterTitlesArray, setTitleFilters] = useState([]);
   const [filtersByTitle, applyTitlesFilter] = useState([]);
 
-  function showChosenNote(id) {
-    changeActive(id);
+  function showChosenNote(note) {
+    setActive(note);
   }
 
   function saveChangedNote(newText) {
-    if (activeId >= ID_MINIMAL) {
-      notes[activeId].description = newText;
-      upgradeNotes(notes[activeId], activeId, user, store);
+    if (active.id >= ID_MINIMAL) {
+      for (let index = 0; index < notes.length; index++) {
+        if (notes[index].id === active.id) {
+          notes[index].description = newText;
+          console.log(notes[index], active.id);
+          updateNotes(notes[index], active.id, user, store);
+          break;
+        }
+      }
       store.dispatch({
         type: "loadPage",
       });
@@ -152,7 +152,6 @@ const MyNotesContainer = ({ user, store }) => {
     setNewNoteTitle("");
     setNewNoteText("");
     setOpen(true);
-    changeActive(ID_INITIAL);
     setActive(ACTIVE_INIT);
   };
 
@@ -161,7 +160,6 @@ const MyNotesContainer = ({ user, store }) => {
   };
 
   const addNoteSubmit = () => {
-    console.log(newNoteTitle, newNoteText);
     if (newNoteTitle.length > 3 || newNoteText.length > 3) {
       createNewNote(newNoteTitle, newNoteText, user, setNotes, setPage);
       addNoteClose();
@@ -177,6 +175,57 @@ const MyNotesContainer = ({ user, store }) => {
       return;
     }
     setAlertOpen(false);
+  };
+
+  const notesToDisplay = applyNotesFilters(
+    filtersByDate,
+    filtersByTitle,
+    notes
+  );
+  const changePosition = (parameters) => {
+    const sourceIndex = parameters.source.index;
+    const destinationIndex = parameters.destination.index;
+    notesToDisplay.splice(
+      destinationIndex,
+      0,
+      notesToDisplay.splice(sourceIndex, 1)[0]
+    );
+  };
+
+  const [openShare, shareNoteOpen] = useState(false);
+  const [noteToShare, setNoteToShare] = useState({});
+  const [userEmailValue, setUser] = useState("");
+  const [usersToShare, setUsersToShare] = useState([]);
+
+  const shareNote = (event, note) => {
+    event.preventDefault();
+    shareNoteOpen(true);
+    setNoteToShare(note);
+  };
+
+  const setUserToShare = (userEmail) => {
+    setUser(userEmail);
+  };
+
+  const addUserToList = () => {
+    let usersArray = usersToShare;
+    usersArray.push(userEmailValue);
+    setUsersToShare(usersArray);
+    setUser("");
+  };
+
+  const shareNoteSubmit = () => {
+    console.log(noteToShare, usersToShare);
+    setNoteToShare({});
+    setUsersToShare([]);
+    shareNoteOpen(false);
+  };
+
+  const cancelShare = () => {
+    setNoteToShare({});
+    setUsersToShare([]);
+    setUser("");
+    shareNoteOpen(false);
   };
 
   return (
@@ -324,11 +373,18 @@ const MyNotesContainer = ({ user, store }) => {
           </div>
           <Notes
             noteChosen={showChosenNote}
-            loadedNotes={notes}
-            filterDates={filtersByDate}
-            filterTitles={filtersByTitle}
+            notesToDisplay={notesToDisplay}
             setPage={setPage}
             page={page}
+            changePosition={changePosition}
+            shareNote={shareNote}
+            openShare={openShare}
+            usersToShare={usersToShare}
+            userEmailValue={userEmailValue}
+            setUserToShare={setUserToShare}
+            addUserToList={addUserToList}
+            cancelShare={cancelShare}
+            shareNoteSubmit={shareNoteSubmit}
           />
         </div>
         <div style={{ position: "relative" }}>
