@@ -74,6 +74,7 @@ const Notes = ({
                             <Note
                               note={note}
                               displayChosenNote={noteChosen}
+                              shareNote={shareNote}
                               removeNote={removeNote}
                             />
                           </div>
