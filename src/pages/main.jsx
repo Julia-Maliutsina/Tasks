@@ -3,11 +3,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import MESSAGES from "../../src/config/constants/messages";
-
-import styles from "./styled";
+import styles from "../../src/pages/styled";
 
 const WelcomePage = ({ isAuthorized, name }) => (
-  <div style={{ width: "100%" }}>
+  <div style={styles.maxWidth}>
     <Box style={styles.welcomeBlock}>
       {!isAuthorized ? (
         <div>

@@ -1,13 +1,13 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-
-import styles from "./styled";
 import { List, ListItem } from "@mui/material";
 
+import styles from "../../src/pages/styled";
+
 const AboutApp = () => (
-  <div style={{ width: "100%" }}>
-    <Box sx={{ width: "100%" }}>
+  <div style={styles.maxWidth}>
+    <Box sx={styles.maxWidth}>
       <Typography variant="h5" component="div" style={styles.aboutTitle}>
         About «My Notes»
       </Typography>

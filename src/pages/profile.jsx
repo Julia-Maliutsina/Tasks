@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 
-import styles from "./styled";
+import styles from "../../src/pages/styled";
 
 const Profile = ({ profileInfo, signOut }) => {
   function createData(title, value) {
@@ -23,7 +23,7 @@ const Profile = ({ profileInfo, signOut }) => {
   ];
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={styles.maxWidth}>
       <Box
         style={styles.profilePage}
       >
@@ -36,7 +36,7 @@ const Profile = ({ profileInfo, signOut }) => {
               {rows.map((row) => (
                 <TableRow
                   key={row.title}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  sx={styles.tableBorders}
                 >
                   <TableCell
                     component="th"

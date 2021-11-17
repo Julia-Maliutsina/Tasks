@@ -10,6 +10,8 @@ import {
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import PATHS from "../../src/config/routes/routes";
+import "../../src/pages/App.css";
+import styles from "../../src/pages/styled.js";
 
 import MyNotesContainer from "./myNotesContainer";
 import SharedNotes from "./sharedNotes";
@@ -19,8 +21,7 @@ import SignInForm from "./signIn";
 import Profile from "./profile";
 import WelcomePage from "./main";
 import NotFound from "../components/NotFound";
-import "./App.css";
-import styles from "./styled.js";
+
 
 const queryClient = new QueryClient();
 
@@ -82,7 +83,7 @@ const MyNotes = ({
                 </NavLink>
               </div>
             ) : (
-              <div style={{ display: "inline" }}>
+              <div style={styles.inline}>
                 <NavLink
                   to={PATHS.profile}
                   className="menuSignIn"

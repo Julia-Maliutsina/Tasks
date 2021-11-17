@@ -6,10 +6,10 @@ import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
-
 import styles from "../../src/pages/styled";
-import NoteShared from "../../src/components/NoteShared";
 import useGetSharedNotes from "../../src/api/sharedNotes";
+
+import NoteShared from "../components/NoteShared";
 
 const SharedNotes = ({ userId }) => {
   const { data, isSuccess, isLoading } = useGetSharedNotes();
@@ -30,7 +30,7 @@ const SharedNotes = ({ userId }) => {
   }
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={styles.maxWidth}>
       <div className="chosenSharedNote" style={styles.activeSharedNote}>
         <h3 style={styles.sharedTitle}>{sharedChosenNote.title}</h3>
         <p style={styles.sharedText}>{sharedChosenNote.text}</p>
@@ -57,11 +57,7 @@ const SharedNotes = ({ userId }) => {
           </Alert>
         ) : (
           <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, 1fr)",
-              gap: 3,
-            }}
+            sx={styles.shareGrid}
           >
             {isSuccess &&
               sharedNotes.map((note, i) => {

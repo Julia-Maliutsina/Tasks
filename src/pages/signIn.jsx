@@ -6,7 +6,6 @@ import { useState } from "react";
 import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
 import validateSignIn from "../../src/utils/validateSignIn";
 import submit from "../api/submitSignIn";
-
 import styles from "../../src/pages/styled";
 
 const SignInForm = ({ submitAutorization }) => {
@@ -72,7 +71,7 @@ const SignInForm = ({ submitAutorization }) => {
         <Alert
           onClose={handleAlertClose}
           severity="error"
-          sx={{ width: "100%" }}
+          sx={styles.maxWidth}
         >
           Invalid email or password!
         </Alert>

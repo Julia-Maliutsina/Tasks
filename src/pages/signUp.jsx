@@ -4,7 +4,6 @@ import Link from "@mui/material/Link";
 
 import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
 import validateSignUp from "../../src/utils/validateSignUp";
-
 import styles from "../../src/pages/styled";
 
 const SignUpForm = ({ submitRegistration }) => {

@@ -29,14 +29,15 @@ import { useState, useEffect } from "react";
 
 import MESSAGES from "../../src/config/constants/messages";
 import updateNotes from "../../src/api/notesUpdate";
-import useGetNotes from "../api/loadPage.js";
-
-import Notes from "../../src/components/NotesList";
-import Save from "../../src/components/SaveButton";
+import useGetNotes from "../../src/api/loadPage.js";
+import createNewNote from "../../src/api/newNote";
+import deleteNote from "../../src/api/deleteNote";
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
-import createNewNote from "../../src/api/newNote";
 import applyNotesFilters from "../../src/utils/applyFilters";
+
+import Notes from "../components/NotesList";
+import Save from "../components/SaveButton";
 
 const MyNotesContainer = ({ user, store }) => {
   const ID_INITIAL = -1;
@@ -196,7 +197,9 @@ const MyNotesContainer = ({ user, store }) => {
     );
   };
 
-  const removeNote = (noteId) => {};
+  const removeNote = (noteId) => {
+    deleteNote(noteId, user, setNotes, setPage)
+  };
 
   const [openShare, shareNoteOpen] = useState(false);
   const [noteToShare, setNoteToShare] = useState(ACTIVE_INIT);
@@ -241,13 +244,9 @@ const MyNotesContainer = ({ user, store }) => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={styles.maxWidth}>
       <Box
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "36% 60%",
-          gap: 1,
-        }}
+        sx={styles.myNotesGrid}
       >
         <div>
           <div className="buttonsNotes">
@@ -319,7 +318,7 @@ const MyNotesContainer = ({ user, store }) => {
                   Choose dates to display
                 </DialogContentText>
                 <FormControl
-                  style={{ height: "300px", width: "200px", overflow: "auto" }}
+                  style={styles.filters}
                 >
                   <FormGroup>
                     {uniqueDates.map((date, i) => (
@@ -396,7 +395,7 @@ const MyNotesContainer = ({ user, store }) => {
         <Dialog open={openShare} onClose={() => {}}>
           <DialogTitle style={styles.shareNote}>Share note</DialogTitle>
           <DialogContent>
-            <DialogContentText style={{ width: 300 }}>
+            <DialogContentText style={styles.dialogShare}>
               <h4 style={styles.shareNoteTitles}>Title:</h4>
               <p style={styles.shareNoteText}>{noteToShare.title}</p>
               <h4 style={styles.shareNoteTitles}>Description:</h4>
@@ -411,9 +410,9 @@ const MyNotesContainer = ({ user, store }) => {
             </DialogContentText>
             {usersToShare.map((email, emailId) => (
               <ListItem style={styles.emailsList}>
-                <span style={{ width: "95%" }}>{email}</span>
+                <span style={styles.widthEmail}>{email}</span>
                 <IconButton
-                  style={{ width: "10px", height: "10px" }}
+                  style={styles.clearUsers}
                   onClick={(e) => removeUser(emailId)}
                 >
                   <ClearIcon fontSize="small" />
@@ -436,7 +435,7 @@ const MyNotesContainer = ({ user, store }) => {
               <AddIcon
                 fontSize="small"
                 color="inherit"
-                style={{ display: "inline" }}
+                style={styles.inline}
               />
               <span>Add</span>
             </Button>
@@ -456,7 +455,7 @@ const MyNotesContainer = ({ user, store }) => {
             </Button>
           </DialogActions>
         </Dialog>
-        <div style={{ position: "relative" }}>
+        <div style={styles.relative}>
           <div className="chosenNote" style={styles.activeNote}>
             <h3 style={styles.title}>{active.title}</h3>
             <TextareaAutosize
@@ -483,7 +482,7 @@ const MyNotesContainer = ({ user, store }) => {
             <Alert
               onClose={handleAlertClose}
               severity="info"
-              sx={{ width: "100%" }}
+              sx={styles.maxWidth}
             >
               {MESSAGES.NOT_CHOSEN}
             </Alert>
