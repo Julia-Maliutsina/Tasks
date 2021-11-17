@@ -1,9 +1,9 @@
 import axios from "axios"
 
-import URLS from "../../src/config/constants/url"
+import URLS from "config/constants/url"
 
-const updateNotes = (note, id, user, store) => {
-  const NOTE_URL = URLS.SERVER_NOTES + '/' + id;
+const updateNotes = (note, id, user) => {
+  const noteUrl = URLS.SERVER_NOTES + '/' + id;
   const date = new Date();
 	const noteUpdated = {
 		"id": note.id,
@@ -14,7 +14,7 @@ const updateNotes = (note, id, user, store) => {
 	}
 	axios({
 	  method: 'PUT',
-	  url: NOTE_URL,
+	  url: noteUrl,
 	  headers: {Authorization: `Basic ${user}`},
 	  data: noteUpdated,
 	})

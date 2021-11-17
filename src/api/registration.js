@@ -1,7 +1,7 @@
 import axios from "axios"
 import { encode as base64_encode } from "base-64";
 
-import URLS from "../../src/config/constants/url"
+import URLS from "config/constants/url"
 
 const submitRegistration = (values, store) => {
 	const encoded = base64_encode(values.email + ':' + values.password);

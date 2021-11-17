@@ -9,19 +9,19 @@ import {
 } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-import PATHS from "../../src/config/routes/routes";
+import PATHS from "config/routes/routes";
+
 import "../../src/pages/App.css";
 import styles from "../../src/pages/styled.js";
 
 import MyNotesContainer from "./myNotesContainer";
-import SharedNotes from "./sharedNotes";
+import SharedNotesContainer from "./sharedNotesContainer";
 import AboutApp from "./about";
-import SignUpForm from "./signUp";
+import SignUpForm from "./SignUp";
 import SignInForm from "./signIn";
 import Profile from "./profile";
-import WelcomePage from "./main";
+import WelcomePage from "../components/Main";
 import NotFound from "../components/NotFound";
-
 
 const queryClient = new QueryClient();
 
@@ -103,7 +103,7 @@ const MyNotes = ({
           <Route path={PATHS.sharedNotes}>
             {isAuthorized ? (
               <QueryClientProvider client={queryClient}>
-                <SharedNotes userId={1} />
+                <SharedNotesContainer user={user} store={store} />
               </QueryClientProvider>
             ) : (
               <Redirect to={PATHS.notFound} />

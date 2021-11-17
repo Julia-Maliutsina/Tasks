@@ -2,8 +2,9 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-import MESSAGES from "../../src/config/constants/messages";
-import styles from "../../src/pages/styled";
+import MESSAGES from "config/constants/messages";
+
+import styles from "../pages/styled";
 
 const WelcomePage = ({ isAuthorized, name }) => (
   <div style={styles.maxWidth}>

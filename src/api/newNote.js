@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import URLS from "../../src/config/constants/url";
+import URLS from "config/constants/url";
 
 const createNewNote = (
 	newNoteTitle,

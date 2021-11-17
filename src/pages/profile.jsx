@@ -8,61 +8,77 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
 
-import styles from "../../src/pages/styled";
+import styles from "./styled";
 
-const Profile = ({ profileInfo, signOut }) => {
-  function createData(title, value) {
-    return { title, value };
-  }
-
-  const rows = [
-    createData("First name", profileInfo.name),
-    createData("Last name", profileInfo.surname),
-    createData("Date of birth", profileInfo.birthday),
-    createData("Email", profileInfo.email),
-  ];
-
-  return (
-    <div style={styles.maxWidth}>
-      <Box
-        style={styles.profilePage}
+const Profile = ({ profileInfo, signOut }) => (
+  <div style={styles.maxWidth}>
+    <Box style={styles.profilePage}>
+      <Typography variant="h5" component="div" style={styles.aboutTitle}>
+        My Profile
+      </Typography>
+      <TableContainer style={styles.profileTable}>
+        <Table>
+          <TableBody>
+            <TableRow key="name" sx={styles.tableBorders}>
+              <TableCell
+                component="th"
+                scope="row"
+                style={styles.profileTableTitle}
+              >
+                First name
+              </TableCell>
+              <TableCell align="right" style={styles.profileTableInfo}>
+                {profileInfo.name}
+              </TableCell>
+            </TableRow>
+            <TableRow key="surname" sx={styles.tableBorders}>
+              <TableCell
+                component="th"
+                scope="row"
+                style={styles.profileTableTitle}
+              >
+                Last name
+              </TableCell>
+              <TableCell align="right" style={styles.profileTableInfo}>
+                {profileInfo.surname}
+              </TableCell>
+            </TableRow>
+            <TableRow key="birthday" sx={styles.tableBorders}>
+              <TableCell
+                component="th"
+                scope="row"
+                style={styles.profileTableTitle}
+              >
+                Date of birth
+              </TableCell>
+              <TableCell align="right" style={styles.profileTableInfo}>
+                {profileInfo.birthday}
+              </TableCell>
+            </TableRow>
+            <TableRow key="email" sx={styles.tableBorders}>
+              <TableCell
+                component="th"
+                scope="row"
+                style={styles.profileTableTitle}
+              >
+                Email
+              </TableCell>
+              <TableCell align="right" style={styles.profileTableInfo}>
+                {profileInfo.email}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Button
+        style={styles.signOutButton}
+        variant="contained"
+        onClick={signOut}
       >
-        <Typography variant="h5" component="div" style={styles.aboutTitle}>
-          My Profile
-        </Typography>
-        <TableContainer style={styles.profileTable}>
-          <Table>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow
-                  key={row.title}
-                  sx={styles.tableBorders}
-                >
-                  <TableCell
-                    component="th"
-                    scope="row"
-                    style={styles.profileTableTitle}
-                  >
-                    {row.title}
-                  </TableCell>
-                  <TableCell align="right" style={styles.profileTableInfo}>
-                    {row.value}
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Button
-          style={styles.signOutButton}
-          variant="contained"
-          onClick={signOut}
-        >
-          SIGN OUT
-        </Button>
-      </Box>
-    </div>
-  );
-};
+        SIGN OUT
+      </Button>
+    </Box>
+  </div>
+);
 
 export default Profile;

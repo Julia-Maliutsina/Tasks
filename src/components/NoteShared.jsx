@@ -5,6 +5,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import PropTypes from "prop-types";
 
 import styles from "../../src/pages/styled";
+
 import shortenDescription from "../../src/utils/noteShortDescription";
 
 const NoteShared = ({ id, note, displaySharedNote }) => (
@@ -28,9 +29,11 @@ const NoteShared = ({ id, note, displaySharedNote }) => (
             style={styles.noteInListShared}
             className="shortDescription"
           >
-            {shortenDescription(note.text)}
+            {shortenDescription(note.description)}
           </Typography>
-          <Typography variant="body2">{note.date}</Typography>
+          <Typography variant="body2">
+            {note.createdAt.substr(0, 10)}
+          </Typography>
         </CardContent>
       </ListItemButton>
     </Card>

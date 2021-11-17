@@ -2,7 +2,8 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Alert, AlertTitle } from "@mui/material";
 
-import PATHS from "../../src/config/routes/routes"
+import PATHS from "config/routes/routes";
+
 import styles from "../../src/pages/styled";
 
 const NotFound = () => (

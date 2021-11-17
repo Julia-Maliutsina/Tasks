@@ -3,10 +3,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, Alert, Snackbar } from "@mui/material";
 import { useState } from "react";
 
-import INITIAL_VALUES from "../../src/config/constants/formsInitialValues";
-import validateSignIn from "../../src/utils/validateSignIn";
+import INITIAL_VALUES from "config/constants/formsInitialValues";
+
 import submit from "../api/submitSignIn";
-import styles from "../../src/pages/styled";
+import validateSignIn from "../utils/validateSignIn";
+import styles from "./styled";
 
 const SignInForm = ({ submitAutorization }) => {
   const [alertOpen, setAlertOpen] = useState(false);
@@ -68,11 +69,7 @@ const SignInForm = ({ submitAutorization }) => {
         autoHideDuration={3000}
         onClose={handleAlertClose}
       >
-        <Alert
-          onClose={handleAlertClose}
-          severity="error"
-          sx={styles.maxWidth}
-        >
+        <Alert onClose={handleAlertClose} severity="error" sx={styles.maxWidth}>
           Invalid email or password!
         </Alert>
       </Snackbar>

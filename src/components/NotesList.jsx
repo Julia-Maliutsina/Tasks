@@ -4,9 +4,11 @@ import Alert from "@mui/material/Alert";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import MESSAGES from "../../src/config/constants/messages";
+import MESSAGES from "config/constants/messages";
+
 import styles from "../../src/pages/styled";
-import Note from "../../src/components/Note";
+
+import Note from "./Note";
 
 const Notes = ({
   noteChosen,
