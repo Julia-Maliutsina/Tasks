@@ -23,10 +23,10 @@ const createNewNote = (
 			if (result.data.length > 4) {
 				getNotes(page + 1);
 			} else {
-				const ID = notes[notes.length - 1].id + 1;
-				console.log(ID);
+				let id = 1;
+				notes.length > 0 ? id = notes[notes.length - 1].id + 1 : id = 1;
 				const newNote = {
-					id: ID,
+					id: id,
 					title: newNoteTitle,
 					description: newNoteText,
 					createdAt: date.toISOString(),

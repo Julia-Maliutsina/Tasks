@@ -1,22 +1,14 @@
 import React from "react";
 import { useState } from "react";
 
-import MESSAGES from "config/constants/messages";
-
-import useGetSharedNotes from "../api/loadSharedPage";
-
-import SharedList from "../components/SharedList";
+import INIT from "config/constants/initial";
+import useGetSharedNotes from "api/loadSharedPage";
+import SharedList from "components/shared/SharedList";
 
 const SharedNotesContainer = ({ user, store }) => {
-  const ACTIVE_SHARED_INIT = {
-    title: MESSAGES.NOTES_INIT,
-    description: "",
-    createdAt: "",
-  };
-
   const [pageShared, setPageShared] = useState(1);
   const [sharedNotes, setShared] = useGetSharedNotes(pageShared, user);
-  const [sharedChosenNote, displaySharedNote] = useState(ACTIVE_SHARED_INIT);
+  const [sharedChosenNote, displaySharedNote] = useState(INIT.ACTIVE_SHARED);
 
   function showChosenSharedNote(id) {
     displaySharedNote(sharedNotes[id]);
@@ -27,6 +19,8 @@ const SharedNotesContainer = ({ user, store }) => {
       sharedNotes={sharedNotes}
       sharedChosenNote={sharedChosenNote}
       showChosenSharedNote={showChosenSharedNote}
+      pageShared={pageShared}
+      setPageShared={setPageShared}
     />
   );
 };

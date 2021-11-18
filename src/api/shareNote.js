@@ -1,8 +1,9 @@
 import axios from "axios"
 
 import URLS from "config/constants/url"
+import INIT from "config/constants/initial";
 
-const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, ACTIVE_INIT, setUsersToShare, shareNoteOpen, setAlertShare, setShareError) => {
+const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, setUsersToShare, shareNoteOpen, setAlertShare, setShareError) => {
   const noteUrl = URLS.SERVER_SHARE + "/" + idToShare;
 	axios({
 	  method: 'PUT',
@@ -11,7 +12,7 @@ const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, ACTIV
 	  data: {"users": usersToShare},
 	})
 	.then((response) => {
-    setNoteToShare(ACTIVE_INIT);
+    setNoteToShare(INIT.ACTIVE);
     setUsersToShare([]);
     shareNoteOpen(false);
   })

@@ -12,7 +12,6 @@ const deleteNote = (id, user, setNotes, setPage) => {
 		.then((response) => {
 			setNotes([]);
 			setPage(1);
-			console.log(response);
 		})
 		.catch((error) => error);
 };

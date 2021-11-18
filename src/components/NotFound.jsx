@@ -3,8 +3,7 @@ import { Route } from "react-router-dom";
 import { Alert, AlertTitle } from "@mui/material";
 
 import PATHS from "config/routes/routes";
-
-import styles from "../../src/pages/styled";
+import styles from "pages/styled";
 
 const NotFound = () => (
   <Route path={PATHS.notFound}>

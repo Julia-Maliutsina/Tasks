@@ -378,7 +378,7 @@ const noteInListShared = {
 	color: "#000",
 	minWidth: "150px",
 	fontFamily: "notes",
-	padding: "5px 0px 5px 0px",
+	paddingBottom: "3px",
 };
 const notFoundAlert = {
 	fontSize: "24px",
@@ -455,8 +455,8 @@ const submitButton = {
 };
 const sharedNotes = {
 	padding: "8px 10px 5px 20px",
-	height: "300px",
-	overflowY: "scroll",
+	height: "160px",
+	overflow: "auto",
 	background: lightColor,
 };
 const signOutButton = {
@@ -498,7 +498,7 @@ const shareIcon = {
 };
 const shareGrid = {
 	display: "grid",
-	gridTemplateColumns: "repeat(4, 1fr)",
+	gridTemplateColumns: "repeat(5, 1fr)",
 	gap: 3,
 };
 const tableBorders = {

@@ -3,19 +3,19 @@ import { useState, useEffect } from "react";
 
 import URLS from "config/constants/url";
 
-const useGetSharedNotes = (page, user) => {
+const useGetSharedNotes = (pageShared, user) => {
 
   const [sharedNotes, setShared] = useState([]);
 
   useEffect(() => {axios({
     method: 'GET',
-    url: URLS.SERVER_SHARE_PAGE + page,
+    url: URLS.SERVER_SHARE_PAGE + pageShared,
     headers: {Authorization: `Basic ${user}`}
   })
   .then((result) =>
   setShared([...sharedNotes, ...result.data]))
   .catch((error)=>{console.log(error)})
-  }, [page])
+  }, [pageShared])
 
   return [sharedNotes, setShared]
 }

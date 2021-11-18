@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { List, ListItem } from "@mui/material";
 
-import styles from "../../src/pages/styled";
+import styles from "./styled";
 
 const AboutApp = () => (
   <div style={styles.maxWidth}>
