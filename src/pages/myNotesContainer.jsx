@@ -1,16 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Box } from "@mui/system";
+import CircularProgress from "@mui/material/CircularProgress";
+import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
 import updateNotes from "api/notesUpdate";
 import useGetNotes from "api/loadPage.js";
-import NotesListContainer from "components/myNotes/NotesListContainer";
+import styles from "pages/styled";
 import MyActiveNote from "components/myNotes/MyActiveNote";
 import ButtonsNotesContainer from "components/myNotes/actions/ButtonsNotesContainer";
 import applyNotesFilters from "utils/applyFilters";
-import styles from "pages/styled";
+import { NotesListContainer } from "index.jsx";
 
 const MyNotesContainer = ({ user, store }) => {
   const [page, setPage] = useState(INIT.PAGE);
@@ -76,15 +76,23 @@ const MyNotesContainer = ({ user, store }) => {
             setNotes={setNotes}
             setPage={setPage}
           />
-          <NotesListContainer
-            user={user}
-            displayChosenNote={showChosenNote}
-            notesToDisplay={notesToDisplay}
-            setNotes={setNotes}
-            setPage={setPage}
-            page={page}
-            changePosition={changePosition}
-          />
+          <Suspense
+            fallback={
+              <div style={styles.loading}>
+                <CircularProgress value={75} />
+              </div>
+            }
+          >
+            <NotesListContainer
+              user={user}
+              displayChosenNote={showChosenNote}
+              notesToDisplay={notesToDisplay}
+              setNotes={setNotes}
+              setPage={setPage}
+              page={page}
+              changePosition={changePosition}
+            />
+          </Suspense>
         </div>
         <MyActiveNote
           active={active}
@@ -98,9 +106,8 @@ const MyNotesContainer = ({ user, store }) => {
     </div>
   );
 };
-
 MyNotesContainer.propTypes = {
   user: PropTypes.string,
+  store: PropTypes.object.isRequired,
 };
-
 export default MyNotesContainer;

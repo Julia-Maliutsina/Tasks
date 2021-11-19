@@ -1,12 +1,12 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, Alert, Snackbar } from "@mui/material";
+import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
 import submit from "api/submitSignIn";
 import validateSignIn from "utils/validateSignIn";
-
-import styles from "../pages/styled";
+import styles from "pages/styled";
 
 const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertOpen }) => (
   <div>
@@ -46,5 +46,10 @@ const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertO
     </Snackbar>
   </div>
 );
-
+SignInForm.propTypes = {
+  submitAutorization: PropTypes.func,
+  handleAlertClose: PropTypes.func,
+  alertOpen: PropTypes.bool,
+  setAlertOpen: PropTypes.func,
+};
 export default SignInForm;

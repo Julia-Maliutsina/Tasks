@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
+import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
@@ -50,5 +51,11 @@ const NewNoteForm = ({ addNoteClose, newNoteOpen, setNewNoteTitle, setNewNoteTex
     </DialogActions>
   </Dialog>
 );
-
+NewNoteForm.propTypes = {
+  newNoteOpen: PropTypes.bool,
+  addNoteClose: PropTypes.func,
+  setNewNoteTitle: PropTypes.func,
+  setNewNoteText: PropTypes.func,
+  addNoteSubmit: PropTypes.func,
+};
 export default NewNoteForm;

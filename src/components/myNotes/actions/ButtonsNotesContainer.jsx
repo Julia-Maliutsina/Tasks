@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
 import createNewNote from "api/newNote";
@@ -77,5 +78,14 @@ const ButtonsNotesContainer = ({
     />
   );
 };
-
+ButtonsNotesContainer.propTypes = {
+  user: PropTypes.string,
+  uniqueDates: PropTypes.array,
+  uniqueTitles: PropTypes.array,
+  applyDatesFilter: PropTypes.func,
+  applyTitlesFilter: PropTypes.func,
+  setActive: PropTypes.func,
+  setNotes: PropTypes.func,
+  setPage: PropTypes.func,
+};
 export default ButtonsNotesContainer;

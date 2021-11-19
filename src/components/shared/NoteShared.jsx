@@ -7,40 +7,28 @@ import PropTypes from "prop-types";
 import styles from "pages/styled";
 import shortenDescription from "utils/noteShortDescription";
 
-const NoteShared = ({ id, note, displaySharedNote }) => (
-  <div style={{ height: 150 }}>
+const NoteShared = ({ note, displaySharedNote }) => (
+  <div style={styles.sharedFullHeight}>
     <Card
-      sx={{
-        minWidth: "250px",
-      }}
-      onClick={() => displaySharedNote(id, styles.activeCardGradient, styles.focusShadow)}
+      onClick={() => displaySharedNote(note.id, styles.activeCardGradient, styles.focusShadow)}
       className="sharedNote"
       style={styles.sharedNoteCard}
     >
       <ListItemButton>
         <CardContent>
           <Typography style={styles.noteTitle}>{note.title}</Typography>
-          <Typography
-            sx={{ display: "block" }}
-            component="span"
-            style={styles.noteInListShared}
-            className="shortDescription"
-          >
+          <Typography sx={styles.block} component="span" style={styles.noteInListShared} className="shortDescription">
             {shortenDescription(note.description)}
           </Typography>
           <Typography variant="body2">{note.createdAt.substr(0, 10)}</Typography>
-          <Typography style={{ fontSize: "12px", color: "#a66289", marginTop: "5px" }}>
-            shared by: {note.author}
-          </Typography>
+          <Typography style={styles.sharedAuthor}>shared by: {note.author}</Typography>
         </CardContent>
       </ListItemButton>
     </Card>
   </div>
 );
-
 NoteShared.propTypes = {
   note: PropTypes.object,
   displaySharedNote: PropTypes.func,
 };
-
 export default NoteShared;

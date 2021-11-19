@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import SignInForm from "components/SignIn";
 
@@ -19,5 +20,7 @@ const SignInContainer = ({ submitAutorization }) => {
     />
   );
 };
-
+SignInContainer.propTypes = {
+  submitAuthorization: PropTypes.func,
+};
 export default SignInContainer;

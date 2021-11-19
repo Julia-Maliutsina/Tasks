@@ -1,7 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import PATHS from "config/routes/routes";
+import PATHS from "config/routes";
+import styles from "pages/styled.js";
+import "pages/App.css";
 import WelcomePage from "components/Main";
 import NotFound from "components/NotFound";
 import MainMenu from "components/MainMenu";
@@ -9,13 +12,20 @@ import MainMenu from "components/MainMenu";
 import MyNotesContainer from "./myNotesContainer";
 import SharedNotesContainer from "./sharedNotesContainer";
 import AboutApp from "./about";
-import SignUpForm from "./SignUp";
+import SignUpForm from "./signUp";
 import SignInContainer from "./signInContainer";
 import Profile from "./profile";
-import "./App.css";
-import styles from "./styled.js";
 
-const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAutorization, signOut, store }) => (
+const MyNotes = ({
+  profileInfo,
+  isAuthorized,
+  user,
+  submitRegistration,
+  submitAutorization,
+  signOut,
+  store,
+  NotesListContainer,
+}) => (
   <div style={styles.wrapper}>
     <BrowserRouter basename={PATHS.base}>
       <header style={styles.header}>
@@ -30,7 +40,11 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
           {isAuthorized ? <SharedNotesContainer user={user} store={store} /> : <Redirect to={PATHS.notFound} />}
         </Route>
         <Route path={PATHS.myNotes}>
-          {isAuthorized ? <MyNotesContainer user={user} store={store} /> : <Redirect to={PATHS.notFound} />}
+          {isAuthorized ? (
+            <MyNotesContainer user={user} store={store} NotesListContainer={NotesListContainer} />
+          ) : (
+            <Redirect to={PATHS.notFound} />
+          )}
         </Route>
         <Route path={PATHS.aboutApp}>
           <AboutApp />
@@ -58,5 +72,13 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
     </BrowserRouter>
   </div>
 );
-
+MyNotes.propTypes = {
+  profileInfo: PropTypes.object,
+  isAuthorized: PropTypes.bool,
+  user: PropTypes.string,
+  submitRegistration: PropTypes.func,
+  submitAutorization: PropTypes.func,
+  signOut: PropTypes.func,
+  store: PropTypes.object.isRequired,
+};
 export default MyNotes;

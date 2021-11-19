@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import PropTypes from "prop-types";
 
 import MESSAGES from "config/constants/messages";
 import styles from "pages/styled";
@@ -30,5 +31,8 @@ const WelcomePage = ({ isAuthorized, name }) => (
     </Box>
   </div>
 );
-
+WelcomePage.propTypes = {
+  isAuthorized: PropTypes.bool,
+  name: PropTypes.string,
+};
 export default WelcomePage;

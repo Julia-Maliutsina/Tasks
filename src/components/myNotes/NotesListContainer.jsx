@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
 import deleteNote from "api/deleteNote";
@@ -39,5 +40,13 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
     </div>
   );
 };
-
+NotesListContainer.propTypes = {
+  user: PropTypes.string,
+  notesToDisplay: PropTypes.arrayOf(PropTypes.object),
+  displayChosenNote: PropTypes.func,
+  setPage: PropTypes.func,
+  page: PropTypes.number,
+  changePosition: PropTypes.func,
+  setNotes: PropTypes.func,
+};
 export default NotesListContainer;

@@ -1,10 +1,12 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
+import INIT from "config/constants/initial";
 import shareNoteWithUsers from "api/shareNote";
 
 import ShareNoteForm from "./ShareNoteForm";
 
-const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen, ACTIVE_INIT }) => {
+const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen }) => {
   const [userEmailValue, setUser] = useState("");
   const [usersToShare, setUsersToShare] = useState([]);
   const [alertShareOpen, setAlertShare] = useState(false);
@@ -32,7 +34,7 @@ const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shar
     );
   };
   const cancelShare = () => {
-    setNoteToShare(ACTIVE_INIT);
+    setNoteToShare(INIT.ACTIVE);
     setUsersToShare([]);
     setUser("");
     shareNoteOpen(false);
@@ -67,5 +69,11 @@ const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shar
     />
   );
 };
-
+ShareNoteContainer.propTypes = {
+  user: PropTypes.string,
+  openShare: PropTypes.bool,
+  noteToShare: PropTypes.object,
+  setNoteToShare: PropTypes.func,
+  shareNoteOpen: PropTypes.func,
+};
 export default ShareNoteContainer;

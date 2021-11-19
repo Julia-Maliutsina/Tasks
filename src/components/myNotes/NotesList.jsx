@@ -1,13 +1,13 @@
 import List from "@mui/material/List";
-import PropTypes from "prop-types";
 import Alert from "@mui/material/Alert";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PropTypes from "prop-types";
 
 import MESSAGES from "config/constants/messages";
 import styles from "pages/styled";
 
-import Note from "./Note";
+import NoteContainer from "./NoteContainer";
 
 const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, changePosition, shareNote, removeNote }) => (
   <div style={styles.allNotes}>
@@ -44,7 +44,7 @@ const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, changePositio
                             background: snapshot.isDragging ? styles.draggingBackground : "inherit",
                           }}
                         >
-                          <Note
+                          <NoteContainer
                             note={note}
                             displayChosenNote={displayChosenNote}
                             shareNote={shareNote}
@@ -64,10 +64,13 @@ const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, changePositio
     </DragDropContext>
   </div>
 );
-
 Notes.propTypes = {
   notesToDisplay: PropTypes.arrayOf(PropTypes.object),
-  noteChosen: PropTypes.func,
+  displayChosenNote: PropTypes.func,
+  setPage: PropTypes.func,
+  page: PropTypes.number,
+  changePosition: PropTypes.func,
+  shareNote: PropTypes.func,
+  removeNote: PropTypes.func,
 };
-
 export default Notes;

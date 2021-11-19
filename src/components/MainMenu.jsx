@@ -1,7 +1,8 @@
 import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PropTypes from "prop-types";
 
-import PATHS from "config/routes/routes";
+import PATHS from "config/routes";
 import styles from "pages/styled";
 
 const MainMenu = ({ isAuthorized }) => (
@@ -16,7 +17,7 @@ const MainMenu = ({ isAuthorized }) => (
       <span style={styles.menuText}>About</span>
     </NavLink>
     {!isAuthorized ? (
-      <div style={{ display: "inline" }}>
+      <div style={styles.inline}>
         <NavLink to={PATHS.signIn} className="menuSignIn" activeClassName="activeMenuAuthorization">
           <span>Sign in</span>
         </NavLink>
@@ -34,5 +35,7 @@ const MainMenu = ({ isAuthorized }) => (
     )}
   </div>
 );
-
+MainMenu.propTypes = {
+  isAuthorized: PropTypes.bool,
+};
 export default MainMenu;

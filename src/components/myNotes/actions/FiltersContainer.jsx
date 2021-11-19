@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import FilterDatesForm from "./FilterDatesForm";
 import FilterTitlesForm from "./FilterTitlesForm";
 
@@ -24,13 +26,11 @@ const FiltersContainer = ({
       filterDatesArray.splice(date, date);
     }
   };
-
   const applyDateFilters = () => {
     applyDatesFilter(filterDatesArray);
     setFilterDateOpen(false);
     localStorage.setItem("filterDatesArray", JSON.stringify(filterDatesArray));
   };
-
   const changeTitleFilters = (event) => {
     if (event.target.checked) {
       filterTitlesArray.push(event.target.name);
@@ -40,12 +40,10 @@ const FiltersContainer = ({
       filterTitlesArray.splice(title, title);
     }
   };
-
   const applyTitleFilters = () => {
     applyTitlesFilter(filterTitlesArray);
     setFilterTitleOpen(false);
   };
-
   return (
     <div>
       <FilterDatesForm
@@ -65,5 +63,18 @@ const FiltersContainer = ({
     </div>
   );
 };
-
+FiltersContainer.propTypes = {
+  uniqueDates: PropTypes.array,
+  uniqueTitles: PropTypes.array,
+  applyDatesFilter: PropTypes.func,
+  applyTitlesFilter: PropTypes.func,
+  filterDateOpen: PropTypes.bool,
+  filterTitleOpen: PropTypes.bool,
+  setFilterDateOpen: PropTypes.func,
+  setFilterTitleOpen: PropTypes.func,
+  filterDatesArray: PropTypes.array,
+  filterTitlesArray: PropTypes.array,
+  setDateFilters: PropTypes.func,
+  setTitleFilters: PropTypes.func,
+};
 export default FiltersContainer;

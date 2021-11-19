@@ -10,6 +10,7 @@ import {
   Button,
   Checkbox,
 } from "@mui/material";
+import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
@@ -42,5 +43,11 @@ const FilterTitlesForm = ({
     </DialogActions>
   </Dialog>
 );
-
+FilterTitlesForm.propTypes = {
+  uniqueTitles: PropTypes.array,
+  filterTitleOpen: PropTypes.bool,
+  setFilterTitleOpen: PropTypes.func,
+  applyTitleFilters: PropTypes.func,
+  changeTitleFilters: PropTypes.func,
+};
 export default FilterTitlesForm;

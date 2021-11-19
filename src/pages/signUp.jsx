@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from "@mui/material/Link";
+import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
+import styles from "pages/styled";
 import validateSignUp from "utils/validateSignUp";
-
-import styles from "./styled";
 
 const SignUpForm = ({ submitRegistration }) => (
   <div>
@@ -66,5 +66,7 @@ const SignUpForm = ({ submitRegistration }) => (
     </Formik>
   </div>
 );
-
+SignUpForm.propTypes = {
+  submitRegistration: PropTypes.func,
+};
 export default SignUpForm;

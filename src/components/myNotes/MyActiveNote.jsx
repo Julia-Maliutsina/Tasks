@@ -1,4 +1,5 @@
 import { TextareaAutosize, Snackbar, Alert } from "@mui/material";
+import PropTypes from "prop-types";
 
 import MESSAGES from "config/constants/messages";
 import styles from "pages/styled";
@@ -28,5 +29,12 @@ const MyActiveNote = ({ active, newText, handleChange, alertOpen, saveChangedNot
     </Snackbar>
   </div>
 );
-
+MyActiveNote.propTypes = {
+  active: PropTypes.object,
+  newText: PropTypes.string,
+  handleChange: PropTypes.func,
+  alertOpen: PropTypes.bool,
+  saveChangedNote: PropTypes.func,
+  handleAlertClose: PropTypes.func,
+};
 export default MyActiveNote;

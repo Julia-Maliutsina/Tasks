@@ -10,6 +10,7 @@ import {
   Button,
   Checkbox,
 } from "@mui/material";
+import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
@@ -36,5 +37,11 @@ const FilterDatesForm = ({ filterDateOpen, setFilterDateOpen, uniqueDates, chang
     </DialogActions>
   </Dialog>
 );
-
+FilterDatesForm.propTypes = {
+  uniqueDates: PropTypes.array,
+  filterDateOpen: PropTypes.bool,
+  setFilterDateOpen: PropTypes.func,
+  applyDateFilters: PropTypes.func,
+  changeDateFilters: PropTypes.func,
+};
 export default FilterDatesForm;

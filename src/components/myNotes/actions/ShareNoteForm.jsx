@@ -11,11 +11,8 @@ import {
   Snackbar,
   ListItem,
 } from "@mui/material";
-
-import CancelIcon from "@mui/icons-material/Cancel";
-import IosShareIcon from "@mui/icons-material/IosShare";
-import AddIcon from "@mui/icons-material/Add";
-import ClearIcon from "@mui/icons-material/Clear";
+import { Cancel, IosShare, Add, Clear } from "@mui/icons-material";
+import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
@@ -50,7 +47,7 @@ const ShareNoteForm = ({
         <ListItem style={styles.emailsList}>
           <span style={styles.widthEmail}>{email}</span>
           <IconButton style={styles.clearUsers} onClick={(e) => removeUser(emailId)}>
-            <ClearIcon fontSize="small" />
+            <Clear fontSize="small" />
           </IconButton>
         </ListItem>
       ))}
@@ -67,7 +64,7 @@ const ShareNoteForm = ({
         onChange={(e) => setUserToShare(e.target.value)}
       />
       <Button style={styles.addUsers} onClick={addUserToList}>
-        <AddIcon fontSize="small" color="inherit" style={styles.inline} />
+        <Add fontSize="small" color="inherit" style={styles.inline} />
         <span>Add</span>
       </Button>
       <Snackbar open={alertShareOpen} autoHideDuration={3000} onClose={handleAlertShareClose}>
@@ -78,15 +75,29 @@ const ShareNoteForm = ({
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
       <Button style={styles.cancelShareButton} onClick={cancelShare}>
-        <CancelIcon style={styles.saveIcon} />
+        <Cancel style={styles.saveIcon} />
         Cancel
       </Button>
       <Button style={styles.primaryButton} variant="contained" onClick={shareNoteSubmit}>
-        <IosShareIcon style={styles.saveIcon} />
+        <IosShare style={styles.saveIcon} />
         Share
       </Button>
     </DialogActions>
   </Dialog>
 );
-
+ShareNoteForm.propTypes = {
+  openShare: PropTypes.bool,
+  noteToShare: PropTypes.object,
+  usersToShare: PropTypes.array,
+  removeUser: PropTypes.func,
+  setUser: PropTypes.func,
+  setUserToShare: PropTypes.func,
+  userEmailValue: PropTypes.string,
+  addUserToList: PropTypes.func,
+  cancelShare: PropTypes.func,
+  shareNoteSubmit: PropTypes.func,
+  alertShareOpen: PropTypes.bool,
+  handleAlertShareClose: PropTypes.func,
+  shareError: PropTypes.string,
+};
 export default ShareNoteForm;

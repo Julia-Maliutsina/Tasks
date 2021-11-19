@@ -123,6 +123,9 @@ const applyFilter = {
 	borderRadius: "5px",
 	color: white,
 };
+const block = {
+	display: "block"
+}
 const buttonGroup = {
 	display: "inline-block",
 };
@@ -255,6 +258,9 @@ const header = {
 const inline = {
 	display: "inline",
 };
+const inlineBlock = { 
+	display: "inline-block" 
+}
 const inputError = {
 	color: errorColor,
 	fontSize: "12px",
@@ -263,6 +269,11 @@ const inputError = {
 const listAbout = {
 	padding: "3px 8px 3px 8px",
 };
+const loading = {
+	width: "40px", 
+	marginLeft: "auto", 
+	marginRight: "auto"
+}
 const mainMenuTabs = {
 	textDecoration: "none",
 	padding: "5px 10px 15px 10px",
@@ -453,6 +464,9 @@ const submitButton = {
 	borderRadius: "5px",
 	border: "none",
 };
+const sharedFullHeight = {
+	height: "150px"
+}
 const sharedNotes = {
 	padding: "8px 10px 5px 20px",
 	height: "160px",
@@ -501,6 +515,17 @@ const shareGrid = {
 	gridTemplateColumns: "repeat(5, 1fr)",
 	gap: 3,
 };
+const sharedAuthor = {
+	fontSize: "12px", 
+	color: "#a66289", 
+	marginTop: "5px"
+}
+const sharedAuthorChosen = { 
+	marginLeft: "77%", 
+	display: "inline-block", 
+	width: "230px", 
+	textAlign: "right" 
+}
 const tableBorders = {
 	"&:last-child td, &:last-child th": { border: 0 },
 };
@@ -604,6 +629,7 @@ const styles = {
 	allNotes: allNotes,
 	applyFilter: applyFilter,
 	authorizationLink: authorizationLink,
+	block: block,
 	buttonGroup: buttonGroup,
 	cancelButton: cancelButton,
 	cancelFilter: cancelFilter,
@@ -626,6 +652,8 @@ const styles = {
 	formLabel: formLabel,
 	header: header,
 	inline: inline,
+	inlineBlock: inlineBlock,
+	loading: loading,
 	maxWidth: maxWidth,
 	menu: menu,
 	menuSignUp: menuSignUp,
@@ -652,6 +680,9 @@ const styles = {
 	progressCircle: progressCircle,
 	relativ: relative,
 	saveIcon: saveButtonIcon,
+	sharedAuthor: sharedAuthor,
+	sharedAuthorChosen: sharedAuthorChosen,
+	sharedFullHeight: sharedFullHeight,
 	sharedNotesGrid: sharedNotes,
 	sharedNoteCard: sharedNoteCard,
 	sharedText: textShared,
