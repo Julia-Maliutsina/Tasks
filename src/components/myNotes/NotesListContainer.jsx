@@ -17,6 +17,7 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
   };
 
   const removeNote = (noteId) => {
+    console.log(noteId);
     deleteNote(noteId, user, setNotes, setPage);
   };
   return (

@@ -12,8 +12,10 @@ const useGetSharedNotes = (pageShared, user) => {
     url: URLS.SERVER_SHARE_PAGE + pageShared,
     headers: {Authorization: `Basic ${user}`}
   })
-  .then((result) =>
-  setShared([...sharedNotes, ...result.data]))
+  .then((result) => {
+  setShared([...sharedNotes, ...result.data])
+console.log(sharedNotes)
+})
   .catch((error)=>{console.log(error)})
   }, [pageShared])
 

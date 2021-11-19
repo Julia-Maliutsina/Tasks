@@ -10,6 +10,7 @@ import styles from "pages/styled";
 import MyActiveNote from "components/myNotes/MyActiveNote";
 import ButtonsNotesContainer from "components/myNotes/actions/ButtonsNotesContainer";
 import applyNotesFilters from "utils/applyFilters";
+import toLocalDate from "utils/toLocalDate";
 import { NotesListContainer } from "index.jsx";
 
 const MyNotesContainer = ({ user, store }) => {
@@ -23,7 +24,7 @@ const MyNotesContainer = ({ user, store }) => {
   useEffect(() => {
     changeText(active.description);
   }, [active]);
-  const dates = notes.map((note) => note.createdAt.substr(0, 10));
+  const dates = notes.map((note) => toLocalDate(note.createdAt));
   const titles = notes.map((note) => note.title);
   const uniqueDates = dates.filter((item, position) => dates.indexOf(item) === position);
   const uniqueTitles = titles.filter((item, position) => titles.indexOf(item) === position);
@@ -31,7 +32,7 @@ const MyNotesContainer = ({ user, store }) => {
     setActive(note);
   }
   function saveChangedNote(newText) {
-    if (active.id >= INIT.ID_MINIMAL) {
+    if (active.id.length >= INIT.ID) {
       for (let index = 0; index < notes.length; index++) {
         if (notes[index].id === active.id) {
           notes[index].description = newText;

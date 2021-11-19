@@ -6,21 +6,18 @@ import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 import shortenDescription from "utils/noteShortDescription";
+import toLocalDate from "utils/toLocalDate";
 
 const NoteShared = ({ note, displaySharedNote }) => (
   <div style={styles.sharedFullHeight}>
-    <Card
-      onClick={() => displaySharedNote(note.id, styles.activeCardGradient, styles.focusShadow)}
-      className="sharedNote"
-      style={styles.sharedNoteCard}
-    >
+    <Card onClick={() => displaySharedNote(note)} className="sharedNote" style={styles.sharedNoteCard}>
       <ListItemButton>
         <CardContent>
           <Typography style={styles.noteTitle}>{note.title}</Typography>
           <Typography sx={styles.block} component="span" style={styles.noteInListShared} className="shortDescription">
             {shortenDescription(note.description)}
           </Typography>
-          <Typography variant="body2">{note.createdAt.substr(0, 10)}</Typography>
+          <Typography variant="body2">{toLocalDate(note.createdAt)}</Typography>
           <Typography style={styles.sharedAuthor}>shared by: {note.author}</Typography>
         </CardContent>
       </ListItemButton>

@@ -1,7 +1,6 @@
 import MESSAGES from "./messages";
 
-const ID = -1;
-const ID_MINIMAL = 0;
+const ID = 0;
 const PAGE = 1;
 const ACTIVE = {
   id: ID,
@@ -25,7 +24,6 @@ const AUTH_VALUES = {
 };
 const INIT = {
   ID,
-  ID_MINIMAL,
   PAGE,
   ACTIVE,
   ACTIVE_SHARED,

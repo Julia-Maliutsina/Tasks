@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 import shortenDescription from "utils/noteShortDescription";
+import toLocalDate from "utils/toLocalDate";
 
 const Note = ({ note, displayChosenNote, shareNote, setNoteToRemove }) => (
   <ListItem divider>
@@ -21,7 +22,7 @@ const Note = ({ note, displayChosenNote, shareNote, setNoteToRemove }) => (
             <Typography sx={styles.inlineBlock} component="span" style={styles.noteInList} className="shortDescription">
               {shortenDescription(note.description)}
             </Typography>
-            {note.createdAt.substr(0, 10)}
+            {toLocalDate(note.createdAt)}
           </React.Fragment>
         }
         style={styles.noteInList}

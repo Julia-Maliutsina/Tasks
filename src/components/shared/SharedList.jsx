@@ -9,7 +9,7 @@ import styles from "pages/styled";
 
 import NoteShared from "./NoteShared";
 
-const SharedList = ({ sharedNotes, showChosenSharedNote, pageShared, setPageShared }) => (
+const SharedList = ({ sharedNotes, displaySharedNote, pageShared, setPageShared }) => (
   <div style={styles.sharedNotesGrid} id="scrollableShared">
     {sharedNotes.length === 0 ? (
       <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noSharedNotes}>
@@ -24,7 +24,7 @@ const SharedList = ({ sharedNotes, showChosenSharedNote, pageShared, setPageShar
       >
         <Box sx={styles.shareGrid}>
           {sharedNotes.map((note) => {
-            return <NoteShared note={note} displaySharedNote={showChosenSharedNote} />;
+            return <NoteShared note={note} displaySharedNote={displaySharedNote} />;
           })}
         </Box>
       </InfiniteScroll>
@@ -33,7 +33,7 @@ const SharedList = ({ sharedNotes, showChosenSharedNote, pageShared, setPageShar
 );
 SharedList.propTypes = {
   sharedNotes: PropTypes.arrayOf(PropTypes.object),
-  showChosenSharedNote: PropTypes.func,
+  displaySharedNote: PropTypes.func,
   pageShared: PropTypes.number,
   setPageShared: PropTypes.func,
 };

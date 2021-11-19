@@ -12,15 +12,13 @@ const SharedNotesContainer = ({ user }) => {
   const [pageShared, setPageShared] = useState(1);
   const [sharedNotes, setShared] = useGetSharedNotes(pageShared, user);
   const [sharedChosenNote, displaySharedNote] = useState(INIT.ACTIVE_SHARED);
-  function showChosenSharedNote(id) {
-    displaySharedNote(sharedNotes[id]);
-  }
+
   return (
     <div style={styles.maxWidth}>
       <ActiveSharedNote sharedChosenNote={sharedChosenNote} />
       <SharedList
         sharedNotes={sharedNotes}
-        showChosenSharedNote={showChosenSharedNote}
+        displaySharedNote={displaySharedNote}
         pageShared={pageShared}
         setPageShared={setPageShared}
       />
