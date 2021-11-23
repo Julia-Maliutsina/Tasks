@@ -10,7 +10,7 @@ import styles from "pages/styled";
 import NoteShared from "./NoteShared";
 
 const SharedList = ({ sharedNotes, displaySharedNote, pageShared, setPageShared }) => (
-  <div style={styles.sharedNotesGrid} id="scrollableShared">
+  <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
     {sharedNotes.length === 0 ? (
       <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noSharedNotes}>
         {MESSAGES.NO_SHARED_NOTES}

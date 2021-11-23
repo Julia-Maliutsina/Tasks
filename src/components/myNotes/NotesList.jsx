@@ -6,14 +6,15 @@ import PropTypes from "prop-types";
 
 import MESSAGES from "config/constants/messages";
 import styles from "pages/styled";
+import changePosition from "utils/changePosition";
 
 import NoteContainer from "./NoteContainer";
 
-const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, changePosition, shareNote, removeNote }) => (
+const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, shareNote, removeNote }) => (
   <div style={styles.allNotes}>
     <DragDropContext
       onDragEnd={(parameters) => {
-        changePosition(parameters);
+        changePosition(parameters, notesToDisplay);
       }}
     >
       {notesToDisplay.length === 0 ? (
@@ -23,7 +24,13 @@ const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, changePositio
       ) : (
         <Droppable droppableId="droppable-1">
           {(provided, snapshot) => (
-            <div id="scrollableDiv" style={styles.droppable} ref={provided.innerRef} {...provided.droppableProps}>
+            <div
+              id="scrollableDiv"
+              style={styles.droppable}
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              data-testid="scrollableList"
+            >
               <List>
                 <InfiniteScroll
                   dataLength={notesToDisplay.length}
@@ -69,7 +76,6 @@ Notes.propTypes = {
   displayChosenNote: PropTypes.func,
   setPage: PropTypes.func,
   page: PropTypes.number,
-  changePosition: PropTypes.func,
   shareNote: PropTypes.func,
   removeNote: PropTypes.func,
 };

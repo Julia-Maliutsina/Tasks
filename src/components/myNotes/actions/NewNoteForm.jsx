@@ -27,6 +27,7 @@ const NewNoteForm = ({ addNoteClose, newNoteOpen, setNewNoteTitle, setNewNoteTex
         minLength={1}
         style={styles.newNoteTitle}
         onChange={(e) => setNewNoteTitle(e.target.value)}
+        data-testid="newTitle"
       />
       <TextareaAutosize
         id="text"
@@ -37,14 +38,15 @@ const NewNoteForm = ({ addNoteClose, newNoteOpen, setNewNoteTitle, setNewNoteTex
         minLength={1}
         style={styles.newNoteText}
         onChange={(e) => setNewNoteText(e.target.value)}
+        data-testid="newText"
       />
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
-      <Button style={styles.cancelButton} onClick={addNoteClose}>
+      <Button style={styles.cancelButton} onClick={addNoteClose} data-testid="cancelNewNote">
         <CancelIcon style={styles.saveIcon} />
         Cancel
       </Button>
-      <Button style={styles.primaryButton} variant="contained" onClick={addNoteSubmit}>
+      <Button style={styles.primaryButton} variant="contained" onClick={addNoteSubmit} data-testid="submitNewNote">
         <SaveIcon style={styles.saveIcon} />
         Save note
       </Button>

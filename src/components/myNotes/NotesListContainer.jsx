@@ -7,7 +7,7 @@ import deleteNote from "api/deleteNote";
 import Notes from "./NotesList";
 import ShareNoteContainer from "./actions/ShareNoteContainer";
 
-const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes, setPage, page, changePosition }) => {
+const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes, setPage, page }) => {
   const [openShare, shareNoteOpen] = useState(false);
   const [noteToShare, setNoteToShare] = useState(INIT.ACTIVE);
 
@@ -27,7 +27,6 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
         notesToDisplay={notesToDisplay}
         setPage={setPage}
         page={page}
-        changePosition={changePosition}
         shareNote={shareNote}
         removeNote={removeNote}
       />
@@ -47,7 +46,6 @@ NotesListContainer.propTypes = {
   displayChosenNote: PropTypes.func,
   setPage: PropTypes.func,
   page: PropTypes.number,
-  changePosition: PropTypes.func,
   setNotes: PropTypes.func,
 };
 export default NotesListContainer;

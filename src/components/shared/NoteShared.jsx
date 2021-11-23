@@ -10,7 +10,12 @@ import toLocalDate from "utils/toLocalDate";
 
 const NoteShared = ({ note, displaySharedNote }) => (
   <div style={styles.sharedFullHeight}>
-    <Card onClick={() => displaySharedNote(note)} className="sharedNote" style={styles.sharedNoteCard}>
+    <Card
+      onClick={() => displaySharedNote(note)}
+      className="sharedNote"
+      style={styles.sharedNoteCard}
+      data-testid="sharedNoteInList"
+    >
       <ListItemButton>
         <CardContent>
           <Typography style={styles.noteTitle}>{note.title}</Typography>

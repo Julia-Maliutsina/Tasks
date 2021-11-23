@@ -11,6 +11,7 @@ const deleteNote = (id, user, setNotes, setPage) => {
 		headers: { Authorization: `Basic ${user}` },
 	})
 		.then((response) => {
+			setPage(0);
 			setNotes([]);
 			setPage(1);
 		})

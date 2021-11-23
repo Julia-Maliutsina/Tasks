@@ -9,7 +9,7 @@ const ActiveSharedNote = ({ sharedChosenNote }) => (
     <p style={styles.sharedText}>{sharedChosenNote.description}</p>
     <p style={styles.date}>
       {sharedChosenNote.createdAt && toLocalDate(sharedChosenNote.createdAt)}
-      <div style={styles.sharedAuthorChosen}>{sharedChosenNote.author}</div>
+      <span style={styles.sharedAuthorChosen}>{sharedChosenNote.author}</span>
     </p>
   </div>
 );

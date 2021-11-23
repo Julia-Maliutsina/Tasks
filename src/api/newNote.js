@@ -19,6 +19,7 @@ const createNewNote = (
 		headers: { Authorization: `Basic ${user}` },
 		data: newNote,
 	}).then((response) => {
+		setPage(0);
 		setNotes([]);
 		setPage(1);
 	});

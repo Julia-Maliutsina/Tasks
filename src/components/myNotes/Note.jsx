@@ -26,9 +26,10 @@ const Note = ({ note, displayChosenNote, shareNote, setNoteToRemove }) => (
           </React.Fragment>
         }
         style={styles.noteInList}
+        data-testid="noteInList"
       />
     </ListItemButton>
-    <IconButton onClick={() => shareNote(note)} color="inherit" component="span">
+    <IconButton onClick={() => shareNote(note)} color="inherit" component="span" data-testid="shareNote">
       <IosShareIcon style={styles.shareIcon} />
     </IconButton>
     <IconButton
@@ -37,6 +38,7 @@ const Note = ({ note, displayChosenNote, shareNote, setNoteToRemove }) => (
       }}
       color="inherit"
       component="span"
+      data-testid="deleteNote"
     >
       <DeleteIcon style={styles.deleteIcon} />
     </IconButton>

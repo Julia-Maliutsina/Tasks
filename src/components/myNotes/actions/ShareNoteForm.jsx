@@ -46,7 +46,7 @@ const ShareNoteForm = ({
       {usersToShare.map((email, emailId) => (
         <ListItem style={styles.emailsList}>
           <span style={styles.widthEmail}>{email}</span>
-          <IconButton style={styles.clearUsers} onClick={(e) => removeUser(emailId)}>
+          <IconButton style={styles.clearUsers} onClick={(e) => removeUser(emailId)} data-testid="removeUser">
             <Clear fontSize="small" />
           </IconButton>
         </ListItem>
@@ -63,7 +63,7 @@ const ShareNoteForm = ({
         onFocus={() => setUser("")}
         onChange={(e) => setUserToShare(e.target.value)}
       />
-      <Button style={styles.addUsers} onClick={addUserToList}>
+      <Button style={styles.addUsers} onClick={addUserToList} data-testid="addUser">
         <Add fontSize="small" color="inherit" style={styles.inline} />
         <span>Add</span>
       </Button>
@@ -74,11 +74,11 @@ const ShareNoteForm = ({
       </Snackbar>
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
-      <Button style={styles.cancelShareButton} onClick={cancelShare}>
+      <Button style={styles.cancelShareButton} onClick={cancelShare} data-testid="cancelShare">
         <Cancel style={styles.saveIcon} />
         Cancel
       </Button>
-      <Button style={styles.primaryButton} variant="contained" onClick={shareNoteSubmit}>
+      <Button style={styles.primaryButton} variant="contained" onClick={shareNoteSubmit} data-testid="submitShare">
         <IosShare style={styles.saveIcon} />
         Share
       </Button>
