@@ -7,7 +7,10 @@ const createNewNote = (
 	newNoteText,
 	user,
 	setNotes,
-	setPage
+	setPage,
+	setAlertNew,
+	setNewError,
+	setOpen
 ) => {
 	const newNote = {
 		title: newNoteTitle,
@@ -19,10 +22,15 @@ const createNewNote = (
 		headers: { Authorization: `Basic ${user}` },
 		data: newNote,
 	}).then((response) => {
+		setOpen(false);
 		setPage(0);
 		setNotes([]);
 		setPage(1);
-	});
+	})
+	.catch((error) => {
+    setAlertNew(true);
+    setNewError(error.response.data);
+  })
 };
 
 export default createNewNote;

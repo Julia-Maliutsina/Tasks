@@ -15,7 +15,7 @@ const useGetNotes = (user, page) => {
   .then((result) =>{
     setNotes([...notes, ...result.data])
   })
-  .catch((error)=>{console.log(error)}) 
+  .catch((error)=>{}) 
 }, [page])
 
   return [notes, setNotes]

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import styles from "pages/styled";
 
 import NewNoteForm from "./NewNoteForm";
-import FiltersContainer from "./FiltersContainer";
+import FiltersContainer from "./filters/FiltersContainer";
 
 const ButtonsNotes = ({
   uniqueDates,
@@ -29,22 +29,25 @@ const ButtonsNotes = ({
   filterTitlesArray,
   setDateFilters,
   setTitleFilters,
+  newNoteError,
+  alertNewOpen,
+  handleAlertNewClose,
 }) => (
   <div className="buttonsNotes">
     <h4>Filter by: </h4>
     <ButtonGroup variant="contained" style={styles.buttonGroup}>
-      <Button id="filterButton" onClick={filterNotesByTitle}>
+      <Button id="filterButton" onClick={filterNotesByTitle} data-testid="filterByTitles">
         Title
       </Button>
-      <Button id="filterButton" onClick={filterNotesByDate}>
+      <Button id="filterButton" onClick={filterNotesByDate} data-testid="filterByDates">
         Date
       </Button>
-      <Button id="filterButton" onClick={discardFilters}>
+      <Button id="filterButton" onClick={discardFilters} data-testid="discardFilters">
         Show all
       </Button>
     </ButtonGroup>
     <h4 style={styles.addNote}>Add note:</h4>
-    <IconButton style={styles.addButtonIcon} onClick={addNoteOpen}>
+    <IconButton style={styles.addButtonIcon} onClick={addNoteOpen} data-testid="addNote">
       <AddCircleIcon color="info" fontSize="large" />
     </IconButton>
     <NewNoteForm
@@ -53,6 +56,9 @@ const ButtonsNotes = ({
       setNewNoteTitle={setNewNoteTitle}
       setNewNoteText={setNewNoteText}
       addNoteSubmit={addNoteSubmit}
+      newNoteError={newNoteError}
+      alertNewOpen={alertNewOpen}
+      handleAlertNewClose={handleAlertNewClose}
     />
     <FiltersContainer
       uniqueDates={uniqueDates}
@@ -75,7 +81,7 @@ ButtonsNotes.propTypes = {
   uniqueTitles: PropTypes.array,
   applyDatesFilter: PropTypes.func,
   applyTitlesFilter: PropTypes.func,
-  addNoteOpen: PropTypes.array,
+  addNoteOpen: PropTypes.func,
   newNoteOpen: PropTypes.bool,
   addNoteClose: PropTypes.func,
   setNewNoteTitle: PropTypes.func,
@@ -92,5 +98,8 @@ ButtonsNotes.propTypes = {
   filterTitlesArray: PropTypes.array,
   setDateFilters: PropTypes.func,
   setTitleFilters: PropTypes.func,
+  newNoteError: PropTypes.string,
+  alertNewOpen: PropTypes.bool,
+  handleAlertNewClose: PropTypes.func,
 };
 export default ButtonsNotes;

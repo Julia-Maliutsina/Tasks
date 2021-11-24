@@ -19,6 +19,8 @@ const ButtonsNotesContainer = ({
   const [newNoteOpen, setOpen] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteText, setNewNoteText] = useState("");
+  const [alertNewOpen, setAlertNew] = useState(false);
+  const [newNoteError, setNewError] = useState("");
   const addNoteOpen = () => {
     setNewNoteTitle("");
     setNewNoteText("");
@@ -29,9 +31,11 @@ const ButtonsNotesContainer = ({
     setOpen(false);
   };
   const addNoteSubmit = () => {
-    if (newNoteTitle.length > 3 || newNoteText.length > 3) {
-      createNewNote(newNoteTitle, newNoteText, user, setNotes, setPage);
-      addNoteClose();
+    if (newNoteTitle.length === 0 || newNoteText.length === 0) {
+      setAlertNew(true);
+      setNewError("Enter title and description");
+    } else {
+      createNewNote(newNoteTitle, newNoteText, user, setNotes, setPage, setAlertNew, setNewError, setOpen);
     }
   };
   const [filterDateOpen, setFilterDateOpen] = useState(false);
@@ -51,6 +55,12 @@ const ButtonsNotesContainer = ({
     applyDatesFilter([]);
     setTitleFilters([]);
     applyTitlesFilter([]);
+  };
+  const handleAlertNewClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlertNew(false);
   };
   return (
     <ButtonsNotes
@@ -75,6 +85,9 @@ const ButtonsNotesContainer = ({
       filterTitlesArray={filterTitlesArray}
       setDateFilters={setDateFilters}
       setTitleFilters={setTitleFilters}
+      newNoteError={newNoteError}
+      alertNewOpen={alertNewOpen}
+      handleAlertNewClose={handleAlertNewClose}
     />
   );
 };

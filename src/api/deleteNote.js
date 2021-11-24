@@ -3,7 +3,6 @@ import axios from "axios";
 import URLS from "config/constants/url";
 
 const deleteNote = (id, user, setNotes, setPage) => {
-	console.log(id);
 	const noteUrl = URLS.SERVER_NOTES + "/" + id;
 	axios({
 		method: "DELETE",

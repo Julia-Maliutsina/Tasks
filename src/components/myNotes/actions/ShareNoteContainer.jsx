@@ -16,10 +16,15 @@ const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shar
     setUser(userEmail);
   };
   const addUserToList = () => {
-    let usersArray = usersToShare;
-    usersArray.push(userEmailValue);
-    setUsersToShare(usersArray);
-    setUser("");
+    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(userEmailValue)) {
+      setAlertShare(true);
+      setShareError("Invalid email format");
+    } else {
+      let usersArray = usersToShare;
+      usersArray.push(userEmailValue);
+      setUsersToShare(usersArray);
+      setUser("");
+    }
   };
   const shareNoteSubmit = () => {
     shareNoteWithUsers(

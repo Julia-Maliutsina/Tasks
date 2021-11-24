@@ -28,16 +28,16 @@ const FilterTitlesForm = ({
       <FormControl style={styles.filters}>
         <FormGroup>
           {uniqueTitles.map((title, i) => (
-            <FormControlLabel control={<Checkbox onChange={changeTitleFilters} name={title} />} label={title} />
+            <FormControlLabel key={i} control={<Checkbox onChange={changeTitleFilters} name={title} />} label={title} />
           ))}
         </FormGroup>
       </FormControl>
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
-      <Button style={styles.cancelFilter} onClick={() => setFilterTitleOpen(false)}>
+      <Button style={styles.cancelFilter} onClick={() => setFilterTitleOpen(false)} data-testid="cancelTitleFilters">
         Cancel
       </Button>
-      <Button style={styles.applyFilter} onClick={applyTitleFilters}>
+      <Button style={styles.applyFilter} onClick={applyTitleFilters} data-testid="applyTitleFilters">
         Filter notes
       </Button>
     </DialogActions>

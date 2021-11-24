@@ -6,6 +6,8 @@ import {
   DialogTitle,
   TextareaAutosize,
   Button,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
@@ -13,7 +15,16 @@ import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
-const NewNoteForm = ({ addNoteClose, newNoteOpen, setNewNoteTitle, setNewNoteText, addNoteSubmit }) => (
+const NewNoteForm = ({
+  addNoteClose,
+  newNoteOpen,
+  setNewNoteTitle,
+  setNewNoteText,
+  addNoteSubmit,
+  newNoteError,
+  alertNewOpen,
+  handleAlertNewClose,
+}) => (
   <Dialog open={newNoteOpen} onClose={addNoteClose}>
     <DialogTitle style={styles.newNote}>New note</DialogTitle>
     <DialogContent>
@@ -40,6 +51,11 @@ const NewNoteForm = ({ addNoteClose, newNoteOpen, setNewNoteTitle, setNewNoteTex
         onChange={(e) => setNewNoteText(e.target.value)}
         data-testid="newText"
       />
+      <Snackbar open={alertNewOpen} autoHideDuration={3000} onClose={handleAlertNewClose}>
+        <Alert onClose={handleAlertNewClose} severity="error" sx={styles.maxWidth}>
+          {newNoteError}
+        </Alert>
+      </Snackbar>
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
       <Button style={styles.cancelButton} onClick={addNoteClose} data-testid="cancelNewNote">
@@ -59,5 +75,8 @@ NewNoteForm.propTypes = {
   setNewNoteTitle: PropTypes.func,
   setNewNoteText: PropTypes.func,
   addNoteSubmit: PropTypes.func,
+  newNoteError: PropTypes.string,
+  alertNewOpen: PropTypes.bool,
+  handleAlertNewClose: PropTypes.func,
 };
 export default NewNoteForm;

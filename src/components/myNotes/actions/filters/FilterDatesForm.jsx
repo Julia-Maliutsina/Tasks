@@ -22,16 +22,16 @@ const FilterDatesForm = ({ filterDateOpen, setFilterDateOpen, uniqueDates, chang
       <FormControl style={styles.filters}>
         <FormGroup>
           {uniqueDates.map((date, i) => (
-            <FormControlLabel control={<Checkbox onChange={changeDateFilters} name={date} />} label={date} />
+            <FormControlLabel key={i} control={<Checkbox onChange={changeDateFilters} name={date} />} label={date} />
           ))}
         </FormGroup>
       </FormControl>
     </DialogContent>
     <DialogActions style={styles.addNoteButtons}>
-      <Button style={styles.cancelFilter} onClick={() => setFilterDateOpen(false)}>
+      <Button style={styles.cancelFilter} onClick={() => setFilterDateOpen(false)} data-testid="cancelDateFilters">
         Cancel
       </Button>
-      <Button style={styles.applyFilter} onClick={applyDateFilters}>
+      <Button style={styles.applyFilter} onClick={applyDateFilters} data-testid="applyDateFilters">
         Filter notes
       </Button>
     </DialogActions>
