@@ -23,8 +23,8 @@ const SharedList = ({ sharedNotes, displaySharedNote, pageShared, setPageShared 
         scrollableTarget="scrollableShared"
       >
         <Box sx={styles.shareGrid}>
-          {sharedNotes.map((note) => {
-            return <NoteShared note={note} displaySharedNote={displaySharedNote} />;
+          {sharedNotes.map((note, id) => {
+            return <NoteShared key={id} note={note} displaySharedNote={displaySharedNote} />;
           })}
         </Box>
       </InfiniteScroll>

@@ -7,7 +7,7 @@ const deleteNote = (id, user, setNotes, setPage) => {
 	axios({
 		method: "DELETE",
 		url: noteUrl,
-		headers: { Authorization: `Basic ${user}` },
+		headers: { Authorization: `Bearer ${user}` },
 	})
 		.then((response) => {
 			setPage(0);

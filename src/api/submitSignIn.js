@@ -4,24 +4,37 @@ import {encode as base64_encode} from 'base-64';
 import URLS from "config/constants/url";
 
 const submit = (values, submitAutorization, setAlertOpen) => {
-  const encoded = base64_encode(values.email + ':' + values.password);
+  const USER = {
+    email: values.email,
+    password: values.password
+  }
   axios({
-    method: 'GET',
+    method: 'POST',
     url: URLS.SERVER_AUTH,
-    headers: {Authorization: `Basic ${encoded}`}
+    data: USER,
   })
-  .then((result) => {
-    const user = result.data;
-    const USER_INFO = {
-      name: user.firstName,
-      surname: user.lastName,
-      birthday: user.birthday.substr(0,10),
-      email:user.email,
-    }
-    submitAutorization(USER_INFO, encoded);
-  })
-  .catch((error) =>{
-    setAlertOpen(true);
+  .then((response)=>{
+    const token = response.data.token;
+    console.log(token);
+    axios({
+      method: 'GET',
+      url: URLS.SERVER_AUTH,
+      headers: {Authorization: `Bearer ${token}`}
+    })
+    .then((result) => {
+      const userInfo = result.data;
+      console.log(userInfo);
+      const USER_INFO = {
+        name: userInfo.firstName,
+        surname: userInfo.lastName,
+        birthday: userInfo.birthday.substr(0,10),
+        email:userInfo.email,
+      }
+      submitAutorization(USER_INFO, token);
+    })
+    .catch((error) =>{
+      setAlertOpen(true);
+    })
   })
 };
 

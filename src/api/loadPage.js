@@ -10,7 +10,7 @@ const useGetNotes = (user, page) => {
   useEffect(() => {axios({
     method: 'GET',
     url: URLS.SERVER_PAGE + page,
-    headers: {Authorization: `Basic ${user}`}
+    headers: {Authorization: `Bearer ${user}`}
   })
   .then((result) =>{
     setNotes([...notes, ...result.data])

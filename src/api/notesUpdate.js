@@ -11,7 +11,7 @@ const updateNotes = (note, id, user) => {
 	axios({
 	  method: 'PUT',
 	  url: noteUrl,
-	  headers: {Authorization: `Basic ${user}`},
+	  headers: {Authorization: `Bearer ${user}`},
 	  data: noteUpdated,
 	})
 	.then((response) => response)

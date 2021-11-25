@@ -19,7 +19,7 @@ const createNewNote = (
 	axios({
 		method: "POST",
 		url: URLS.SERVER_NOTES,
-		headers: { Authorization: `Basic ${user}` },
+		headers: { Authorization: `Bearer ${user}` },
 		data: newNote,
 	}).then((response) => {
 		setOpen(false);

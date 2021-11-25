@@ -18,6 +18,7 @@ const submitRegistration = (values, store) => {
 	  newUser
 	)
 	.then((response) => {
+    let token = response.data.token;
 		const profileInfo = {
 			name: values.name,
 			surname: values.surname,
@@ -25,7 +26,7 @@ const submitRegistration = (values, store) => {
 			birthday: values.birthday,
 			password: values.password,
 		}
-		const user = encoded.toString();
+		token.toString();
 		localStorage.setItem(
 		  "isAuthorized",
 		  JSON.stringify(true)
@@ -35,12 +36,12 @@ const submitRegistration = (values, store) => {
 			JSON.stringify(profileInfo)
 		)
 		localStorage.setItem(
-			"encoded",
-			JSON.stringify(encoded)
+			"token",
+			JSON.stringify(token)
 		)
 		store.dispatch({
 		type: "signUp",
-		payload: { profileInfo, user },
+		payload: { profileInfo, token },
 		})
     })
 	.catch((error) => {

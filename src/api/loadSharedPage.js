@@ -10,7 +10,7 @@ const useGetSharedNotes = (pageShared, user) => {
   useEffect(() => {axios({
     method: 'GET',
     url: URLS.SERVER_SHARE_PAGE + pageShared,
-    headers: {Authorization: `Basic ${user}`}
+    headers: {Authorization: `Bearer ${user}`}
   })
   .then((result) => {
   setShared([...sharedNotes, ...result.data])
