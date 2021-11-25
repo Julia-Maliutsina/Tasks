@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import URLS from "config/constants/url";
 
-const useGetNotes = (user, page) => {
+const useGetNotes = (user, page, setAuthorizeAlertOpen) => {
 
   const [notes, setNotes] = useState([]);
 
@@ -17,9 +17,7 @@ const useGetNotes = (user, page) => {
   })
   .catch((error)=>{		
     if (error.name==="Forbidden") {
-      /* store.dispatch({
-        type: loadPage,
-      })*/
+      setAuthorizeAlertOpen(true);
     }
   }) 
 }, [page])

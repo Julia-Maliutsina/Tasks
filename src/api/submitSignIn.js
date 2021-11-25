@@ -15,24 +15,17 @@ const submit = (values, submitAutorization, setAlertOpen) => {
   })
   .then((response)=>{
     const token = response.data.token;
-    axios({
-      method: 'GET',
-      url: URLS.SERVER_AUTH,
-      headers: {Authorization: `Bearer ${token}`}
-    })
-    .then((result) => {
-      const userInfo = result.data;
-      const USER_INFO = {
-        name: userInfo.firstName,
-        surname: userInfo.lastName,
-        birthday: userInfo.birthday.substr(0,10),
-        email:userInfo.email,
-      }
-      submitAutorization(USER_INFO, token);
-    })
-    .catch((error) =>{
-      setAlertOpen(true);
-    })
+    const userInfo = response.data.user;
+    const USER_INFO = {
+      name: userInfo.firstName,
+      surname: userInfo.lastName,
+      birthday: userInfo.birthday.substr(0,10),
+      email:userInfo.email,
+    }
+    submitAutorization(USER_INFO, token);
+  })
+  .catch((error) =>{
+    setAlertOpen(true);
   })
 };
 

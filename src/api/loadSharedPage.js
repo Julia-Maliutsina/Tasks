@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import URLS from "config/constants/url";
 
-const useGetSharedNotes = (pageShared, user) => {
+const useGetSharedNotes = (pageShared, user, setAuthorizeAlertOpen) => {
 
   const [sharedNotes, setShared] = useState([]);
 
@@ -15,11 +15,9 @@ const useGetSharedNotes = (pageShared, user) => {
   .then((result) => {
   setShared([...sharedNotes, ...result.data])
 })
-  .catch((error)=>{
+  .catch((error)=>{	
     if (error.name==="Forbidden") {
-      /* store.dispatch({
-        type: loadPage,
-      })*/
+      setAuthorizeAlertOpen(true);
     }
   })
   }, [pageShared])

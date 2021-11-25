@@ -1,5 +1,6 @@
 import { useState, Suspense } from "react";
 import { Box } from "@mui/system";
+import { Snackbar, Alert } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import PropTypes from "prop-types";
 
@@ -13,11 +14,18 @@ import toLocalDate from "utils/toLocalDate";
 import { NotesListContainer } from "index.jsx";
 
 const MyNotesContainer = ({ user, store }) => {
+  const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
   const [page, setPage] = useState(INIT.PAGE);
-  const [notes, setNotes] = useGetNotes(user, page);
+  const [notes, setNotes] = useGetNotes(user, page, setAuthorizeAlertOpen);
   const [active, setActive] = useState(INIT.ACTIVE);
   const [filtersByDate, applyDatesFilter] = useState([]);
   const [filtersByTitle, applyTitlesFilter] = useState([]);
+  const handleAuthorizeAlertClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAuthorizeAlertOpen(false);
+  };
   const dates = notes.map((note) => toLocalDate(note.createdAt));
   const titles = notes.map((note) => note.title);
   const uniqueDates = dates.filter((item, position) => dates.indexOf(item) === position);
@@ -59,6 +67,11 @@ const MyNotesContainer = ({ user, store }) => {
         </div>
         <MyActiveNoteContainer active={active} notes={notes} user={user} store={store} />
       </Box>
+      <Snackbar open={authorizeAlertOpen} autoHideDuration={3000} onClose={handleAuthorizeAlertClose}>
+        <Alert onClose={handleAuthorizeAlertClose} severity="error" sx={styles.maxWidth}>
+          Session has ended. Please, sign in.
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

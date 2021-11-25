@@ -12,7 +12,7 @@ import MainMenu from "components/MainMenu";
 import MyNotesContainer from "./myNotesContainer";
 import SharedNotesContainer from "./sharedNotesContainer";
 import AboutApp from "./about";
-import SignUpForm from "./signUp";
+import SignUpContainer from "./signUpContainer";
 import SignInContainer from "./signInContainer";
 import Profile from "./profile";
 
@@ -37,7 +37,11 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
           <AboutApp />
         </Route>
         <Route path={PATHS.signUp}>
-          {!isAuthorized ? <SignUpForm submitRegistration={submitRegistration} /> : <Redirect to={PATHS.profile} />}
+          {!isAuthorized ? (
+            <SignUpContainer submitRegistration={submitRegistration} />
+          ) : (
+            <Redirect to={PATHS.profile} />
+          )}
         </Route>
         <Route path={PATHS.signIn}>
           {!isAuthorized ? (

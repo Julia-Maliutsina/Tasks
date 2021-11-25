@@ -2,8 +2,9 @@ import axios from "axios"
 import { encode as base64_encode } from "base-64";
 
 import URLS from "config/constants/url"
+import toLocalDate from "utils/toLocalDate";
 
-const submitRegistration = (values, store) => {
+const submitRegistration = (values, store, setSignUpAlertOpen, setSignUpAlert) => {
 	const newUser = {
 		email: values.email,
 		password: values.password,
@@ -18,12 +19,13 @@ const submitRegistration = (values, store) => {
 	)
 	.then((response) => {
     let token = response.data.token;
+		let userInfo = response.data.user;
 		const profileInfo = {
-			name: values.name,
-			surname: values.surname,
-			email: values.email,
-			birthday: values.birthday,
-			password: values.password,
+			name: userInfo.firstName,
+			surname: userInfo.lastName,
+			email: userInfo.email,
+			birthday: toLocalDate(userInfo.birthday),
+			password: userInfo.password,
 		}
 		token.toString();
 		localStorage.setItem(
@@ -44,7 +46,8 @@ const submitRegistration = (values, store) => {
 		})
   })
 	.catch((error) => {
-		alert(error.response.data)
+		setSignUpAlertOpen(true);
+		setSignUpAlert(error.response.data);
 	})
 }
 

@@ -6,7 +6,7 @@ import shareNoteWithUsers from "api/shareNote";
 
 import ShareNoteForm from "./ShareNoteForm";
 
-const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen }) => {
+const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen, setAuthorizeAlertOpen }) => {
   const [userEmailValue, setUser] = useState("");
   const [usersToShare, setUsersToShare] = useState([]);
   const [alertShareOpen, setAlertShare] = useState(false);

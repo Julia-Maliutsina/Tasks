@@ -1,4 +1,4 @@
-import React from "react"
+import {React} from "react"
 import ReactDOM from "react-dom"
 import MyNotes from "./pages/myNotes"
 import reportWebVitals from "./reportWebVitals"
@@ -8,21 +8,15 @@ import submitRegistration from "./api/registration"
 let profileInfo = {}
 let isAuthorized = false
 let token = ""
-
 if (localStorage.profileInfo) {
-	profileInfo = JSON.parse(
-		localStorage.getItem("profileInfo")
-	)
+	profileInfo = JSON.parse(localStorage.getItem("profileInfo"))
 }
 if (localStorage.isAuthorized) {
-	isAuthorized = JSON.parse(
-		localStorage.getItem("isAuthorized")
-	)
+	isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"))
 }
 if (localStorage.encoded) {
 	token = JSON.parse(localStorage.getItem("token"))
 }
-
 function authorizeUser(
 	state = {
 		isAuthorized: false,
@@ -61,35 +55,22 @@ function authorizeUser(
 			return state
 	}
 }
-
 let store = createStore(authorizeUser)
-
 function signOut() {
 	store.dispatch({
 		type: "signOut",
 	})
 }
-
-const openProfile = ( profileInfo, encoded ) => {
+const openProfile = ( profileInfo, token ) => {
   token.toString();
-  localStorage.setItem(
-	"isAuthorized",
-	JSON.stringify(true)
-)
-localStorage.setItem(
-	"profileInfo",
-	JSON.stringify(profileInfo)
-)
-localStorage.setItem(
-	"token",
-	JSON.stringify(token)
-)
+  localStorage.setItem("isAuthorized", JSON.stringify(true));
+	localStorage.setItem(	"profileInfo", JSON.stringify(profileInfo));
+	localStorage.setItem(	"token", JSON.stringify(token));
   store.dispatch({
     type: "signIn",
     payload: { profileInfo, token },
   })
 }
-
 store.subscribe(() => {
 	let state = store.getState();
 	ReactDOM.render(
@@ -98,8 +79,8 @@ store.subscribe(() => {
 				profileInfo={state.profileInfo}
 				isAuthorized={state.isAuthorized}
 				user={state.token}
-				submitRegistration={(values) =>
-					submitRegistration(values, store)
+				submitRegistration={(values, setSignUpAlertOpen, setSignUpAlert) =>
+					submitRegistration(values, store, setSignUpAlertOpen, setSignUpAlert)
 				}
 				submitAutorization={(userInfo, token) =>
 					openProfile(

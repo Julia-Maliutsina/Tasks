@@ -17,11 +17,6 @@ const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, setUs
     shareNoteOpen(false);
   })
 	.catch((error) => {
-    if (error.name==="Forbidden") {
-      /* store.dispatch({
-        type: loadPage,
-      })*/
-    }
     setAlertShare(true);
     setShareError(error.response.data);
   })

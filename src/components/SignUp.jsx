@@ -1,16 +1,27 @@
-import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Link from "@mui/material/Link";
+import { Snackbar, Alert } from "@mui/material";
 import PropTypes from "prop-types";
 
 import INIT from "config/constants/initial";
 import styles from "pages/styled";
 import validateSignUp from "utils/validateSignUp";
 
-const SignUpForm = ({ submitRegistration }) => (
+const SignUpForm = ({
+  submitRegistration,
+  signUpAlert,
+  signUpAlertOpen,
+  setSignUpAlertOpen,
+  setSignUpAlert,
+  handleSignUpAlertClose,
+}) => (
   <div>
     <h2 style={styles.aboutTitle}>Registration</h2>
-    <Formik initialValues={INIT.AUTH_VALUES} onSubmit={submitRegistration} validate={validateSignUp}>
+    <Formik
+      initialValues={INIT.AUTH_VALUES}
+      onSubmit={(values) => submitRegistration(values, setSignUpAlertOpen, setSignUpAlert)}
+      validate={validateSignUp}
+    >
       <Form style={styles.form}>
         <div style={styles.formBlock}>
           <label style={styles.formLabel} htmlFor="name">
@@ -64,9 +75,19 @@ const SignUpForm = ({ submitRegistration }) => (
         </button>
       </Form>
     </Formik>
+    <Snackbar open={signUpAlertOpen} autoHideDuration={3000} onClose={handleSignUpAlertClose}>
+      <Alert onClose={handleSignUpAlertClose} severity="error" sx={styles.maxWidth}>
+        {signUpAlert}
+      </Alert>
+    </Snackbar>
   </div>
 );
 SignUpForm.propTypes = {
   submitRegistration: PropTypes.func,
+  signUpAlert: PropTypes.string,
+  signUpAlertOpen: PropTypes.bool,
+  setSignUpAlertOpen: PropTypes.func,
+  setSignUpAlert: PropTypes.func,
+  handleSignUpAlertClose: PropTypes.func,
 };
 export default SignUpForm;

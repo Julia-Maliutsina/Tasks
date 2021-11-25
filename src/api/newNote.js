@@ -28,11 +28,6 @@ const createNewNote = (
 		setPage(1);
 	})
 	.catch((error) => {
-		if (error.name==="Forbidden") {
-      /* store.dispatch({
-        type: loadPage,
-      })*/
-    }
     setAlertNew(true);
     setNewError(error.response.data);
   })
