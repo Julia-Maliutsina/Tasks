@@ -15,7 +15,13 @@ const updateNotes = (note, id, user) => {
 	  data: noteUpdated,
 	})
 	.then((response) => response)
-	.catch((error) => error)
+	.catch((error) => {
+		if (error.name==="Forbidden") {
+			/* store.dispatch({
+				type: loadPage,
+			})*/
+		}
+  })
 }
 
 export default updateNotes

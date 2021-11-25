@@ -14,9 +14,14 @@ const useGetSharedNotes = (pageShared, user) => {
   })
   .then((result) => {
   setShared([...sharedNotes, ...result.data])
-console.log(sharedNotes)
 })
-  .catch((error)=>{console.log(error)})
+  .catch((error)=>{
+    if (error.name==="Forbidden") {
+      /* store.dispatch({
+        type: loadPage,
+      })*/
+    }
+  })
   }, [pageShared])
 
   return [sharedNotes, setShared]

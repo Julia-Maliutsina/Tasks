@@ -15,7 +15,6 @@ const submit = (values, submitAutorization, setAlertOpen) => {
   })
   .then((response)=>{
     const token = response.data.token;
-    console.log(token);
     axios({
       method: 'GET',
       url: URLS.SERVER_AUTH,
@@ -23,7 +22,6 @@ const submit = (values, submitAutorization, setAlertOpen) => {
     })
     .then((result) => {
       const userInfo = result.data;
-      console.log(userInfo);
       const USER_INFO = {
         name: userInfo.firstName,
         surname: userInfo.lastName,

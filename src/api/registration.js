@@ -4,7 +4,6 @@ import { encode as base64_encode } from "base-64";
 import URLS from "config/constants/url"
 
 const submitRegistration = (values, store) => {
-	const encoded = base64_encode(values.email + ':' + values.password);
 	const newUser = {
 		email: values.email,
 		password: values.password,
@@ -40,10 +39,10 @@ const submitRegistration = (values, store) => {
 			JSON.stringify(token)
 		)
 		store.dispatch({
-		type: "signUp",
-		payload: { profileInfo, token },
+			type: "signUp",
+			payload: { profileInfo, token },
 		})
-    })
+  })
 	.catch((error) => {
 		alert(error.response.data)
 	})

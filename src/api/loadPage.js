@@ -15,7 +15,13 @@ const useGetNotes = (user, page) => {
   .then((result) =>{
     setNotes([...notes, ...result.data])
   })
-  .catch((error)=>{}) 
+  .catch((error)=>{		
+    if (error.name==="Forbidden") {
+      /* store.dispatch({
+        type: loadPage,
+      })*/
+    }
+  }) 
 }, [page])
 
   return [notes, setNotes]

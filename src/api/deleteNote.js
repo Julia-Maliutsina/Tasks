@@ -14,7 +14,13 @@ const deleteNote = (id, user, setNotes, setPage) => {
 			setNotes([]);
 			setPage(1);
 		})
-		.catch((error) => error);
+		.catch((error) => {
+			if (error.name==="Forbidden") {
+				/* store.dispatch({
+					type: loadPage,
+				})*/
+			}
+		});
 };
 
 export default deleteNote;
