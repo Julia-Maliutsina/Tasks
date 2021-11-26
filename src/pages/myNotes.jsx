@@ -14,7 +14,7 @@ import SharedNotesContainer from "./sharedNotesContainer";
 import AboutApp from "./about";
 import SignUpContainer from "./signUpContainer";
 import SignInContainer from "./signInContainer";
-import Profile from "./profile";
+import ProfileContainer from "./profileContainer";
 
 const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAutorization, signOut, store }) => (
   <div style={styles.wrapper}>
@@ -51,7 +51,11 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
           )}
         </Route>
         <Route path={PATHS.profile}>
-          {isAuthorized ? <Profile profileInfo={profileInfo} signOut={signOut} /> : <Redirect to={PATHS.signIn} />}
+          {isAuthorized ? (
+            <ProfileContainer user={user} profileInfo={profileInfo} signOut={signOut} />
+          ) : (
+            <Redirect to={PATHS.signIn} />
+          )}
         </Route>
         <Route path={PATHS.notFound}>
           <NotFound />

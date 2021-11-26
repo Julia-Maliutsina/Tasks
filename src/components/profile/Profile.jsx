@@ -1,17 +1,19 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
-import Button from "@mui/material/Button";
+import {
+  Button,
+  ButtonGroup,
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+} from "@mui/material";
 import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
-const Profile = ({ profileInfo, signOut }) => (
+const Profile = ({ userInfo, changeProfileOpen, changePasswordOpen, signOut }) => (
   <div style={styles.maxWidth}>
     <Box style={styles.profilePage}>
       <Typography variant="h5" component="div" style={styles.aboutTitle}>
@@ -25,7 +27,7 @@ const Profile = ({ profileInfo, signOut }) => (
                 First name
               </TableCell>
               <TableCell align="right" style={styles.profileTableInfo}>
-                {profileInfo.name}
+                {userInfo.name}
               </TableCell>
             </TableRow>
             <TableRow key="surname" sx={styles.tableBorders}>
@@ -33,7 +35,7 @@ const Profile = ({ profileInfo, signOut }) => (
                 Last name
               </TableCell>
               <TableCell align="right" style={styles.profileTableInfo}>
-                {profileInfo.surname}
+                {userInfo.surname}
               </TableCell>
             </TableRow>
             <TableRow key="birthday" sx={styles.tableBorders}>
@@ -41,7 +43,7 @@ const Profile = ({ profileInfo, signOut }) => (
                 Date of birth
               </TableCell>
               <TableCell align="right" style={styles.profileTableInfo}>
-                {profileInfo.birthday}
+                {userInfo.birthday}
               </TableCell>
             </TableRow>
             <TableRow key="email" sx={styles.tableBorders}>
@@ -49,12 +51,20 @@ const Profile = ({ profileInfo, signOut }) => (
                 Email
               </TableCell>
               <TableCell align="right" style={styles.profileTableInfo}>
-                {profileInfo.email}
+                {userInfo.email}
               </TableCell>
             </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
+
+      <Button style={styles.changeButton} variant="contained" onClick={changeProfileOpen}>
+        CHANGE PROFILE INFO
+      </Button>
+      <Button style={styles.changeButton} variant="contained" onClick={changePasswordOpen}>
+        CHANGE PASSWORD
+      </Button>
+
       <Button style={styles.signOutButton} variant="contained" onClick={signOut}>
         SIGN OUT
       </Button>
@@ -62,7 +72,9 @@ const Profile = ({ profileInfo, signOut }) => (
   </div>
 );
 Profile.propTypes = {
-  profileInfo: PropTypes.object,
+  userInfo: PropTypes.object,
+  changeProfileOpen: PropTypes.func,
+  changePasswordOpen: PropTypes.func,
   signOut: PropTypes.func,
 };
 export default Profile;

@@ -22,12 +22,18 @@ const AUTH_VALUES = {
   password: "",
   passwordConfirm: "",
 };
+const CHANGE_PASSWORD = {
+  oldPassword: "",
+  password: "",
+  passwordConfirm: "",
+}
 const INIT = {
   ID,
   PAGE,
   ACTIVE,
   ACTIVE_SHARED,
-  AUTH_VALUES
+  AUTH_VALUES,
+  CHANGE_PASSWORD
 }
 export default INIT
 

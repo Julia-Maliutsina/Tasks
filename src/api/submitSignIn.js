@@ -1,7 +1,7 @@
 import axios from "axios";
-import {encode as base64_encode} from 'base-64';
 
 import URLS from "config/constants/url";
+import toLocalDate from "utils/toLocalDate";
 
 const submit = (values, submitAutorization, setAlertOpen) => {
   const USER = {
@@ -19,7 +19,7 @@ const submit = (values, submitAutorization, setAlertOpen) => {
     const USER_INFO = {
       name: userInfo.firstName,
       surname: userInfo.lastName,
-      birthday: userInfo.birthday.substr(0,10),
+      birthday: toLocalDate(userInfo.birthday),
       email:userInfo.email,
     }
     submitAutorization(USER_INFO, token);

@@ -610,6 +610,41 @@ const wrapper = {
 	backgroundColor: backgroundMain,
 };
 
+const applyChanges ={
+	width: "80px",
+	background: buttonGradient,
+	outline: "none",
+	padding: "3px 7px 3px 7px",
+	fontFamily: "notes",
+	fontSize: "12px",
+	borderRadius: "5px",
+	color: white,
+	marginTop: "10px",
+}
+const cancelChanges = {
+	background: basicGradient,
+	outline: "none",
+	padding: "3px 7px 3px 7px",
+	fontFamily: "notes",
+	fontSize: "12px",
+	borderRadius: "5px",
+	color: white,
+	marginTop: "10px",
+	marginRight: "73px",
+}
+const changeButton = { 
+	background: basicGradient,
+	display: "block", 
+	margin: "15px auto 5px auto", 
+	padding: "6px 16px",
+	fontSize: "18px",
+	lineHeight: "22px",
+	fontFamily: "notes"
+}
+const padding20 = {
+	padding: "20px"
+}
+
 const styles = {
 	aboutBlock: blockAbout,
 	aboutChapter: chapterAbout,
@@ -672,6 +707,7 @@ const styles = {
 	noteTitle: titleInList,
 	notFoundAlert: notFoundAlert,
 	notFoundAlertTitle: notFoundAlertTitle,
+	padding20: padding20,
 	primaryButton: primaryButton,
 	profilePage: profilePage,
 	profileTable: profileTable,
@@ -702,6 +738,9 @@ const styles = {
 	welcomeBlock: welcomeBlock,
 	widthEmail: widthEmail,
 	wrapper: wrapper,
+	applyChanges: applyChanges,
+	cancelChanges: cancelChanges,
+	changeButton: changeButton,
 };
 
 export default styles;
