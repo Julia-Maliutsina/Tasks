@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import MyActiveNote from "./MyActiveNote";
 import INIT from "config/constants/initial";
+import toLocalDate from "utils/toLocalDate";
 
 const onValueChange = jest.fn();
 const saveChangedNote = jest.fn();
@@ -11,7 +12,6 @@ const ACTIVE = {
   description: "description",
   createdAt: "2011-10-05T14:48:00.000Z",
 };
-const DATE = "2011-10-05";
 
 describe("renders field with active note", () => {
   it("renders without chosen note", () => {
@@ -40,7 +40,7 @@ describe("renders field with active note", () => {
     );
     expect(screen.getByText(ACTIVE.title)).toBeInTheDocument();
     expect(screen.getByText(ACTIVE.description)).toBeInTheDocument();
-    expect(screen.getByText(DATE)).toBeInTheDocument();
+    expect(screen.getByText(toLocalDate(ACTIVE.createdAt))).toBeInTheDocument();
   });
   it("on text change function is called", () => {
     render(

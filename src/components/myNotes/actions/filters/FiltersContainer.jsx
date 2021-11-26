@@ -44,6 +44,12 @@ const FiltersContainer = ({
     applyTitlesFilter(filterTitlesArray);
     setFilterTitleOpen(false);
   };
+  const changeFilterDateOpen = () => {
+    setFilterDateOpen(!filterDateOpen);
+  };
+  const changeFilterTitleOpen = () => {
+    setFilterTitleOpen(!filterTitleOpen);
+  };
   return (
     <div>
       <FilterDatesForm
@@ -52,6 +58,7 @@ const FiltersContainer = ({
         uniqueDates={uniqueDates}
         changeDateFilters={changeDateFilters}
         applyDateFilters={applyDateFilters}
+        changeFilterDateOpen={changeFilterDateOpen}
       />
       <FilterTitlesForm
         filterTitleOpen={filterTitleOpen}
@@ -59,6 +66,7 @@ const FiltersContainer = ({
         uniqueTitles={uniqueTitles}
         changeTitleFilters={changeTitleFilters}
         applyTitleFilters={applyTitleFilters}
+        changeFilterTitleOpen={changeFilterTitleOpen}
       />
     </div>
   );

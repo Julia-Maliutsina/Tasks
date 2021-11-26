@@ -14,15 +14,22 @@ import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
-const FilterDatesForm = ({ filterDateOpen, setFilterDateOpen, uniqueDates, changeDateFilters, applyDateFilters }) => (
-  <Dialog open={filterDateOpen} onClose={() => setFilterDateOpen(false)}>
+const FilterDatesForm = ({
+  filterDateOpen,
+  setFilterDateOpen,
+  uniqueDates,
+  changeDateFilters,
+  applyDateFilters,
+  changeFilterDateOpen,
+}) => (
+  <Dialog open={filterDateOpen} onClose={changeFilterDateOpen}>
     <DialogTitle style={styles.newNote}>Filter by dates</DialogTitle>
     <DialogContent>
       <DialogContentText style={styles.addNoteMessage}>Choose dates to display</DialogContentText>
       <FormControl style={styles.filters}>
         <FormGroup>
-          {uniqueDates.map((date, i) => (
-            <FormControlLabel key={i} control={<Checkbox onChange={changeDateFilters} name={date} />} label={date} />
+          {uniqueDates.map((date) => (
+            <FormControlLabel key={date} control={<Checkbox onChange={changeDateFilters} name={date} />} label={date} />
           ))}
         </FormGroup>
       </FormControl>
@@ -43,5 +50,6 @@ FilterDatesForm.propTypes = {
   setFilterDateOpen: PropTypes.func,
   applyDateFilters: PropTypes.func,
   changeDateFilters: PropTypes.func,
+  changeFilterDateOpen: PropTypes.func,
 };
 export default FilterDatesForm;

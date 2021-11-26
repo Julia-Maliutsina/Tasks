@@ -15,6 +15,8 @@ import PropTypes from "prop-types";
 
 import styles from "pages/styled";
 
+const HIDE_ALERT = 3000;
+
 const NewNoteForm = ({
   addNoteClose,
   newNoteOpen,
@@ -51,7 +53,7 @@ const NewNoteForm = ({
         onChange={(e) => setNewNoteText(e.target.value)}
         data-testid="newText"
       />
-      <Snackbar open={alertNewOpen} autoHideDuration={3000} onClose={handleAlertNewClose}>
+      <Snackbar open={alertNewOpen} autoHideDuration={HIDE_ALERT} onClose={handleAlertNewClose}>
         <Alert onClose={handleAlertNewClose} severity="error" sx={styles.maxWidth}>
           {newNoteError}
         </Alert>

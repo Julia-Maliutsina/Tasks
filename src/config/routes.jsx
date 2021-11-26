@@ -8,6 +8,8 @@ const PATHS = {
   signIn: "/sign-in",
   signUp: "/sign-up",
   profile: "/profile",
+  notRegistered: "./sign-up",
+  alreadyRegistered: "./sign-in",
 };
 
 export default PATHS;

@@ -3,9 +3,12 @@ import Link from "@mui/material/Link";
 import { Snackbar, Alert } from "@mui/material";
 import PropTypes from "prop-types";
 
+import PATHS from "config/routes";
 import INIT from "config/constants/initial";
 import styles from "pages/styled";
 import validateSignUp from "utils/validateSignUp";
+
+const HIDE_ALERT = 3000;
 
 const SignUpForm = ({
   submitRegistration,
@@ -67,7 +70,7 @@ const SignUpForm = ({
             {(ErrorText) => <div className="error">{ErrorText}</div>}
           </ErrorMessage>
         </div>
-        <Link href="./sign-in" style={styles.authorizationLink}>
+        <Link href={PATHS.alreadyRegistered} style={styles.authorizationLink}>
           Already have an account?
         </Link>
         <button style={styles.submitButton} type="submit">
@@ -75,7 +78,7 @@ const SignUpForm = ({
         </button>
       </Form>
     </Formik>
-    <Snackbar open={signUpAlertOpen} autoHideDuration={3000} onClose={handleSignUpAlertClose}>
+    <Snackbar open={signUpAlertOpen} autoHideDuration={HIDE_ALERT} onClose={handleSignUpAlertClose}>
       <Alert onClose={handleSignUpAlertClose} severity="error" sx={styles.maxWidth}>
         {signUpAlert}
       </Alert>

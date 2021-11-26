@@ -3,10 +3,13 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link, Alert, Snackbar } from "@mui/material";
 import PropTypes from "prop-types";
 
+import PATHS from "config/routes";
 import INIT from "config/constants/initial";
 import submit from "api/submitSignIn";
 import validateSignIn from "utils/validateSignIn";
 import styles from "pages/styled";
+
+const HIDE_ALERT = 3000;
 
 const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertOpen }) => (
   <div>
@@ -31,7 +34,7 @@ const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertO
           <Field style={styles.formInput} type="password" id="password" name="password" />
           <ErrorMessage name="password">{(ErrorText) => <div className="error">{ErrorText}</div>}</ErrorMessage>
         </div>
-        <Link href="./sign-up" style={styles.authorizationLink}>
+        <Link href={PATHS.notRegistered} style={styles.authorizationLink}>
           Don't have an account yet?
         </Link>
         <button style={styles.submitButton} type="submit">
@@ -39,7 +42,7 @@ const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertO
         </button>
       </Form>
     </Formik>
-    <Snackbar open={alertOpen} autoHideDuration={3000} onClose={handleAlertClose}>
+    <Snackbar open={alertOpen} autoHideDuration={HIDE_ALERT} onClose={handleAlertClose}>
       <Alert onClose={handleAlertClose} severity="error" sx={styles.maxWidth}>
         Invalid email or password!
       </Alert>

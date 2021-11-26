@@ -1,4 +1,4 @@
-import {React} from "react"
+import React from "react"
 import ReactDOM from "react-dom"
 import MyNotes from "./pages/myNotes"
 import reportWebVitals from "./reportWebVitals"
@@ -14,7 +14,7 @@ if (localStorage.profileInfo) {
 if (localStorage.isAuthorized) {
 	isAuthorized = JSON.parse(localStorage.getItem("isAuthorized"))
 }
-if (localStorage.encoded) {
+if (localStorage.token) {
 	token = JSON.parse(localStorage.getItem("token"))
 }
 function authorizeUser(

@@ -11,21 +11,22 @@ import NoteShared from "./NoteShared";
 
 const SharedList = ({ sharedNotes, displaySharedNote, pageShared, setPageShared }) => (
   <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
-    {sharedNotes.length === 0 ? (
+    {!sharedNotes.length && (
       <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noSharedNotes}>
         {MESSAGES.NO_SHARED_NOTES}
       </Alert>
-    ) : (
+    )}
+    {sharedNotes.length && (
       <InfiniteScroll
         dataLength={sharedNotes.length}
         next={() => setPageShared(pageShared + 1)}
-        hasMore={true}
+        hasMore
         scrollableTarget="scrollableShared"
       >
         <Box sx={styles.shareGrid}>
-          {sharedNotes.map((note, id) => {
-            return <NoteShared key={id} note={note} displaySharedNote={displaySharedNote} />;
-          })}
+          {sharedNotes.map((note) => (
+            <NoteShared key={note.id} note={note} displaySharedNote={displaySharedNote} />
+          ))}
         </Box>
       </InfiniteScroll>
     )}

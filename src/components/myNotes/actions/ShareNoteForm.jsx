@@ -15,6 +15,9 @@ import { Cancel, IosShare, Add, Clear } from "@mui/icons-material";
 import PropTypes from "prop-types";
 
 import styles from "pages/styled";
+import toLocalDate from "utils/toLocalDate";
+
+const HIDE_ALERT = 3000;
 
 const ShareNoteForm = ({
   openShare,
@@ -40,7 +43,7 @@ const ShareNoteForm = ({
         <h4 style={styles.shareNoteTitles}>Description:</h4>
         <p style={styles.shareNoteText}>{noteToShare.description}</p>
         <h4 style={styles.shareNoteTitles}>Date:</h4>
-        <p style={styles.shareNoteText}>{noteToShare.createdAt.substr(0, 10)}</p>
+        <p style={styles.shareNoteText}>{toLocalDate(noteToShare.createdAt)}</p>
       </DialogContentText>
       <DialogContentText style={styles.shareNoteTitles}>Share with:</DialogContentText>
       {usersToShare.map((email, emailId) => (
@@ -67,7 +70,7 @@ const ShareNoteForm = ({
         <Add fontSize="small" color="inherit" style={styles.inline} />
         <span>Add</span>
       </Button>
-      <Snackbar open={alertShareOpen} autoHideDuration={3000} onClose={handleAlertShareClose}>
+      <Snackbar open={alertShareOpen} autoHideDuration={HIDE_ALERT} onClose={handleAlertShareClose}>
         <Alert onClose={handleAlertShareClose} severity="error" sx={styles.maxWidth}>
           {shareError}
         </Alert>

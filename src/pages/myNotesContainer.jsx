@@ -13,6 +13,8 @@ import applyNotesFilters from "utils/applyFilters";
 import toLocalDate from "utils/toLocalDate";
 import { NotesListContainer } from "index.jsx";
 
+const HIDE_ALERT = 3000;
+
 const MyNotesContainer = ({ user, store }) => {
   const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
   const [page, setPage] = useState(INIT.PAGE);
@@ -67,7 +69,7 @@ const MyNotesContainer = ({ user, store }) => {
         </div>
         <MyActiveNoteContainer active={active} notes={notes} user={user} store={store} />
       </Box>
-      <Snackbar open={authorizeAlertOpen} autoHideDuration={3000} onClose={handleAuthorizeAlertClose}>
+      <Snackbar open={authorizeAlertOpen} autoHideDuration={HIDE_ALERT} onClose={handleAuthorizeAlertClose}>
         <Alert onClose={handleAuthorizeAlertClose} severity="error" sx={styles.maxWidth}>
           Session has ended. Please, sign in.
         </Alert>

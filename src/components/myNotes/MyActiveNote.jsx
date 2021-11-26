@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 
 import MESSAGES from "config/constants/messages";
 import styles from "pages/styled";
+import toLocalDate from "utils/toLocalDate";
 
 import Save from "./actions/SaveButton";
+
+const HIDE_ALERT = 3000;
 
 const MyActiveNote = ({ active, newText, handleChange, alertOpen, saveChangedNote, handleAlertClose }) => (
   <div style={styles.relative}>
@@ -19,10 +22,10 @@ const MyActiveNote = ({ active, newText, handleChange, alertOpen, saveChangedNot
         value={newText}
         onChange={(event) => handleChange(event.target.value)}
       />
-      <p style={styles.date}>{active.createdAt.substr(0, 10)}</p>
+      <p style={styles.date}>{toLocalDate(active.createdAt)}</p>
     </div>
     <Save title={"Save Changes"} buttonFunction={saveChangedNote} newText={newText} />
-    <Snackbar open={alertOpen} autoHideDuration={3000} onClose={handleAlertClose}>
+    <Snackbar open={alertOpen} autoHideDuration={HIDE_ALERT} onClose={handleAlertClose}>
       <Alert onClose={handleAlertClose} severity="info" sx={styles.maxWidth}>
         {MESSAGES.NOT_CHOSEN}
       </Alert>

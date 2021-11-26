@@ -20,15 +20,20 @@ const FilterTitlesForm = ({
   uniqueTitles,
   changeTitleFilters,
   applyTitleFilters,
+  changeFilterTitleOpen,
 }) => (
-  <Dialog open={filterTitleOpen} onClose={() => setFilterTitleOpen(false)}>
+  <Dialog open={filterTitleOpen} onClose={changeFilterTitleOpen}>
     <DialogTitle style={styles.newNote}>Filter by titles</DialogTitle>
     <DialogContent>
       <DialogContentText style={styles.addNoteMessage}>Choose notes to display</DialogContentText>
       <FormControl style={styles.filters}>
         <FormGroup>
-          {uniqueTitles.map((title, i) => (
-            <FormControlLabel key={i} control={<Checkbox onChange={changeTitleFilters} name={title} />} label={title} />
+          {uniqueTitles.map((title) => (
+            <FormControlLabel
+              key={title}
+              control={<Checkbox onChange={changeTitleFilters} name={title} />}
+              label={title}
+            />
           ))}
         </FormGroup>
       </FormControl>
@@ -49,5 +54,6 @@ FilterTitlesForm.propTypes = {
   setFilterTitleOpen: PropTypes.func,
   applyTitleFilters: PropTypes.func,
   changeTitleFilters: PropTypes.func,
+  changeFilterTitleOpen: PropTypes.func,
 };
 export default FilterTitlesForm;

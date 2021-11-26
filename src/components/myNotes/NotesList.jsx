@@ -17,11 +17,12 @@ const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, shareNote, re
         changePosition(parameters, notesToDisplay);
       }}
     >
-      {notesToDisplay.length === 0 ? (
+      {!notesToDisplay.length && (
         <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noNotes}>
           {MESSAGES.NO_NOTES}
         </Alert>
-      ) : (
+      )}
+      {notesToDisplay.length && (
         <Droppable droppableId="droppable-1">
           {(provided, snapshot) => (
             <div
@@ -35,11 +36,11 @@ const Notes = ({ displayChosenNote, notesToDisplay, setPage, page, shareNote, re
                 <InfiniteScroll
                   dataLength={notesToDisplay.length}
                   next={() => setPage(page + 1)}
-                  hasMore={true}
+                  hasMore
                   scrollableTarget="scrollableDiv"
                 >
                   {notesToDisplay.map((note, i) => (
-                    <Draggable draggableId={"draggable" + i} key={i} index={i}>
+                    <Draggable draggableId={"draggable" + i} key={note.id} index={i}>
                       {(provided, snapshot) => (
                         <div
                           ref={provided.innerRef}

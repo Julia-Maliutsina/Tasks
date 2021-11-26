@@ -31,7 +31,7 @@ const ButtonsNotesContainer = ({
     setOpen(false);
   };
   const addNoteSubmit = () => {
-    if (newNoteTitle.length === 0 || newNoteText.length === 0) {
+    if (!newNoteTitle.length || !newNoteText.length) {
       setAlertNew(true);
       setNewError("Enter title and description");
     } else {

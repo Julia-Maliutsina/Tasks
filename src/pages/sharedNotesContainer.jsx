@@ -9,9 +9,11 @@ import ActiveSharedNote from "components/shared/ActiveShared";
 import SharedList from "components/shared/SharedList";
 import styles from "pages/styled";
 
+const HIDE_ALERT = 3000;
+
 const SharedNotesContainer = ({ user }) => {
   const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
-  const [pageShared, setPageShared] = useState(1);
+  const [pageShared, setPageShared] = useState(INIT.PAGE);
   const [sharedNotes, setShared] = useGetSharedNotes(pageShared, user, setAuthorizeAlertOpen);
   const [sharedChosenNote, displaySharedNote] = useState(INIT.ACTIVE_SHARED);
   const handleAuthorizeAlertClose = (event, reason) => {
@@ -29,7 +31,7 @@ const SharedNotesContainer = ({ user }) => {
         pageShared={pageShared}
         setPageShared={setPageShared}
       />
-      <Snackbar open={authorizeAlertOpen} autoHideDuration={3000} onClose={handleAuthorizeAlertClose}>
+      <Snackbar open={authorizeAlertOpen} autoHideDuration={HIDE_ALERT} onClose={handleAuthorizeAlertClose}>
         <Alert onClose={handleAuthorizeAlertClose} severity="error" sx={styles.maxWidth}>
           Session has ended. Please, sign in.
         </Alert>
