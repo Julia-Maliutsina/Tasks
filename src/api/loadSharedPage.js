@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 
 import URLS from "config/constants/url";
 
-const useGetSharedNotes = (pageShared, user, setAuthorizeAlertOpen) => {
+import refreshToken from "./refreshToken";
+
+const useGetSharedNotes = (pageShared, user, setAuthorizeAlertOpen, refresh, store) => {
 
   const [sharedNotes, setShared] = useState([]);
 
@@ -19,6 +21,7 @@ const useGetSharedNotes = (pageShared, user, setAuthorizeAlertOpen) => {
     if (error.name==="Forbidden") {
       setAuthorizeAlertOpen(true);
     }
+    error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   })
   }, [pageShared])
 

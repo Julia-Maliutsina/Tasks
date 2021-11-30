@@ -15,6 +15,7 @@ const submit = (values, submitAutorization, setAlertOpen) => {
   })
   .then((response)=>{
     const token = response.data.token;
+    let refreshToken = response.data.refreshToken;
     const userInfo = response.data.user;
     const USER_INFO = {
       name: userInfo.firstName,
@@ -22,7 +23,7 @@ const submit = (values, submitAutorization, setAlertOpen) => {
       birthday: toLocalDate(userInfo.birthday),
       email:userInfo.email,
     }
-    submitAutorization(USER_INFO, token);
+    submitAutorization(USER_INFO, token, refreshToken);
   })
   .catch((error) =>{
     setAlertOpen(true);

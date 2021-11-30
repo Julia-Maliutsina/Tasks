@@ -3,7 +3,9 @@ import axios from "axios"
 import URLS from "config/constants/url"
 import INIT from "config/constants/initial";
 
-const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, setUsersToShare, shareNoteOpen, setAlertShare, setShareError) => {
+import refreshToken from "./refreshToken";
+
+const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, setUsersToShare, shareNoteOpen, setAlertShare, setShareError, refresh, store) => {
   const noteUrl = URLS.SERVER_SHARE + "/" + idToShare;
 	axios({
 	  method: 'PUT',
@@ -19,6 +21,7 @@ const shareNoteWithUsers = (idToShare, usersToShare, user, setNoteToShare, setUs
 	.catch((error) => {
     setAlertShare(true);
     setShareError(error.response.data);
+    error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   })
 }
 

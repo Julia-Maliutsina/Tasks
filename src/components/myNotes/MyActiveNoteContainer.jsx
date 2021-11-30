@@ -6,7 +6,7 @@ import updateNotes from "api/notesUpdate";
 
 import MyActiveNote from "./MyActiveNote";
 
-const MyActiveNoteContainer = ({ active, notes, user, store }) => {
+const MyActiveNoteContainer = ({ active, notes, user, store, refresh }) => {
   const [newText, changeText] = useState(active.description);
   const [alertOpen, setAlertOpen] = useState(false);
   useEffect(() => {
@@ -26,7 +26,7 @@ const MyActiveNoteContainer = ({ active, notes, user, store }) => {
       for (let index = 0; index < notes.length; index++) {
         if (notes[index].id === active.id) {
           notes[index].description = newText;
-          updateNotes(notes[index], active.id, user, store);
+          updateNotes(notes[index], active.id, user, store, refresh);
           break;
         }
       }

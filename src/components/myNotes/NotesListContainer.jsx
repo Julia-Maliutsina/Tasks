@@ -7,7 +7,7 @@ import deleteNote from "api/deleteNote";
 import Notes from "./NotesList";
 import ShareNoteContainer from "./actions/ShareNoteContainer";
 
-const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes, setPage, page }) => {
+const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes, setPage, page, refresh, store }) => {
   const [openShare, shareNoteOpen] = useState(false);
   const [noteToShare, setNoteToShare] = useState(INIT.ACTIVE);
 
@@ -17,7 +17,7 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
   };
 
   const removeNote = (noteId) => {
-    deleteNote(noteId, user, setNotes, setPage);
+    deleteNote(noteId, user, setNotes, setPage, refresh, store);
   };
   return (
     <>
@@ -35,6 +35,8 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
         noteToShare={noteToShare}
         setNoteToShare={setNoteToShare}
         shareNoteOpen={shareNoteOpen}
+        refresh={refresh}
+        store={store}
       />
     </>
   );

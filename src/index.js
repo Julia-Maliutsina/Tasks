@@ -8,6 +8,7 @@ import submitRegistration from "./api/registration"
 let profileInfo = {}
 let isAuthorized = false
 let token = ""
+let refreshToken = ""
 if (localStorage.profileInfo) {
 	profileInfo = JSON.parse(localStorage.getItem("profileInfo"))
 }
@@ -17,11 +18,15 @@ if (localStorage.isAuthorized) {
 if (localStorage.token) {
 	token = JSON.parse(localStorage.getItem("token"))
 }
+if (localStorage.refreshToken) {
+	refreshToken = JSON.parse(localStorage.getItem("refreshToken"))
+}
 function authorizeUser(
 	state = {
 		isAuthorized: false,
 		profileInfo: {},
 		token: "",
+		refreshToken: "",
 	},
 	action
 ) {
@@ -31,18 +36,21 @@ function authorizeUser(
 				isAuthorized: isAuthorized,
 				profileInfo: profileInfo,
 				token: token,
+				refreshToken: refreshToken,
 			}
 		case "signUp":
 			return {
 				isAuthorized: true,
 				profileInfo: action.payload.profileInfo,
 				token: action.payload.token,
+				refreshToken: action.payload.refreshToken,
 			}
 		case "signIn":
 			return {
 				isAuthorized: true,
 				profileInfo: action.payload.profileInfo,
 				token: action.payload.token,
+				refreshToken: action.payload.refreshToken,
 			}
 		case "signOut":
 			localStorage.clear()
@@ -50,6 +58,14 @@ function authorizeUser(
 				isAuthorized: false,
 				profileInfo: {},
 				token: "",
+				refreshToken: "",
+			}
+		case "refreshToken":
+			return {
+				isAuthorized: isAuthorized,
+				profileInfo: profileInfo,
+				token: action.payload.token,
+				refreshToken: action.payload.refreshToken,
 			}
 		default:
 			return state
@@ -66,9 +82,10 @@ const openProfile = ( profileInfo, token ) => {
   localStorage.setItem("isAuthorized", JSON.stringify(true));
 	localStorage.setItem(	"profileInfo", JSON.stringify(profileInfo));
 	localStorage.setItem(	"token", JSON.stringify(token));
+	localStorage.setItem(	"refreshToken", JSON.stringify(refreshToken));
   store.dispatch({
     type: "signIn",
-    payload: { profileInfo, token },
+    payload: { profileInfo, token, refreshToken },
   })
 }
 store.subscribe(() => {
@@ -90,6 +107,7 @@ store.subscribe(() => {
 				}
 				signOut={signOut}
 				store={store}
+				refresh = {state.refreshToken}
 			/>
 		</React.StrictMode>,
 		document.getElementById("root")

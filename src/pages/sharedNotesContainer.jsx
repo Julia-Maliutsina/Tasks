@@ -11,10 +11,10 @@ import styles from "pages/styled";
 
 const HIDE_ALERT = 3000;
 
-const SharedNotesContainer = ({ user }) => {
+const SharedNotesContainer = ({ user, store, refresh }) => {
   const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
   const [pageShared, setPageShared] = useState(INIT.PAGE);
-  const [sharedNotes, setShared] = useGetSharedNotes(pageShared, user, setAuthorizeAlertOpen);
+  const [sharedNotes, setShared] = useGetSharedNotes(pageShared, user, setAuthorizeAlertOpen, refresh, store);
   const [sharedChosenNote, displaySharedNote] = useState(INIT.ACTIVE_SHARED);
   const handleAuthorizeAlertClose = (event, reason) => {
     if (reason === "clickaway") {

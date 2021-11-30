@@ -19,6 +19,7 @@ const submitRegistration = (values, store, setSignUpAlertOpen, setSignUpAlert) =
 	)
 	.then((response) => {
     let token = response.data.token;
+		let refreshToken = response.data.refreshToken;
 		let userInfo = response.data.user;
 		const profileInfo = {
 			name: userInfo.firstName,
@@ -40,9 +41,13 @@ const submitRegistration = (values, store, setSignUpAlertOpen, setSignUpAlert) =
 			"token",
 			JSON.stringify(token)
 		)
+		localStorage.setItem(
+			"refreshToken",
+			JSON.stringify(refreshToken)
+		)
 		store.dispatch({
 			type: "signUp",
-			payload: { profileInfo, token },
+			payload: { profileInfo, token, refreshToken },
 		})
   })
 	.catch((error) => {

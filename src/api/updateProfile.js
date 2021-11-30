@@ -2,7 +2,9 @@ import axios from "axios";
 import URLS from "config/constants/url";
 import toLocalDate from "utils/toLocalDate";
 
-const updateProfile = (user, values, setProfileAlertOpen, setProfileAlert, setChangeProfileOpen, setUserInfo ) => {
+import refreshToken from "./refreshToken";
+
+const updateProfile = (user, values, setProfileAlertOpen, setProfileAlert, setChangeProfileOpen, setUserInfo, refresh, store ) => {
   const userInfo = {
     firstName: values.name,
     lastName: values.surname,
@@ -28,7 +30,8 @@ const updateProfile = (user, values, setProfileAlertOpen, setProfileAlert, setCh
   })
 	.catch((error) => {
     setProfileAlertOpen(true);
-    setProfileAlert(error.response.data)
+    setProfileAlert(error.response.data);
+    error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   })
 }
 

@@ -2,6 +2,8 @@ import axios from "axios";
 
 import URLS from "config/constants/url";
 
+import refreshToken from "./refreshToken";
+
 const createNewNote = (
 	newNoteTitle,
 	newNoteText,
@@ -10,7 +12,9 @@ const createNewNote = (
 	setPage,
 	setAlertNew,
 	setNewError,
-	setOpen
+	setOpen, 
+	refresh,
+	store
 ) => {
 	const newNote = {
 		title: newNoteTitle,
@@ -30,6 +34,7 @@ const createNewNote = (
 	.catch((error) => {
     setAlertNew(true);
     setNewError(error.response.data);
+		error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   })
 };
 

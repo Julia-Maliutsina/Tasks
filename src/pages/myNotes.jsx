@@ -16,7 +16,16 @@ import SignUpContainer from "./signUpContainer";
 import SignInContainer from "./signInContainer";
 import ProfileContainer from "./profileContainer";
 
-const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAutorization, signOut, store }) => (
+const MyNotes = ({
+  profileInfo,
+  isAuthorized,
+  user,
+  submitRegistration,
+  submitAutorization,
+  signOut,
+  store,
+  refresh,
+}) => (
   <div style={styles.wrapper}>
     <BrowserRouter basename={PATHS.base}>
       <header style={styles.header}>
@@ -28,10 +37,18 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
           <WelcomePage isAuthorized={isAuthorized} name={profileInfo.name} />
         </Route>
         <Route path={PATHS.sharedNotes}>
-          {isAuthorized ? <SharedNotesContainer user={user} store={store} /> : <Redirect to={PATHS.notFound} />}
+          {isAuthorized ? (
+            <SharedNotesContainer user={user} store={store} refresh={refresh} />
+          ) : (
+            <Redirect to={PATHS.notFound} />
+          )}
         </Route>
         <Route path={PATHS.myNotes}>
-          {isAuthorized ? <MyNotesContainer user={user} store={store} /> : <Redirect to={PATHS.notFound} />}
+          {isAuthorized ? (
+            <MyNotesContainer user={user} store={store} refresh={refresh} />
+          ) : (
+            <Redirect to={PATHS.notFound} />
+          )}
         </Route>
         <Route path={PATHS.aboutApp}>
           <AboutApp />
@@ -52,7 +69,7 @@ const MyNotes = ({ profileInfo, isAuthorized, user, submitRegistration, submitAu
         </Route>
         <Route path={PATHS.profile}>
           {isAuthorized ? (
-            <ProfileContainer user={user} profileInfo={profileInfo} signOut={signOut} />
+            <ProfileContainer user={user} profileInfo={profileInfo} signOut={signOut} store={store} refresh={refresh} />
           ) : (
             <Redirect to={PATHS.signIn} />
           )}

@@ -15,6 +15,8 @@ const ButtonsNotesContainer = ({
   setActive,
   setNotes,
   setPage,
+  refresh,
+  store,
 }) => {
   const [newNoteOpen, setOpen] = useState(false);
   const [newNoteTitle, setNewNoteTitle] = useState("");
@@ -35,7 +37,18 @@ const ButtonsNotesContainer = ({
       setAlertNew(true);
       setNewError("Enter title and description");
     } else {
-      createNewNote(newNoteTitle, newNoteText, user, setNotes, setPage, setAlertNew, setNewError, setOpen);
+      createNewNote(
+        newNoteTitle,
+        newNoteText,
+        user,
+        setNotes,
+        setPage,
+        setAlertNew,
+        setNewError,
+        setOpen,
+        refresh,
+        store
+      );
     }
   };
   const [filterDateOpen, setFilterDateOpen] = useState(false);

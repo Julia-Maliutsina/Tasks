@@ -7,7 +7,16 @@ import shareNoteWithUsers from "api/shareNote";
 import ShareNoteForm from "./ShareNoteForm";
 import validateUserEmail from "utils/validateUserEmail";
 
-const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen, setAuthorizeAlertOpen }) => {
+const ShareNoteContainer = ({
+  user,
+  openShare,
+  noteToShare,
+  setNoteToShare,
+  shareNoteOpen,
+  setAuthorizeAlertOpen,
+  refresh,
+  store,
+}) => {
   const [userEmailValue, setUser] = useState("");
   const [usersToShare, setUsersToShare] = useState([]);
   const [alertShareOpen, setAlertShare] = useState(false);
@@ -36,7 +45,9 @@ const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shar
       setUsersToShare,
       shareNoteOpen,
       setAlertShare,
-      setShareError
+      setShareError,
+      refresh,
+      store
     );
   };
   const cancelShare = () => {

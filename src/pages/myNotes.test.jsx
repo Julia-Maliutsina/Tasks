@@ -68,7 +68,7 @@ describe("my notes component", () => {
     expect(screen.getByText("Select note to display")).toBeInTheDocument();
     userEvent.click(screen.getByText("Profile"));
     expect(screen.queryByText("Name")).toBeInTheDocument();
-    userEvent.click(screen.getByRole("button"));
+    userEvent.click(screen.getAllByRole("button")[2]);
     expect(signOut).toHaveBeenCalled();
   });
   it("menu navigation works if unauthorized", () => {

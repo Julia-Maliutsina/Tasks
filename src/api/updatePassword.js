@@ -1,7 +1,9 @@
 import axios from "axios";
-import URLS from "config/constants/url";;
+import URLS from "config/constants/url";
 
-const updateProfile = (user, values, setPasswordAlertOpen, setPasswordAlert, setChangePasswordOpen) => {
+import refreshToken from "./refreshToken";
+
+const updateProfile = (user, values, setPasswordAlertOpen, setPasswordAlert, setChangePasswordOpen, refresh, store) => {
   const passwords = {
     oldPassword: values.oldPassword,
     newPassword: values.password};
@@ -16,7 +18,8 @@ const updateProfile = (user, values, setPasswordAlertOpen, setPasswordAlert, set
   })
 	.catch((error) => {
     setPasswordAlertOpen(true);
-    setPasswordAlert(error.response.data)
+    setPasswordAlert(error.response.data);
+    error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   })
 }
 

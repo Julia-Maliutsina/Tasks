@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 
 import URLS from "config/constants/url";
 
-const useGetNotes = (user, page, setAuthorizeAlertOpen) => {
+import refreshToken from "./refreshToken";
+
+const useGetNotes = (user, page, setAuthorizeAlertOpen, refresh, store) => {
 
   const [notes, setNotes] = useState([]);
 
@@ -19,6 +21,7 @@ const useGetNotes = (user, page, setAuthorizeAlertOpen) => {
     if (error.name==="Forbidden") {
       setAuthorizeAlertOpen(true);
     }
+    error.response.data==="Forbidden" && refreshToken(refresh, user, store);
   }) 
 }, [page])
 

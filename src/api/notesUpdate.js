@@ -2,7 +2,9 @@ import axios from "axios"
 
 import URLS from "config/constants/url"
 
-const updateNotes = (note, id, user) => {
+import refreshToken from "./refreshToken";
+
+const updateNotes = (note, id, user, refresh, store) => {
   const noteUrl = URLS.SERVER_NOTES + '/' + id;
 	const noteUpdated = {
 		"title": note.title,
@@ -15,7 +17,9 @@ const updateNotes = (note, id, user) => {
 	  data: noteUpdated,
 	})
 	.then((response) => response)
-	.catch((error) => {})
+	.catch((error) => {    
+		error.response.data==="Forbidden" && refreshToken(refresh, user, store);
+	})
 }
 
 export default updateNotes

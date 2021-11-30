@@ -16,10 +16,10 @@ import { NotesListContainer } from "index.jsx";
 const HIDE_ALERT = 3000;
 const PROGRESS_VALUE = 75;
 
-const MyNotesContainer = ({ user, store }) => {
+const MyNotesContainer = ({ user, store, refresh }) => {
   const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
   const [page, setPage] = useState(INIT.PAGE);
-  const [notes, setNotes] = useGetNotes(user, page, setAuthorizeAlertOpen);
+  const [notes, setNotes] = useGetNotes(user, page, setAuthorizeAlertOpen, refresh, store);
   const [active, setActive] = useState(INIT.ACTIVE);
   const [filtersByDate, applyDatesFilter] = useState([]);
   const [filtersByTitle, applyTitlesFilter] = useState([]);
@@ -50,6 +50,8 @@ const MyNotesContainer = ({ user, store }) => {
             setActive={setActive}
             setNotes={setNotes}
             setPage={setPage}
+            refresh={refresh}
+            store={store}
           />
           <Suspense
             fallback={
@@ -65,10 +67,12 @@ const MyNotesContainer = ({ user, store }) => {
               setNotes={setNotes}
               setPage={setPage}
               page={page}
+              refresh={refresh}
+              store={store}
             />
           </Suspense>
         </div>
-        <MyActiveNoteContainer active={active} notes={notes} user={user} store={store} />
+        <MyActiveNoteContainer active={active} notes={notes} user={user} store={store} refresh={refresh} />
       </Box>
       <Snackbar open={authorizeAlertOpen} autoHideDuration={HIDE_ALERT} onClose={handleAuthorizeAlertClose}>
         <Alert onClose={handleAuthorizeAlertClose} severity="error" sx={styles.maxWidth}>

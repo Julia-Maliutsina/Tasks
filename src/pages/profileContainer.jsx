@@ -9,7 +9,7 @@ import ChangePasswordForm from "components/profile/ChangePasswordForm";
 import updateProfile from "api/updateProfile";
 import updatePassword from "api/updatePassword";
 
-const ProfileContainer = ({ user, profileInfo, signOut }) => {
+const ProfileContainer = ({ user, profileInfo, signOut, store, refresh }) => {
   const [userInfo, setUserInfo] = useState(profileInfo);
   const [profileOpen, setChangeProfileOpen] = useState(false);
   const [profileAlertOpen, setProfileAlertOpen] = useState(false);
@@ -32,7 +32,16 @@ const ProfileContainer = ({ user, profileInfo, signOut }) => {
     setProfileAlertOpen(!profileAlertOpen);
   };
   const submitChangeProfile = (values) => {
-    updateProfile(user, values, setProfileAlertOpen, setProfileAlert, setChangeProfileOpen, setUserInfo);
+    updateProfile(
+      user,
+      values,
+      setProfileAlertOpen,
+      setProfileAlert,
+      setChangeProfileOpen,
+      setUserInfo,
+      store,
+      refresh
+    );
   };
   const [passwordOpen, setChangePasswordOpen] = useState(false);
   const [passwordAlertOpen, setPasswordAlertOpen] = useState(false);
@@ -50,7 +59,7 @@ const ProfileContainer = ({ user, profileInfo, signOut }) => {
     setPasswordAlertOpen(!passwordAlertOpen);
   };
   const submitChangePassword = (values) => {
-    updatePassword(user, values, setPasswordAlertOpen, setPasswordAlert, setChangePasswordOpen);
+    updatePassword(user, values, setPasswordAlertOpen, setPasswordAlert, setChangePasswordOpen, store, refresh);
   };
   return (
     <>

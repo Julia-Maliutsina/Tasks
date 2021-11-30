@@ -2,7 +2,9 @@ import axios from "axios";
 
 import URLS from "config/constants/url";
 
-const deleteNote = (id, user, setNotes, setPage) => {
+import refreshToken from "./refreshToken";
+
+const deleteNote = (id, user, setNotes, setPage, refresh, store) => {
 	const noteUrl = URLS.SERVER_NOTES + "/" + id;
 	axios({
 		method: "DELETE",
@@ -16,7 +18,8 @@ const deleteNote = (id, user, setNotes, setPage) => {
 		})
 		.catch((error) => {
 			setNotes([]);
-			setPage(1);			
+			setPage(1);		
+			error.response.data==="Forbidden" && refreshToken(refresh, user, store);	
 		});
 };
 
