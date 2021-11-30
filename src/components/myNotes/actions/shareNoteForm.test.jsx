@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import ShareNoteForm from "./ShareNoteForm";
 
 const openShare = true;
-const noteToShare = {
+const NOTE = {
   title: "title",
   description: "description",
   createdAt: "2011-10-05T14:48:00.000Z",
@@ -26,7 +26,7 @@ describe("share note form:", () => {
     render(
       <ShareNoteForm
         openShare={openShare}
-        noteToShare={noteToShare}
+        noteToShare={NOTE}
         usersToShare={usersToShare}
         removeUser={removeUser}
         setUser={setUser}
@@ -46,7 +46,7 @@ describe("share note form:", () => {
     render(
       <ShareNoteForm
         openShare={openShare}
-        noteToShare={noteToShare}
+        noteToShare={NOTE}
         usersToShare={usersToShare}
         removeUser={removeUser}
         setUser={setUser}

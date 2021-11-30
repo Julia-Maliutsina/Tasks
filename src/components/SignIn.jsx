@@ -12,7 +12,7 @@ import styles from "pages/styled";
 const HIDE_ALERT = 3000;
 
 const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertOpen }) => (
-  <div>
+  <>
     <h2 style={styles.aboutTitle}>Authorization</h2>
     <Formik
       initialValues={INIT.AUTH_VALUES}
@@ -47,7 +47,7 @@ const SignInForm = ({ submitAutorization, handleAlertClose, alertOpen, setAlertO
         Invalid email or password!
       </Alert>
     </Snackbar>
-  </div>
+  </>
 );
 SignInForm.propTypes = {
   submitAutorization: PropTypes.func,

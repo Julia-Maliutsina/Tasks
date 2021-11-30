@@ -14,6 +14,7 @@ import toLocalDate from "utils/toLocalDate";
 import { NotesListContainer } from "index.jsx";
 
 const HIDE_ALERT = 3000;
+const PROGRESS_VALUE = 75;
 
 const MyNotesContainer = ({ user, store }) => {
   const [authorizeAlertOpen, setAuthorizeAlertOpen] = useState(false);
@@ -30,8 +31,8 @@ const MyNotesContainer = ({ user, store }) => {
   };
   const dates = notes.map((note) => toLocalDate(note.createdAt));
   const titles = notes.map((note) => note.title);
-  const uniqueDates = dates.filter((item, position) => dates.indexOf(item) === position);
-  const uniqueTitles = titles.filter((item, position) => titles.indexOf(item) === position);
+  const uniqueDates = dates.filter((date, position) => dates.indexOf(date) === position);
+  const uniqueTitles = titles.filter((title, position) => titles.indexOf(title) === position);
   function showChosenNote(note) {
     setActive(note);
   }
@@ -53,7 +54,7 @@ const MyNotesContainer = ({ user, store }) => {
           <Suspense
             fallback={
               <div style={styles.loading}>
-                <CircularProgress value={75} />
+                <CircularProgress value={PROGRESS_VALUE} />
               </div>
             }
           >

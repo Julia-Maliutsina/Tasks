@@ -51,7 +51,7 @@ const FiltersContainer = ({
     setFilterTitleOpen(!filterTitleOpen);
   };
   return (
-    <div>
+    <>
       <FilterDatesForm
         filterDateOpen={filterDateOpen}
         setFilterDateOpen={setFilterDateOpen}
@@ -68,7 +68,7 @@ const FiltersContainer = ({
         applyTitleFilters={applyTitleFilters}
         changeFilterTitleOpen={changeFilterTitleOpen}
       />
-    </div>
+    </>
   );
 };
 FiltersContainer.propTypes = {

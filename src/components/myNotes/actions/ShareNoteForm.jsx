@@ -18,6 +18,7 @@ import styles from "pages/styled";
 import toLocalDate from "utils/toLocalDate";
 
 const HIDE_ALERT = 3000;
+const USER_MAX_LENGTH = 40;
 
 const ShareNoteForm = ({
   openShare,
@@ -60,8 +61,7 @@ const ShareNoteForm = ({
         value={userEmailValue}
         className="activeNote"
         minRows={null}
-        maxLength={40}
-        minLength={5}
+        maxLength={USER_MAX_LENGTH}
         style={styles.userToShare}
         onFocus={() => setUser("")}
         onChange={(e) => setUserToShare(e.target.value)}

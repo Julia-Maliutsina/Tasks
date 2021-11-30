@@ -10,33 +10,32 @@ import styles from "pages/styled";
 import NoteShared from "./NoteShared";
 
 const SharedList = ({ sharedNotes, displaySharedNote, pageShared, setPageShared }) => {
-  if (!sharedNotes.length) {
-    return (
-      <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
-        <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noSharedNotes}>
-          {MESSAGES.NO_SHARED_NOTES}
-        </Alert>
-      </div>
-    );
-  }
-  if (sharedNotes.length) {
-    return (
-      <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
-        <InfiniteScroll
-          dataLength={sharedNotes.length}
-          next={() => setPageShared(pageShared + 1)}
-          hasMore
-          scrollableTarget="scrollableShared"
-        >
-          <Box sx={styles.shareGrid}>
-            {sharedNotes.map((note) => (
-              <NoteShared key={note.id} note={note} displaySharedNote={displaySharedNote} />
-            ))}
-          </Box>
-        </InfiniteScroll>
-      </div>
-    );
-  }
+  let sharedList = [];
+  !sharedNotes.length
+    ? (sharedList = (
+        <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
+          <Alert variant="filled" severity="info" id="saveNoteError" style={styles.noSharedNotes}>
+            {MESSAGES.NO_SHARED_NOTES}
+          </Alert>
+        </div>
+      ))
+    : (sharedList = (
+        <div style={styles.sharedNotesGrid} id="scrollableShared" data-testid="scrollableShared">
+          <InfiniteScroll
+            dataLength={sharedNotes.length}
+            next={() => setPageShared(pageShared + 1)}
+            hasMore
+            scrollableTarget="scrollableShared"
+          >
+            <Box sx={styles.shareGrid}>
+              {sharedNotes.map((note) => (
+                <NoteShared key={note.id} note={note} displaySharedNote={displaySharedNote} />
+              ))}
+            </Box>
+          </InfiniteScroll>
+        </div>
+      ));
+  return sharedList;
 };
 SharedList.propTypes = {
   sharedNotes: PropTypes.arrayOf(PropTypes.object),

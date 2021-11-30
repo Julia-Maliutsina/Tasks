@@ -53,7 +53,7 @@ const ProfileContainer = ({ user, profileInfo, signOut }) => {
     updatePassword(user, values, setPasswordAlertOpen, setPasswordAlert, setChangePasswordOpen);
   };
   return (
-    <div>
+    <>
       <Profile
         userInfo={userInfo}
         changeProfileOpen={changeProfileOpen}
@@ -77,7 +77,7 @@ const ProfileContainer = ({ user, profileInfo, signOut }) => {
         submitChangePassword={submitChangePassword}
         handlePasswordAlertClose={handlePasswordAlertClose}
       />
-    </div>
+    </>
   );
 };
 ProfileContainer.propTypes = {

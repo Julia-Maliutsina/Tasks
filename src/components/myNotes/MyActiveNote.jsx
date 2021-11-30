@@ -17,7 +17,6 @@ const MyActiveNote = ({ active, newText, handleChange, alertOpen, saveChangedNot
         id="displayedNote"
         className="activeNote"
         minRows={null}
-        maxLength={500}
         style={styles.text}
         value={newText}
         onChange={(event) => handleChange(event.target.value)}

@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Notes from "./NotesList";
 
-const notesToDisplay = [
+const NOTES = [
   {
     title: "title",
     description: "description",
@@ -24,13 +24,14 @@ const page = 1;
 const changePosition = jest.fn();
 const shareNote = jest.fn();
 const removeNote = jest.fn();
+const SCROLL = 100;
 
 describe("notes list", () => {
   it("renders notes list with infinite scroll", () => {
     render(
       <Notes
         displayChosenNote={displayChosenNote}
-        notesToDisplay={notesToDisplay}
+        notesToDisplay={NOTES}
         setPage={setPage}
         page={page}
         changePosition={changePosition}
@@ -40,7 +41,7 @@ describe("notes list", () => {
     );
     expect(screen.getByRole("list")).toBeInTheDocument();
     const scrollable = screen.getByTestId("scrollableList");
-    fireEvent.scroll(scrollable, { target: { scrollY: 100 } });
+    fireEvent.scroll(scrollable, { target: { scrollY: SCROLL } });
     expect(setPage).toHaveBeenCalledWith(2);
   });
   it("renders without notes", () => {

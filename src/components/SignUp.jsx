@@ -18,7 +18,7 @@ const SignUpForm = ({
   setSignUpAlert,
   handleSignUpAlertClose,
 }) => (
-  <div>
+  <>
     <h2 style={styles.aboutTitle}>Registration</h2>
     <Formik
       initialValues={INIT.AUTH_VALUES}
@@ -83,7 +83,7 @@ const SignUpForm = ({
         {signUpAlert}
       </Alert>
     </Snackbar>
-  </div>
+  </>
 );
 SignUpForm.propTypes = {
   submitRegistration: PropTypes.func,

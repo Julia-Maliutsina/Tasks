@@ -1,6 +1,6 @@
 import validateSignUp from "./validateSignUp";
 
-const valuesCorrect = {
+const VALUES_CORRECT = {
   email: "emai@mail.com",
   name: "Name",
   surname: "Surname",
@@ -8,7 +8,7 @@ const valuesCorrect = {
   password: "123qwerty",
   passwordConfirm: "123qwerty",
 };
-const valuesIncorrect = {
+const VALUES_INCORRECT = {
   email: "mail",
   name: "Имя1",
   surname: "Фамилия1",
@@ -16,7 +16,7 @@ const valuesIncorrect = {
   password: "qwerty",
   passwordConfirm: "123",
 };
-const valuesEmpty = {
+const VALUES_EMPTY = {
   email: "",
   name: "",
   surname: "",
@@ -24,14 +24,14 @@ const valuesEmpty = {
   password: "",
   passwordConfirm: "",
 };
-const errorsIncorrect = {
+const ERROR_INCORRECT = {
   email: "*Invalid email format",
   name: "*Please, enter your name in English",
   surname: "*Please, enter your last name in English",
   password: "*Password must contain at least 9 characters",
   passwordConfirm: "*Password is incorrect",
 };
-const errorsEmpty = {
+const ERRORS_EMPTY = {
   email: "*Required",
   name: "*Required",
   surname: "*Required",
@@ -42,15 +42,15 @@ const errorsEmpty = {
 
 describe("validate sing up form:", () => {
   it("all fields correct", () => {
-    const errors = validateSignUp(valuesCorrect);
+    const errors = validateSignUp(VALUES_CORRECT);
     expect(errors).toStrictEqual({});
   });
   it("all fields incorrect", () => {
-    const errors = validateSignUp(valuesIncorrect);
-    expect(errors).toStrictEqual(errorsIncorrect);
+    const errors = validateSignUp(VALUES_INCORRECT);
+    expect(errors).toStrictEqual(ERROR_INCORRECT);
   });
   it("all fields empty", () => {
-    const errors = validateSignUp(valuesEmpty);
-    expect(errors).toStrictEqual(errorsEmpty);
+    const errors = validateSignUp(VALUES_EMPTY);
+    expect(errors).toStrictEqual(ERRORS_EMPTY);
   });
 });

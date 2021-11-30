@@ -1,27 +1,27 @@
 import applyNotesFilters from "./applyFilters";
 
-const noteOne = { createdAt: "2011-10-05T14:48:00.000Z", title: "Title" };
-const noteTwo = { createdAt: "2021-01-01T14:48:00.000Z", title: "Note" };
-const noteThree = { createdAt: "2011-10-05T14:48:00.000Z", title: "Test" };
-const notes = [noteOne, noteTwo, noteThree];
-const dates = ["05.10.2011"];
-const titles = ["Title", "Note"];
+const NOTE_ONE = { createdAt: "2011-10-05T14:48:00.000Z", title: "Title" };
+const NOTE_TWO = { createdAt: "2021-01-01T14:48:00.000Z", title: "Note" };
+const NOTE_THREE = { createdAt: "2011-10-05T14:48:00.000Z", title: "Test" };
+const NOTES = [NOTE_ONE, NOTE_TWO, NOTE_THREE];
+const DATES = ["05.10.2011"];
+const TITLES = ["Title", "Note"];
 
 describe("returns notes filtered by:", () => {
   it("title", () => {
-    const filtered = applyNotesFilters([], titles, notes);
-    expect(filtered).toEqual(expect.arrayContaining([noteOne, noteTwo]));
+    const filtered = applyNotesFilters([], TITLES, NOTES);
+    expect(filtered).toEqual(expect.arrayContaining([NOTE_ONE, NOTE_TWO]));
   });
   it("date", () => {
-    const filtered = applyNotesFilters(dates, [], notes);
-    expect(filtered).toEqual(expect.arrayContaining([noteOne, noteThree]));
+    const filtered = applyNotesFilters(DATES, [], NOTES);
+    expect(filtered).toEqual(expect.arrayContaining([NOTE_ONE, NOTE_THREE]));
   });
   it("title and date", () => {
-    const filtered = applyNotesFilters(dates, titles, notes);
-    expect(filtered).toEqual(expect.arrayContaining([noteOne]));
+    const filtered = applyNotesFilters(DATES, TITLES, NOTES);
+    expect(filtered).toEqual(expect.arrayContaining([NOTE_ONE]));
   });
   it("without filters", () => {
-    const filtered = applyNotesFilters([], [], notes);
-    expect(filtered).toEqual(expect.arrayContaining(notes));
+    const filtered = applyNotesFilters([], [], NOTES);
+    expect(filtered).toEqual(expect.arrayContaining(NOTES));
   });
 });

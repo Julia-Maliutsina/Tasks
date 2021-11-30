@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 
 import SharedList from "./SharedList";
 
-const sharedNotes = [
+const NOTES = [
   {
     title: "title",
     description: "description",
@@ -22,12 +22,13 @@ const sharedNotes = [
 const displaySharedNote = jest.fn();
 const setPageShared = jest.fn();
 const pageShared = 1;
+const SCROLL = 100;
 
 describe("list of shared notes", () => {
   it("renders notes list", () => {
     render(
       <SharedList
-        sharedNotes={sharedNotes}
+        sharedNotes={NOTES}
         displaySharedNote={displaySharedNote}
         pageShared={pageShared}
         setPageShared={setPageShared}
@@ -35,7 +36,7 @@ describe("list of shared notes", () => {
     );
     const scrollableShared = screen.getByTestId("scrollableShared");
     expect(scrollableShared).toBeInTheDocument();
-    fireEvent.scroll(scrollableShared, { target: { scrollY: 100 } });
+    fireEvent.scroll(scrollableShared, { target: { scrollY: SCROLL } });
     expect(setPageShared).toHaveBeenCalledWith(2);
   });
 });

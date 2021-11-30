@@ -16,6 +16,8 @@ import PropTypes from "prop-types";
 import styles from "pages/styled";
 
 const HIDE_ALERT = 3000;
+const NOTE_MAX_LENGTH = 500;
+const TITLE_MAX_LENGTH = 40;
 
 const NewNoteForm = ({
   addNoteClose,
@@ -36,8 +38,7 @@ const NewNoteForm = ({
         placeholder="Title"
         className="activeNote"
         minRows={null}
-        maxLength={40}
-        minLength={1}
+        maxLength={TITLE_MAX_LENGTH}
         style={styles.newNoteTitle}
         onChange={(e) => setNewNoteTitle(e.target.value)}
         data-testid="newTitle"
@@ -47,8 +48,7 @@ const NewNoteForm = ({
         placeholder="Description"
         className="activeNote"
         minRows={null}
-        maxLength={500}
-        minLength={1}
+        maxLength={NOTE_MAX_LENGTH}
         style={styles.newNoteText}
         onChange={(e) => setNewNoteText(e.target.value)}
         data-testid="newText"

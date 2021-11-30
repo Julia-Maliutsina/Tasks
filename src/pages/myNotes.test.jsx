@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 
 import MyNotes from "./myNotes";
 
-const profileInfo = {
+const PROFILE = {
   email: "emai@mail.com",
   name: "Name",
   surname: "Surname",
@@ -19,7 +19,7 @@ describe("my notes component", () => {
   it("renders menu for unauthorized user", () => {
     render(
       <MyNotes
-        profileInfo={profileInfo}
+        profileInfo={PROFILE}
         isAuthorized={false}
         user={user}
         submitRegistration={submitRegistration}
@@ -34,7 +34,7 @@ describe("my notes component", () => {
   it("renders menu for authorized user", () => {
     render(
       <MyNotes
-        profileInfo={profileInfo}
+        profileInfo={PROFILE}
         isAuthorized={true}
         user={user}
         submitRegistration={submitRegistration}
@@ -50,7 +50,7 @@ describe("my notes component", () => {
   it("menu navigation works if authorized", () => {
     render(
       <MyNotes
-        profileInfo={profileInfo}
+        profileInfo={PROFILE}
         isAuthorized={true}
         user={user}
         submitRegistration={submitRegistration}
@@ -74,7 +74,7 @@ describe("my notes component", () => {
   it("menu navigation works if unauthorized", () => {
     render(
       <MyNotes
-        profileInfo={profileInfo}
+        profileInfo={PROFILE}
         isAuthorized={false}
         user={user}
         submitRegistration={submitRegistration}

@@ -5,6 +5,7 @@ import INIT from "config/constants/initial";
 import shareNoteWithUsers from "api/shareNote";
 
 import ShareNoteForm from "./ShareNoteForm";
+import validateUserEmail from "utils/validateUserEmail";
 
 const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shareNoteOpen, setAuthorizeAlertOpen }) => {
   const [userEmailValue, setUser] = useState("");
@@ -16,7 +17,7 @@ const ShareNoteContainer = ({ user, openShare, noteToShare, setNoteToShare, shar
     setUser(userEmail);
   };
   const addUserToList = () => {
-    if (!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/i.test(userEmailValue)) {
+    if (validateUserEmail(userEmailValue)) {
       setAlertShare(true);
       setShareError("Invalid email format");
     } else {

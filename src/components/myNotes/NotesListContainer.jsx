@@ -20,7 +20,7 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
     deleteNote(noteId, user, setNotes, setPage);
   };
   return (
-    <div>
+    <>
       <Notes
         displayChosenNote={displayChosenNote}
         notesToDisplay={notesToDisplay}
@@ -36,7 +36,7 @@ const NotesListContainer = ({ user, displayChosenNote, notesToDisplay, setNotes,
         setNoteToShare={setNoteToShare}
         shareNoteOpen={shareNoteOpen}
       />
-    </div>
+    </>
   );
 };
 NotesListContainer.propTypes = {
