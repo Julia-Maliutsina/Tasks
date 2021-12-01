@@ -1,0 +1,117 @@
+import { useState } from "react";
+import PropTypes from "prop-types";
+
+import INIT from "config/constants/initial";
+import createNewNote from "api/newNote";
+
+import ButtonsNotes from "./ButtonsNotes";
+
+const ButtonsNotesContainer = ({
+  user,
+  uniqueDates,
+  uniqueTitles,
+  applyDatesFilter,
+  applyTitlesFilter,
+  setActive,
+  setNotes,
+  setPage,
+  refresh,
+  store,
+}) => {
+  const [newNoteOpen, setOpen] = useState(false);
+  const [newNoteTitle, setNewNoteTitle] = useState("");
+  const [newNoteText, setNewNoteText] = useState("");
+  const [alertNewOpen, setAlertNew] = useState(false);
+  const [newNoteError, setNewError] = useState("");
+  const addNoteOpen = () => {
+    setNewNoteTitle("");
+    setNewNoteText("");
+    setOpen(true);
+    setActive(INIT.ACTIVE);
+  };
+  const addNoteClose = () => {
+    setOpen(false);
+  };
+  const addNoteSubmit = () => {
+    if (!newNoteTitle.length || !newNoteText.length) {
+      setAlertNew(true);
+      setNewError("Enter title and description");
+    } else {
+      createNewNote(
+        newNoteTitle,
+        newNoteText,
+        user,
+        setNotes,
+        setPage,
+        setAlertNew,
+        setNewError,
+        setOpen,
+        refresh,
+        store
+      );
+    }
+  };
+  const [filterDateOpen, setFilterDateOpen] = useState(false);
+  const [filterDatesArray, setDateFilters] = useState([]);
+  const [filterTitleOpen, setFilterTitleOpen] = useState(false);
+  const [filterTitlesArray, setTitleFilters] = useState([]);
+  const filterNotesByDate = () => {
+    setFilterDateOpen(true);
+    setDateFilters([]);
+  };
+  const filterNotesByTitle = () => {
+    setFilterTitleOpen(true);
+    setTitleFilters([]);
+  };
+  const discardFilters = () => {
+    setDateFilters([]);
+    applyDatesFilter([]);
+    setTitleFilters([]);
+    applyTitlesFilter([]);
+  };
+  const handleAlertNewClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setAlertNew(false);
+  };
+  return (
+    <ButtonsNotes
+      uniqueDates={uniqueDates}
+      uniqueTitles={uniqueTitles}
+      applyDatesFilter={applyDatesFilter}
+      applyTitlesFilter={applyTitlesFilter}
+      addNoteOpen={addNoteOpen}
+      newNoteOpen={newNoteOpen}
+      addNoteClose={addNoteClose}
+      setNewNoteTitle={setNewNoteTitle}
+      setNewNoteText={setNewNoteText}
+      addNoteSubmit={addNoteSubmit}
+      filterNotesByTitle={filterNotesByTitle}
+      filterNotesByDate={filterNotesByDate}
+      discardFilters={discardFilters}
+      filterDateOpen={filterDateOpen}
+      filterTitleOpen={filterTitleOpen}
+      setFilterDateOpen={setFilterDateOpen}
+      setFilterTitleOpen={setFilterTitleOpen}
+      filterDatesArray={filterDatesArray}
+      filterTitlesArray={filterTitlesArray}
+      setDateFilters={setDateFilters}
+      setTitleFilters={setTitleFilters}
+      newNoteError={newNoteError}
+      alertNewOpen={alertNewOpen}
+      handleAlertNewClose={handleAlertNewClose}
+    />
+  );
+};
+ButtonsNotesContainer.propTypes = {
+  user: PropTypes.string,
+  uniqueDates: PropTypes.array,
+  uniqueTitles: PropTypes.array,
+  applyDatesFilter: PropTypes.func,
+  applyTitlesFilter: PropTypes.func,
+  setActive: PropTypes.func,
+  setNotes: PropTypes.func,
+  setPage: PropTypes.func,
+};
+export default ButtonsNotesContainer;
